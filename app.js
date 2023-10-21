@@ -1,31 +1,82 @@
+require('dotenv').config();
+
 const express=require("express");
 const bodyParser=require("body-parser");
 const { log } = require("console");
 const app =express();
 const mongoose = require('mongoose');
-// This is test git
+const session = require('express-session');
+const passport=require("passport");
+const passportLocalMongoose = require('passport-local-mongoose');
+// const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const  findOrCreate = require('mongoose-findorcreate');
 
-mongoose.connect('mongodb://127.0.0.1:27017/UserDetails')
-.then((d)=>{
-    console.log("Database Connected");
-})
-.catch((err)=>{
-    console.log(err);
-})
+
+
+
 
 
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+  
+  }));
+
+
 
 app.set('view engine','views');
 app.set('view engine','ejs');
 
 
-const Messages=[];
 
-console.log(Messages);
+mongoose.connect('mongodb://127.0.0.1:27017/UserDB07')
+.then((d)=>{
+    console.log("Database Connected");
+})
+.catch((err)=>{
+    console.log(err.Message);
+})
+
+app.use(passport.initialize());
+  app.use(passport.session());
+
+const userSchema=new mongoose.Schema({
+    Fullname:String,
+    email:String,
+    password:String,
+    Address:String,
+    mobile:Number,
+    Dob:Number,
+    Gender :String,
+
+});
+
+userSchema.plugin(passportLocalMongoose);
+  userSchema.plugin(findOrCreate);
+
+
+  const User=new mongoose.model("User",userSchema);
+
+
+  passport.use(User.createStrategy());
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.get("/",function(req,res){
     res.render("index");
@@ -62,38 +113,22 @@ app.get("/success",function(req,res){
 
 
 app.post("/",function(req,res){
-    const Message={
-    Name:req.body.Fname,
-    Email: req.body.Email,
-    Subject:req.body.sub,
-    Message:req.body.sms
-    }
-    Messages.push(Message);
- console.log(Messages)
- res.redirect("/");
+ 
 })
 
 
 app.post("/User_singUp",function(req,res){
-    const userForm={
-        user_name:req.body.fname,
-        email:req.body.email,
-        time:req.body.pickup,
-        birth_date:req.body.dob,
-        food_carry_date:req.body.carrydate,
-        food_type:req.body.foodType,
-        gender:req.body.gender,
-        phone_number:req.body.phn,
-        address_1:req.body.add1,
-        address_2:req.body.add2,
-        country:req.body.Country,
-        city:req.body.city,
-        district:req.body.dist,
-        pin:req.body.pin,
-        details_of_food:req.body.FoodDeatils
-
-    }
-    console.log(userForm);
+  
+   User.register({username:req.body.email},req.body.password,function(err,user){
+        if(err){
+            console.log(err);
+            res.redirect("/User_singUp");
+        }else{
+            passport.authenticate("local")(req,res,function(){   //if varify
+                res.redirect("/");
+            })
+        }
+    })
 
     
   
