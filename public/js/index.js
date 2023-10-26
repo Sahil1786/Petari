@@ -1,8 +1,8 @@
 
 
-document.getElementById('login').addEventListener("click",function(){
-    alert("Currently Page is under Progress.......");
-})
+// document.getElementById('login').addEventListener("click",function(){
+//     alert("Currently Page is under Progress.......");
+// })
 
 
 // singup from js 
