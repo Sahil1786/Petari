@@ -1,0 +1,122 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;600&display=swap');
+
+
+
+
+body{
+   min-height: 100vh;
+   background-color: var(--primary-color);
+}
+*{
+    margin :0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    
+
+}
+/* colors */
+:root{
+    --primary-color:#0E4BF1;
+    --panel-color:#FFF;
+    --text-color:black;
+    --black-light-color:#F07070;
+    --broder-color:#e6e5e5;
+    --toggle-color:#DDD;
+    --box1-color:#4DA3FF;
+    --box2-color:#E7D1FC;
+    --box3-color:#fff;
+
+    /* transtions */
+    --tran-05:all 05s ease;
+    --tran-03:all 03s ease;
+    --tran-03:all 02s ease;
+
+}
+
+nav{
+    position: fixed;
+    top: 0%;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding:10px 14px ;
+    background-color: var(--panel-color);
+ 
+}
+
+nav .logo-name{
+    display: flex;
+    align-items: center;
+}
+nav .logo-img{
+    display: flex;
+    justify-content: center;
+min-width: 45px;
+
+}
+nav .logo-img img{
+    width: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+    }
+
+    nav  .logo-name .logo_name{
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--text-color);
+        margin-left: 14px;
+
+
+    }
+
+    nav .manu-items{
+       
+        margin-top: 40px;
+        height: calc(100% - 90px);
+      
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+
+    }
+
+    .manu-items li{
+        list-style: none;
+    }
+
+    .manu-items li a{
+        display: flex;
+        align-items: center;
+
+        height: 50px;
+   text-decoration: none;
+    }
+
+    
+    .manu-items li{
+        list-style: none;
+    }
+
+    .manu-items li a i{
+        font-size: 24px;
+  min-width: 45px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+color:var(--black-light-color);
+
+
+    }
+    .manu-items li a .link-name{
+        font-size: 18px;
+font-weight: 400;
+color:green;
+
+    }
+    .nav-links li a:hover 
+
+    .nav-links li a:hover .link-name

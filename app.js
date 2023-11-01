@@ -124,7 +124,9 @@ app.get("/success",function(req,res){
     res.render("success");
    
 })
-
+ app.get("/try",(req,res)=>{
+    res.render("UserDashBoard");
+ })
 
 
 
@@ -136,16 +138,16 @@ app.post("/",function(req,res){
 
 app.post("/User_singUp",function(req,res){
   
-//    User.register({username:req.body.email},req.body.password,function(err,user){
-//         if(err){
-//             console.log(err);
-//             res.redirect("/User_singUp");
-//         }else{
-//             passport.authenticate("local")(req,res,function(){   //if varify
-//                 res.redirect("/");
-//             })
-//         }
-//     })
+   User.register({username:req.body.email},req.body.password,function(err,user){
+        if(err){
+            console.log(err);
+            res.redirect("/User_singUp");
+        }else{
+            passport.authenticate("local")(req,res,function(){   //if varify
+                res.redirect("/");
+            })
+        }
+    })
 
 bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
     const newUser=new User({
@@ -171,19 +173,19 @@ bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
 
 
 app.post("/login",function(req,res){
-    // const user = new User({
-    //    username:req.body.email,
-    //    password:req.body.password
-    //  });
-    //  req.login(user,function(err){
-    //    if(err){
-    //        console.log(err);
-    //    }else{
-    //        passport.authenticate("local")(req,res,function(){   //if varify
-    //            res.redirect("/");
-    //        });
-    //    }
-    //  });
+    const user = new User({
+       username:req.body.email,
+       password:req.body.password
+     });
+     req.login(user,function(err){
+       if(err){
+           console.log(err);
+       }else{
+           passport.authenticate("local")(req,res,function(){   //if varify
+               res.redirect("/");
+           });
+       }
+     });
 
        const username=req.body.email;
     const password=req.body.password;
