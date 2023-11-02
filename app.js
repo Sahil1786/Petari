@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const express=require("express");
 const bodyParser=require("body-parser");
-const { log } = require("console");
+const { log, error } = require("console");
 const app =express();
 const mongoose = require('mongoose');
 const session = require('express-session');
@@ -12,6 +12,7 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const  findOrCreate = require('mongoose-findorcreate');
 
 const bcrypt= require('bcrypt');
+const { stringify } = require('querystring');
 const saltRounds=30;
 
 
@@ -48,6 +49,34 @@ mongoose.connect('mongodb://127.0.0.1:27017/UserDB07')
 app.use(passport.initialize());
   app.use(passport.session());
 
+//schema
+
+const indexQuerySchema=mongoose.Schema({
+    // name:{
+    //     type:String,
+    //     required:true
+    // },
+    // emailId:{
+    //     type:String,
+    //     required:true
+    // },
+    // Subject:{
+    //     type:String,
+    //     required:true
+    // },
+    // Message:{
+    //     type:String,
+    //     required:true
+    // }
+    name:String,
+    email:String,
+    subject:String,
+    message:String
+
+
+},{timestamps: true})
+
+
 const userSchema=new mongoose.Schema({
     Fullname:String,
     email:String,
@@ -63,7 +92,12 @@ userSchema.plugin(passportLocalMongoose);
   userSchema.plugin(findOrCreate);
 
 
+
+// mongose model
+
   const User=new mongoose.model("User",userSchema);
+  const Query=new mongoose.model("Query",indexQuerySchema);
+
 
 
   passport.use(User.createStrategy());
@@ -132,43 +166,79 @@ app.get("/success",function(req,res){
 
 
 app.post("/",function(req,res){
- 
+   
+    const newQurey= new Query({
+        name:req.body.Fname,
+        email:req.body.Email,
+        subject:req.body.sub,
+        message:req.body.sms
+    });
+    
+    newQurey.save().then(()=>{
+            //    res.send("Sucessfully Recived Meassage ...Thank You!");
+
+            ///have to check leatter sahil;
+          
+               res. redirect("/");
+           
+               console.log(newQurey)
+            }).catch(err=>{
+                console.log(err);
+            });
+        
 })
 
 
 app.post("/User_singUp",function(req,res){
   
-   User.register({username:req.body.email},req.body.password,function(err,user){
+
+    User.register({username:req.body.email},req.body.password,function(err,user){
         if(err){
             console.log(err);
             res.redirect("/User_singUp");
         }else{
             passport.authenticate("local")(req,res,function(){   //if varify
-                res.redirect("/");
+                res.redirect("/try");
             })
         }
     })
 
-bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-    const newUser=new User({
-        fullNmae:req.body.fname,
-        email:req.body.email,
-        password:hash,
+
+
+
+//    User.register({username:req.body.email},req.body.password,function(err,user){
+//         if(err){
+//             console.log(err);
+//             res.redirect("/User_singUp");
+//         }else{
+//             passport.authenticate("local")(req,res,function(){   //if varify
+//                 res.redirect("UserDashBoard");
+//             })
+//         }
+//     })
+
+// bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+//     const newUser=new User({
+//         fullNmae:req.body.fname,
+//         email:req.body.email,
+//         password:hash,
         
-        // Address:req.body.address,
-        // mob:req.body.mob,
-        // dob:req.body.dob
-    });
-    console.log(newUser);
-    newUser.save().then(()=>{
-       res.render("/");
-    }).catch(err=>{
-        console.log(err);
-    });
-});
+//         // Address:req.body.address,
+//         // mob:req.body.mob,
+//         // dob:req.body.dob
+//     });
+//     console.log(newUser);
+//     newUser.save().then(()=>{
+//        res.render("/");
+//     }).catch(err=>{
+//         console.log(err);
+//     });
+// });
     
   
-})
+
+
+});
 
 
 

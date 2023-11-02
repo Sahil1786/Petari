@@ -8,6 +8,19 @@ body{
    min-height: 100vh;
    background-color: var(--primary-color);
 }
+
+body.dark{
+    --primary-color:#3A3B3C;
+    --panel-color:#242526;
+    --text-color:#CCC;
+    --black-light-color:#CCC;
+    --broder-color:#4D4C4C;
+    --toggle-color:#FFF;
+    --box1-color:#3A3B3C;
+    --box2-color:#3A3B3C;
+    --box3-color:#CCC;
+
+}
 *{
     margin :0;
     padding: 0;
@@ -37,7 +50,7 @@ body{
 
 nav{
     position: fixed;
-    top: 0%;
+    top: 0;
     left: 0;
     height: 100%;
     width: 250px;
@@ -93,8 +106,18 @@ nav .logo-img img{
 
         height: 50px;
    text-decoration: none;
+   position: relative;
     }
 
+    .nav-links li a:hover:before{
+        content: "";
+        position: absolute;
+        height: 5px;
+        width: 5px;
+        border-radius: 50%;
+        background-color: var(--primary-color);
+        left: -7px
+    }
     
     .manu-items li{
         list-style: none;
@@ -117,6 +140,64 @@ font-weight: 400;
 color:green;
 
     }
-    .nav-links li a:hover 
+    .nav-links li a:hover  i,
 
-    .nav-links li a:hover .link-name
+    .nav-links li a:hover .link-name{
+        color: var(--primary-color);
+    }
+
+    .manu-items .mode{
+        display: flex;
+        align-items: center;
+
+    }
+
+    .manu-items .mode-toggle{
+        position: absolute;
+        right: 14px;
+        height: 50px;
+        min-width: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .mode-toggle .switch{
+        position: relative;
+        display: inline-block;
+        height: 22px;
+        width: 40px;
+        border-radius: 25px;
+        background-color: var(--toggle-color);
+
+    }
+
+    .switch::before{
+        content: " ";
+        position: absolute;
+        left: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 15px;
+        width: 15px;
+        background-color: var(--panel-color);
+        border-radius: 50%;
+        transition: var(--tran-03);
+    }
+
+
+body.dark .switch::before{
+    left: 20px;
+
+
+}
+
+.dashboard{
+
+          
+    height: 100vh;
+    width: calc(100%-25px);
+
+
+}
