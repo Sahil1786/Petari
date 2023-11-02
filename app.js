@@ -175,11 +175,11 @@ app.post("/",function(req,res){
     });
     
     newQurey.save().then(()=>{
-            //    res.send("Sucessfully Recived Meassage ...Thank You!");
+               res.send("Sucessfully Recived Meassage ...Thank You!");
 
             ///have to check leatter sahil;
           
-               res. redirect("/");
+            //    res. redirect("/");
            
                console.log(newQurey)
             }).catch(err=>{
