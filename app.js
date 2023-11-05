@@ -84,6 +84,9 @@ const userSchema=new mongoose.Schema({
     // Fullname:String,
     email:String,
     password:String,
+
+    googleId:String,
+
     // Address:String,
     // mobile:Number,
     // Dob:Number,
@@ -124,22 +127,6 @@ userSchema.plugin(findOrCreate);
 // google auth Registration
 
 
-// passport.use(new GoogleStrategy({
-//     clientID:  process.env.Clint_ID,
-//     clientSecret: process.env.Clint_Secret,
-//     callbackURL: "http://localhost:3000/auth/google/UserDash",
-//     // userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
-//     // passReqToCallback   : true
-//   },
-//   function(accessToken, refreshToken, profile, cb) {
-//     console.log(profile);
-//     User.findOrCreate({ googleId: profile.id }, function (err, user) {
-//       return cb(err, user);
-//     });
-//   }
-  
-// ));
-
 
 passport.use(new GoogleStrategy({
     clientID:process.env.Clint_ID,
@@ -176,17 +163,13 @@ app.get("/auth/google",
 ));
 
 
-// app.get("/auth/google",
-//     passport.authenticate('google', { scope: ["profile"] })   // google startygy
 
-// );
 
 app.get( "/auth/google/UserDash",
     passport.authenticate( 'google', {
-        successRedirect: '/auth/google/UserDash',
+        successRedirect: '/UserDash',
         failureRedirect: '/user_login'
 }));
-
 
 
 app.get("/user_login",function(req,res){
@@ -307,6 +290,19 @@ app.post("/login",function(req,res){
     });
   
    });
+
+
+
+   app.get("/logout", function(req,res){
+    req.logout((err)=>{
+if(err){
+    console.log(err);
+}
+    });
+    res.redirect("/");
+
+})
+
    
 
                 //    server rendiring
