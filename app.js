@@ -8,12 +8,15 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport=require("passport");
 const passportLocalMongoose = require('passport-local-mongoose');
-// const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 const  findOrCreate = require('mongoose-findorcreate');
-
 const bcrypt= require('bcrypt');
-const { stringify } = require('querystring');
-const saltRounds=30;
+const saltRounds=10;
+ 
+
+
+// const { stringify } = require('querystring');
+
 
 
 
@@ -38,7 +41,7 @@ app.set('view engine','ejs');
 
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/UserDB07')
+mongoose.connect('mongodb://127.0.0.1:27017/PetariDB')
 .then((d)=>{
     console.log("Database Connected");
 })
@@ -78,18 +81,18 @@ const indexQuerySchema=mongoose.Schema({
 
 
 const userSchema=new mongoose.Schema({
-    Fullname:String,
+    // Fullname:String,
     email:String,
     password:String,
-    Address:String,
-    mobile:Number,
-    Dob:Number,
-    Gender :String,
+    // Address:String,
+    // mobile:Number,
+    // Dob:Number,
+    // Gender :String,
 
 });
 
 userSchema.plugin(passportLocalMongoose);
-  userSchema.plugin(findOrCreate);
+userSchema.plugin(findOrCreate);
 
 
 
@@ -99,27 +102,60 @@ userSchema.plugin(passportLocalMongoose);
   const Query=new mongoose.model("Query",indexQuerySchema);
 
 
-
   passport.use(User.createStrategy());
 
-
-  passport.serializeUser(function(User, cb) {
+  passport.serializeUser(function(user, cb) {
     process.nextTick(function() {
       return cb(null, {
-        id: User.id,
-        username: User.email,
-        picture: User.picture
+        id: user.id,
+        username: user.username,
+        picture: user.picture
       });
     });
   });
   
-  passport.deserializeUser(function(User, cb) {
+  passport.deserializeUser(function(user, cb) {
     process.nextTick(function() {
-      return cb(null, User);
+      return cb(null, user);
     });
   });
 
 
+// google auth Registration
+
+
+// passport.use(new GoogleStrategy({
+//     clientID:  process.env.Clint_ID,
+//     clientSecret: process.env.Clint_Secret,
+//     callbackURL: "http://localhost:3000/auth/google/UserDash",
+//     // userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
+//     // passReqToCallback   : true
+//   },
+//   function(accessToken, refreshToken, profile, cb) {
+//     console.log(profile);
+//     User.findOrCreate({ googleId: profile.id }, function (err, user) {
+//       return cb(err, user);
+//     });
+//   }
+  
+// ));
+
+
+passport.use(new GoogleStrategy({
+    clientID:process.env.Clint_ID,
+    clientSecret: process.env.Clint_Secret,
+    callbackURL: "http://localhost:3000/auth/google/UserDash",
+    passReqToCallback   : true,
+    scope:
+    [ 'email', 'profile' ]
+  },
+  function(request, accessToken, refreshToken, profile, done) {
+    console.log(profile);
+    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      return done(err, user);
+    });
+  }
+));
 
 
 
@@ -133,6 +169,25 @@ app.get("/",function(req,res){
     res.render("index");
    
 });
+
+app.get("/auth/google",
+  passport.authenticate('google', { scope:
+      [ 'email', 'profile' ] }
+));
+
+
+// app.get("/auth/google",
+//     passport.authenticate('google', { scope: ["profile"] })   // google startygy
+
+// );
+
+app.get( "/auth/google/UserDash",
+    passport.authenticate( 'google', {
+        successRedirect: '/auth/google/UserDash',
+        failureRedirect: '/user_login'
+}));
+
+
 
 app.get("/user_login",function(req,res){
    res.render("user_login");
@@ -149,7 +204,7 @@ app.get("/admin_login",function(req,res){
 
 app.get("/User_singUp",function(req,res){
     res.render("User_singUp");
-    res.redirect("/success");
+    // res.redirect("/success");
    
 });
 
@@ -158,8 +213,14 @@ app.get("/success",function(req,res){
     res.render("success");
    
 })
- app.get("/try",(req,res)=>{
-    res.render("UserDashBoard");
+ app.get("/UserDash",(req,res)=>{
+    if(req.isAuthenticated()){
+        res.render("UserDashBoard");
+    }else{
+        res.redirect("/user_login")
+    }
+
+  
  })
 
 
@@ -188,74 +249,42 @@ app.post("/",function(req,res){
         
 })
 
-
+                                                       // user Registration
 app.post("/User_singUp",function(req,res){
   
+    bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+        const newUser=new User({
+            email:req.body.email,
+            password:hash
+        });
+        console.log(newUser);
+        newUser.save().then(()=>{
+           res.render("UserDashBoard");
 
-    User.register({username:req.body.email},req.body.password,function(err,user){
-        if(err){
+        }).catch(err=>{
             console.log(err);
-            res.redirect("/User_singUp");
-        }else{
-            passport.authenticate("local")(req,res,function(){   //if varify
-                res.redirect("/try");
-            })
-        }
-    })
-
-
-
-
-//    User.register({username:req.body.email},req.body.password,function(err,user){
-//         if(err){
-//             console.log(err);
-//             res.redirect("/User_singUp");
-//         }else{
-//             passport.authenticate("local")(req,res,function(){   //if varify
-//                 res.redirect("UserDashBoard");
-//             })
-//         }
-//     })
-
-// bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-//     const newUser=new User({
-//         fullNmae:req.body.fname,
-//         email:req.body.email,
-//         password:hash,
-        
-//         // Address:req.body.address,
-//         // mob:req.body.mob,
-//         // dob:req.body.dob
-//     });
-//     console.log(newUser);
-//     newUser.save().then(()=>{
-//        res.render("/");
-//     }).catch(err=>{
-//         console.log(err);
-//     });
-// });
-    
-  
+        });
+    });
 
 
 });
 
-
+                                                               //  user login
 
 app.post("/login",function(req,res){
-    const user = new User({
-       username:req.body.email,
-       password:req.body.password
-     });
-     req.login(user,function(err){
-       if(err){
-           console.log(err);
-       }else{
-           passport.authenticate("local")(req,res,function(){   //if varify
-               res.redirect("/");
-           });
-       }
-     });
+    // const user = new User({
+    //    username:req.body.email,
+    //    password:req.body.password
+    //  });
+    //  req.login(user,function(err){
+    //    if(err){
+    //        console.log(err);
+    //    }else{
+    //        passport.authenticate("local")(req,res,function(){   //if varify
+    //            res.redirect("/");
+    //        });
+    //    }
+    //  });
 
        const username=req.body.email;
     const password=req.body.password;
@@ -265,12 +294,10 @@ app.post("/login",function(req,res){
         if(foundUser){
             bcrypt.compare(password, foundUser.password, function(err, result) {
                 if(result=== true){
-                    res.render("/");
+                    res.render("UserDashBoard");
             
                 }
-                // else{
-                //     res.render("User_singUp");
-                // }
+    
             });
               
         }
@@ -282,7 +309,7 @@ app.post("/login",function(req,res){
    });
    
 
-
+                //    server rendiring
 
 app.listen( process.env.port|| 3000,function(){
     console.log("server is running on port 3000 ");

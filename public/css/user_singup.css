@@ -122,3 +122,16 @@ body {
   background: rgba(0, 136, 16, 1);
 }
 
+.card-bodyy{
+  margin-top: 15px;
+  /* background-color:pink; */
+  border-radius: 80px;
+  /* border-left: #4FD6F7; */
+  color:white;
+
+
+
+
+  
+}
+
