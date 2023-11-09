@@ -86,6 +86,7 @@ const userSchema=new mongoose.Schema({
     password:String,
 
     googleId:String,
+    profile:String,
 
     // Address:String,
     // mobile:Number,
@@ -235,59 +236,38 @@ app.post("/",function(req,res){
                                                        // user Registration
 app.post("/User_singUp",function(req,res){
   
-    bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-        const newUser=new User({
-            email:req.body.email,
-            password:hash
-        });
-        console.log(newUser);
-        newUser.save().then(()=>{
-           res.render("UserDashBoard");
-
-        }).catch(err=>{
+    User.register({username:req.body.username},req.body.password,function(err,user){
+        if(err){
             console.log(err);
-        });
-    });
-
+            res.redirect("/user_login");
+        }else{
+            passport.authenticate("local")(req,res,function(){   //if varify
+                res.redirect("/UserDash");
+            })
+        }
+    })
 
 });
 
                                                                //  user login
 
 app.post("/login",function(req,res){
-    // const user = new User({
-    //    username:req.body.email,
-    //    password:req.body.password
-    //  });
-    //  req.login(user,function(err){
-    //    if(err){
-    //        console.log(err);
-    //    }else{
-    //        passport.authenticate("local")(req,res,function(){   //if varify
-    //            res.redirect("/");
-    //        });
-    //    }
-    //  });
+    const user = new User({
+       username:req.body.username,
+       password:req.body.password
+     });
+     req.login(user,function(err){
+       if(err){
+           console.log(err);
+   
+       }else{
+           passport.authenticate("local")(req,res,function(){   //if varify
+               res.redirect("/UserDash");
+           });
+       }
+     });
 
-       const username=req.body.email;
-    const password=req.body.password;
-    
-    
-    User.findOne({email:username}).then((foundUser)=>{
-        if(foundUser){
-            bcrypt.compare(password, foundUser.password, function(err, result) {
-                if(result=== true){
-                    res.render("UserDashBoard");
-            
-                }
-    
-            });
-              
-        }
-    })
-    .catch((err)=>{
-        console.log(err);
-    });
+
   
    });
 

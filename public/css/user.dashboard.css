@@ -29,9 +29,70 @@ body.dark{
     
 
 }
+/* aditya start */
+.Donatebox{
+    display: flex;
+
+    /* position: absolute; */
+    width: 35rem;
+    height: 25rem;
+    background-color: greenyellow;
+    justify-content: center;
+    align-self: center;
+    border-radius: 12%;
+}
+.NAME-block{
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    border-radius: 7%;
+    padding-top: 5%;
+    padding-left: 10%;
+    height: 90%;
+    width: 90%;
+
+
+    background-color: white;
+}
+.top-border{
+    
+    margin-top: 1.5%;
+    border-style:double;
+    border-color: #F07070;
+    
+}
+.Left-name{
+    display: inline-block;
+    position: absolute;
+    right: 3%;
+    padding-top: 3px;
+}
+.top{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.middle{
+    display: flex;
+    padding-top: 15%;
+    justify-content: center;
+}
+.dashboard{
+
+    display: inline-block;
+    padding-left: 20%;      
+    height: 100vh;
+    width: 100%;
+  
+
+
+}
+/* aditya End */
 /* colors */
 :root{
-    --primary-color:#0E4BF1;
+    --primary-color:wheat;
     --panel-color:#FFF;
     --text-color:black;
     --black-light-color:#F07070;
@@ -193,11 +254,3 @@ body.dark .switch::before{
 
 }
 
-.dashboard{
-
-          
-    height: 100vh;
-    width: calc(100%-25px);
-
-
-}
