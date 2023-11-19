@@ -84,14 +84,18 @@ const userSchema=new mongoose.Schema({
     // Fullname:String,
     email:String,
     password:String,
+fullName:String,
 
+address:String,
+Mobile:Number,
+dob:String,
+gender :{
+  type:String,
+  enum: ['opt1', 'opt2', 'opt3'],
+},
     googleId:String,
     profile:String,
 
-    // Address:String,
-    // mobile:Number,
-    // Dob:Number,
-    // Gender :String,
 
 });
 
@@ -197,6 +201,8 @@ app.get("/success",function(req,res){
     res.render("success");
    
 })
+
+
  app.get("/UserDash",(req,res)=>{
     if(req.isAuthenticated()){
         res.render("UserDashBoard");
@@ -209,45 +215,110 @@ app.get("/success",function(req,res){
 
 
 
+ app.post("/", async function (req, res) {
+    try {
+      const newQuery = new Query({
+        name: req.body.Fname,
+        email: req.body.Email,
+        subject: req.body.sub,
+        message: req.body.sms,
+      });
+  
+      await newQuery.save();
+  
+      res.send("Successfully Received Message... Thank You!");
+      console.log(newQuery);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+    }
+  });
 
-app.post("/",function(req,res){
-   
-    const newQurey= new Query({
-        name:req.body.Fname,
-        email:req.body.Email,
-        subject:req.body.sub,
-        message:req.body.sms
-    });
-    
-    newQurey.save().then(()=>{
-               res.send("Sucessfully Recived Meassage ...Thank You!");
 
-            ///have to check leatter sahil;
-          
-            //    res. redirect("/");
-           
-               console.log(newQurey)
-            }).catch(err=>{
-                console.log(err);
-            });
-        
-})
 
                                                        // user Registration
-app.post("/User_singUp",function(req,res){
-  
-    User.register({username:req.body.username},req.body.password,function(err,user){
-        if(err){
-            console.log(err);
-            res.redirect("/user_login");
-        }else{
-            passport.authenticate("local")(req,res,function(){   //if varify
-                res.redirect("/UserDash");
-            })
-        }
-    })
 
+app.post("/User_singUp", async function (req, res) {
+    const { username } = req.body;
+
+    try {
+        // Check if the email already exists
+        const existingUser = await User.findOne({ email: username }).exec();
+
+        if (existingUser) {
+            // Email already exists, handle accordingly (e.g., show an error message)
+            return res.render("registrationError", { message: 'Email is already registered' });
+        }
+
+        // Email does not exist, proceed with user registration
+        const hash = await bcrypt.hash(req.body.password, saltRounds);
+
+        const newUser = new User({
+            fullName: req.body.fname,
+            Mobile: req.body.phn,
+            address: req.body.address,
+            dob: req.body.dob,
+            gender: req.body.gender,
+            email: username,
+            password: hash
+        });
+
+        await newUser.save();
+
+        return res.render("UserDashBoard", {
+            fullName: req.body.fname,
+            email: username,
+            phoneNo: req.body.phn,
+            address: req.body.address
+        });
+    } catch (error) {
+        console.error('Error during user registration:', error);
+        return res.status(500).send('Internal Server Error');
+    }
 });
+app.post("/User_singUp", async function (req, res) {
+  const { username } = req.body;
+
+  try {
+      // Check if the email already exists
+      const existingUser = await User.findOne({ email: username }).exec();
+
+      if (existingUser) {
+          // Email already exists, handle accordingly (e.g., show an error message)
+          return res.status(400).send('Email already registered');
+      }
+
+      // Email does not exist, proceed with user registration
+      const hash = await bcrypt.hash(req.body.password, saltRounds);
+
+      const newUser = new User({
+          fullName: req.body.fname,
+          Mobile: req.body.phn,
+          address: req.body.address,
+          dob: req.body.dob,
+          gender: req.body.gender,
+          email: username,
+          password: hash
+      });
+
+      await newUser.save();
+
+      return res.render("UserDashBoard", {
+          fullName: req.body.fname,
+          email: username,
+          phoneNo: req.body.phn,
+          address: req.body.address
+      });
+  } catch (error) {
+      console.error('Error during user registration:', error);
+      return res.status(500).send('Internal Server Error');
+  }
+});
+
+
+
+
+
 
                                                                //  user login
 
