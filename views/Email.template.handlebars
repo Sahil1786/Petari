@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful</title>
+    <!-- Consider linking an external stylesheet here -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background-color: #4caf50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        h1 {
+            margin: 0;
+            color: #333333;
+            font-size: 24px;
+        }
+
+        .content {
+            padding: 20px;
+            color: #555555;
+        }
+
+        .details {
+            margin-bottom: 20px;
+        }
+
+        .details strong {
+            display: inline-block;
+            width: 120px;
+            font-weight: bold;
+        }
+
+        .details .highlight {
+            color: #e44d26; /* Adjust the color as needed */
+            font-weight: bold;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #4caf50;
+            color: #ffffff;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .footer {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+            border-top: 1px solid #ddd;
+        }
+
+        .logo {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+                <img src="cid:logo" alt="Logo" class="logo">
+            <h1>Registration Successful!</h1>
+        </div>
+        <div class="content">
+            <p>Thank you <span class="highlight">{{user.fname}}</span> for registering on Petari. Your account has been successfully created.</p>
+
+            <div class="details">
+                <strong>User ID:</strong> {{{ user._id }}}<br>
+                <strong>Username:</strong> {{{ user.username }}}<br>
+                <strong>Email:</strong> {{{ user.email }}}
+            </div>
+
+            <p>
+                <a href="http://localhost:3000/user_login" class="button" id="loginButton">Login to your account</a>
+            </p>
+        </div>
+        <div class="footer">
+            &copy; {{year}} Petari. All rights reserved.
+        </div>
+        <script src="script.js"></script>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+</html>
