@@ -165,9 +165,14 @@ app.get("/auth/google/UserDash",
         failureRedirect: '/user_login'
     }));
 
+
 app.get("/user_login", function (req, res) {
     res.render("user_login");
 });
+
+app.get("/forgot-pass",((req,res)=>{
+res.render("forget.password")
+}))
 
 app.get("/Ngo_login", function (req, res) {
     res.render("NGO_login");
