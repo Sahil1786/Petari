@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Change Password</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200&display=swap');
+
+        body {
+            font-family: 'poppins', sans-serif;
+            background-color: #106fde;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 {
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #495057;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.2s ease-in-out;
+        }
+
+        input:focus {
+            border-color: #106fde;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #6c757d;
+        }
+
+        .submit {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .submit:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .icon {
+            max-width: 10%;
+            flex: 0 0 5%;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="img/logo.png" alt="" class="icon">
+    <div class="container">
+        <h1>Change Password</h1>
+        <form method="post" onsubmit="return validateForm()">
+            <p class="password-container">
+                <label for="newPassword">New Password:</label>
+                <input type="password" name="newPassword" id="newPassword" required />
+                <i class="bi bi-eye-slash toggle-password" id="toggleNewPassword"></i>
+            </p>
+            <p class="password-container">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" name="confirmPassword" id="confirmPassword" required />
+                <i class="bi bi-eye-slash toggle-password" id="toggleConfirmPassword"></i>
+                <span id="error-message" class="error-message"></span>
+            </p>
+            <button type="submit" id="submit" class="submit">Change Password</button>
+        </form>
+    </div>
+    <script>
+        const toggleNewPassword = document.querySelector("#toggleNewPassword");
+        const toggleConfirmPassword = document.querySelector("#toggleConfirmPassword");
+        const newPassword = document.querySelector("#newPassword");
+        const confirmPassword = document.querySelector("#confirmPassword");
+        const errorMessage = document.querySelector("#error-message");
+
+        toggleNewPassword.addEventListener("click", function () {
+            togglePasswordVisibility(newPassword, toggleNewPassword);
+        });
+
+        toggleConfirmPassword.addEventListener("click", function () {
+            togglePasswordVisibility(confirmPassword, toggleConfirmPassword);
+        });
+
+        function togglePasswordVisibility(inputField, toggleIcon) {
+            
+            const type = inputField.getAttribute("type") === "password" ? "text" : "password";
+            inputField.setAttribute("type", type);
+
+            
+            toggleIcon.classList.toggle("bi-eye");
+            toggleIcon.classList.toggle("bi-eye-slash");
+        }
+
+        function validateForm() {
+            const newPasswordValue = newPassword.value;
+            const confirmPasswordValue = confirmPassword.value;
+
+            if (newPasswordValue !== confirmPasswordValue) {
+                errorMessage.textContent = "Passwords do not match!";
+                return false;
+            } else {
+                errorMessage.textContent = "";
+                return true;
+            }
+        }
+    </script>
+</body>
+
+</html>

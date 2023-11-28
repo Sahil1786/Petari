@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require('path');
@@ -17,6 +16,7 @@ const nodemailer = require("nodemailer");
 const moment = require('moment');
 const hbs = require('nodemailer-express-handlebars');
 
+const jwt = require("jsonwebtoken");
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -65,6 +65,7 @@ const transporter = nodemailer.createTransport({
 
 
 
+  const logoPath = 'http://localhost:3000/path/to/your/logo.png';
 
 
 
@@ -110,6 +111,32 @@ const userSchema = new mongoose.Schema({
     googleId: String,
     profile: String,
 });
+
+
+
+userSchema.methods.generateAccessToken = function () {
+    try {
+        if (!process.env.ACCESS_TOKEN_SECRET) {
+            throw new Error('ACCESS_TOKEN_SECRET is not defined in environment variables');
+        }
+        const accessToken = jwt.sign(
+            {
+                _id: this._id,
+                email: this.email,
+                fullName: this.fullName
+            },
+            process.env.ACCESS_TOKEN_SECRET.trim(), // Trim any potential leading/trailing spaces
+            {
+                expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+            }
+        );
+        console.log('ACCESS_TOKEN_SECRET:', process.env.ACCESS_TOKEN_SECRET);
+        return accessToken;
+    } catch (error) {
+        console.error('Error generating access token:', error);
+        throw error;
+    }
+};
 
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
@@ -170,9 +197,7 @@ app.get("/user_login", function (req, res) {
     res.render("user_login");
 });
 
-app.get("/forgot-pass",((req,res)=>{
-res.render("forget.password")
-}))
+
 
 app.get("/Ngo_login", function (req, res) {
     res.render("NGO_login");
@@ -224,9 +249,8 @@ app.post("/", async function (req, res) {
 });
 
 // user Registration
-// user Registration
 
-// for mail perpose:
+
 
 
 
@@ -306,22 +330,236 @@ app.post("/User_singUp", async function (req, res) {
 
 
 // user login
-app.post("/login", function (req, res) {
-    const user = new User({
-        username: req.body.username,
-        password: req.body.password
-    });
-    req.login(user, function (err) {
-        if (err) {
-            console.log(err);
-        } else {
-            passport.authenticate("local")(req, res, function () {
-                // if verify
-                res.redirect("/UserDash");
+// app.post("/login", function (req, res) {
+//     const user = new User({
+//         username: req.body.username,
+//         password: req.body.password
+//     });
+//     req.login(user, function (err) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             passport.authenticate("local")(req, res, function () {
+//                 // if verify
+//                 res.redirect("/UserDash");
+//             });
+//         }
+//     });
+// });
+// user login
+
+
+
+
+
+app.post("/login",function(req,res){
+    const username=req.body.username;
+    const password=req.body.password;
+    
+    
+    User.findOne({email:username}).then((foundUser)=>{
+        if(foundUser){
+            bcrypt.compare(password, foundUser.password, function(err, result) {
+                if(result=== true){
+                    res.render("UserDash");
+            
+                }
             });
+              
         }
+    })
+    .catch((err)=>{
+        console.log(err);
     });
+  
 });
+
+
+
+// // user login
+// app.post("/login",async function (req, res) {
+//     const username = req.body.username;
+//     const password = req.body.password;
+
+//     // Find the user by their username (email in your case)
+//   await  User.findOne({ email: username }, function (err, user) {
+//         if (err) {
+//             console.error(err);
+//             // Handle the error (e.g., redirect to an error page)
+//             return res.redirect("/user_login");
+//         }
+
+//         if (!user) {
+//             // User not found, handle accordingly (e.g., redirect with an error message)
+//             return res.redirect("/user_login");
+//         }
+
+//         // Compare the provided password with the hashed password stored in the database
+//         bcrypt.compare(password, user.password, function (err, result) {
+//             if (err) {
+//                 console.error(err);
+//                 // Handle the error (e.g., redirect to an error page)
+//                 return res.redirect("/user_login");
+//             }
+
+//             if (result) {
+//                 // Passwords match, authenticate the user
+//                 req.login(user, function (err) {
+//                     if (err) {
+//                         console.error(err);
+//                         // Handle the error (e.g., redirect to an error page)
+//                         return res.redirect("/user_login");
+//                     }
+
+//                     // Authentication successful, redirect to UserDash
+//                     return res.redirect("/UserDash");
+//                 });
+//             } else {
+//                 // Passwords do not match, handle accordingly (e.g., redirect with an error message)
+//                 return res.redirect("/user_login");
+//             }
+//         });
+//     });
+// });
+
+// app.route("/forot-password")
+// .get(async(req,res)=>{
+//     res.render("forget-password")
+// })
+// .post(async(req,res)=>{
+
+// const{email}=req.body;
+// try {
+//     const oldUser=await User.findOne({email})
+//     if(!oldUser){
+//         return res.send("User Not Exit")
+//     }
+//     const Secret=process.env.ACCESS_TOKEN_SECRET +oldUser.password;
+//     const token=jwt.sign({email:oldUser.email,id:oldUser._id},Secret,{expiresIn:"5m"});
+//     const link=`http://localhost:3000/reset-password/${oldUser.email}/${token}`;
+//     console.log(link);
+    
+// }
+
+
+// }
+
+// )
+
+// app.get("/reset-password",((req,res)=>{
+// const{email,token}=req.body
+// console.log(req.body);
+// }))
+
+
+
+
+
+
+
+
+app.route("/forgot-password")
+  .get(async (req, res) => {
+    res.render("forget-password");
+  })
+  .post(async (req, res) => {
+    const { email } = req.body;
+    try {
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.send("User Not Exist");
+      }
+
+      // Generate a reset token and save it to the user
+      const resetToken = jwt.sign({ email: user.email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
+
+      user.resetTokenExpiration = Date.now() + 300000; // 5 minutes
+      await user.save();
+
+      // Send the reset link to the user via email
+      const resetLink = `http://localhost:3000/reset-password?email=${user.email}&token=${resetToken}`;
+      const logoPath = 'http://localhost:3000/path/to/your/logo.png'; // Replace with the actual path to your logo
+
+      const mailOptions = {
+        to: user.email,
+        subject: 'Password Reset',
+        template: 'reset-password', // Use the Handlebars template
+        context: {
+          user: {
+            fname: user.fullName,
+            _id: user._id,
+            username: user.username,
+            email: user.email
+          },
+          resetLink,
+      
+        },
+        attachments: [{
+            filename: 'logo.png',
+            path: path.join(__dirname, 'public', 'img', 'logo.png'),
+            cid: 'logo'
+        }]
+      };
+
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error(error);
+          return res.status(500).send("Error sending reset email");
+        }
+        console.log(`Reset email sent: ${info.response}`);
+        res.send("Password reset link sent successfully");
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+    }
+  });
+
+app.route("/reset-password")
+  .get(async (req, res) => {
+    const { email, token } = req.query;
+    try {
+        const user = await User.findOne({ email, resetToken: token, resetTokenExpiration: { $gt: Date.now() } });
+      if (!user) {
+        return res.status(400).send("Invalid or expired reset token");
+      }
+
+      // Render the reset-password page with the user's email and token
+      res.render("reset-password", { email, token });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+    }
+  })
+  .post(async (req, res) => {
+    const { email, token, newPassword } = req.body;
+    try {
+      const user = await User.findOne({ email, resetToken: token, resetTokenExpiration: { $gt: Date.now() } });
+      if (!user) {
+        return res.status(400).send("Invalid or expired reset token");
+      }
+
+      // Update the user's password and reset the resetToken fields
+      const hash = await bcrypt.hash(newPassword, saltRounds);
+      user.password = hash;
+      user.resetToken = null;
+      user.resetTokenExpiration = null;
+      await user.save();
+
+      res.redirect("/login"); // Redirect to login page or any other desired page
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+    }
+  });
+
+
+
+
+
+
+
+
 
 app.get("/logout", function (req, res) {
     req.logout((err) => {
