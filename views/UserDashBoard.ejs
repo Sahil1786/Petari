@@ -1,46 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- //css link -->
-    <link rel="stylesheet" href="css/user.dashboard.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;600&display=swap');
 
+        body {
+            min-height: 100vh;
+            background-color: var(--primary-color);
+            transition: background-color var(--tran-03);
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body.dark {
+            --primary-color: #3A3B3C;
+            --panel-color: #242526;
+            --text-color: #CCC;
+            --black-light-color: #CCC;
+            --border-color: #4D4C4C;
+            --toggle-color: #FFF;
+            --box1-color: #3A3B3C;
+            --box2-color: #3A3B3C;
+            --box3-color: #CCC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* aditya start */
+
+        .Donatebox {
+            display: flex;
+            width: 35rem;
+            height: 25rem;
+            background-color: greenyellow;
+            justify-content: center;
+            align-self: center;
+            border-radius: 12%;
+        }
+
+        .NAME-block {
+            display: flex;
+            gap: 5px;
+            flex-direction: column;
+            align-self: center;
+            justify-content: center;
+            border-radius: 7%;
+            padding-top: 5%;
+            padding-left: 10%;
+            height: 90%;
+            width: 90%;
+            background-color: var(--panel-color);
+        }
+
+        .top-border {
+            
+            border-style: double;
+            border-color: #F07070;
+        }
+
+        .Left-name {
+            display: inline-block;
+            position: absolute;
+            right: 3%;
+            padding-top: 3px;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .middle {
+            display: flex;
+            padding: 9%;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .dashboard {
+            display: inline-block;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .sliding-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: var(--panel-color);
+            overflow-x: hidden;
+            padding-top: 60px;
+            transition: 0.5s;
+            max-width: 250px;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            z-index: 2;
+        }
+        .dash{
+            position: fixed;
+            left: 35px;
+        }
+        
+
+        /* aditya End */
+        /* colors */
+        :root {
+            --primary-color: wheat;
+            --panel-color: #FFF;
+            --text-color: black;
+            --black-light-color: #F07070;
+            --border-color: #e6e5e5;
+            --toggle-color: #DDD;
+            --box1-color: #4DA3FF;
+            --box2-color: #E7D1FC;
+            --box3-color: #fff;
+            /* transtions */
+            --tran-05: all 05s ease;
+            --tran-03: all 03s ease;
+            --tran-03: all 02s ease;
+        }
+
+        nav .logo-name {
+            display: flex;
+            align-items: center;
+        }
+
+        nav .logo-img {
+            display: flex;
+            justify-content: center;
+            min-width: 45px;
+        }
+
+        nav .logo-img img {
+            width: 45px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        nav .logo-name .logo_name {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-left: 14px;
+        }
+
+        nav .manu-items {
+            margin-top: 40px;
+            height: calc(100% - 90px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .manu-items li {
+            list-style: none;
+        }
+
+        .manu-items li a {
+            display: flex;
+            align-items: center;
+            height: 50px;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .nav-links li a:hover:before {
+            content: "";
+            position: absolute;
+            height: 5px;
+            width: 5px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            left: -7px;
+        }
+
+        .manu-items li {
+            list-style: none;
+        }
+
+        .manu-items li a i {
+            font-size: 24px;
+            min-width: 45px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--black-light-color);
+        }
+
+        .manu-items li a .link-name {
+            font-size: 18px;
+            font-weight: 400;
+            color: green;
+        }
+
+        .nav-links li a:hover i,
+        .nav-links li a:hover .link-name {
+            color: var(--primary-color);
+        }
+
+        .manu-items .mode {
+            display: flex;
+            align-items: center;
+        }
+
+        .manu-items .mode-toggle {
+            position: absolute;
+            right: 14px;
+            height: 50px;
+            min-width: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .mode-toggle .switch {
+            position: relative;
+            display: inline-block;
+            height: 22px;
+            width: 40px;
+            border-radius: 25px;
+            background-color: var(--toggle-color);
+        }
+
+        .switch::before {
+            content: " ";
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 15px;
+            width: 15px;
+            background-color: var(--panel-color);
+            border-radius: 50%;
+            transition: var(--tran-03);
+        }
+
+        body.dark .switch::before {
+            left: 20px;
+        }
+
+        body.dark .middle {
+            background-color: #333;
+            color: #FFF;
+        }
+    </style>
 
     <!-- //icon -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
     <title>user DashBoard</title>
 </head>
-<body>
-    <!-- Adityas Start -->    
-    
-    <section class="dashboard">
-    <div class="top">
-        <i class="uil uil-bars"></i>
-        <div class="dash">DashBoard</div>
-        <div class="Left-name">Welcome, <%= fullName %>!</div>
-        <hr class="top-border">
 
-    </div>
-    <div class="middle">
-        <div class="Donatebox">
-            <div class="NAME-block">
-                <h4  class="User-Name">Full Name: <%= fullName %> </h4>
-                <h4 class="User-Email">Email:   <%= email %></h4>
-                <h4 class="User-Phone">Phone No:  <%= phoneNo %></h4>
-                <h4 class="User-Adderss">Address:  <%= address %> </h4>
+<body>
+    <!-- Adityas Start -->
+
+    <section class="dashboard">
+        <div class="top">
+            <div class="menu-icon" onclick="toggleMenu()">
+                <i class="uil uil-bars"></i>
+            </div>
+            <div class="dash">DashBoard</div>
+            <div class="Left-name">Welcome, <%= fullName %>!</div>
+            
+        </div>
+        <hr class="top-border">
+        <div class="middle">
+            <div class="Donatebox">
+                <div class="NAME-block">
+                    <h4 class="User-Name">Full Name: <%= fullName %> </h4>
+                    <h4 class="User-Email">Email:   <%= email %></h4>
+                    <h4 class="User-Phone">Phone No:  <%= phoneNo %></h4>
+                    <h4 class="User-Adderss">Address:  <%= address %> </h4>
+                </div>
             </div>
         </div>
-    </div>
-    
-</section>
+    </section>
 
-
-    
     <!-- Adityas end -->
-    <nav>
+    <nav class="sliding-menu">
         <div class="logo-name">
             <div class="logo-img">
                 <img src="img/logo.png" alt="logo">
@@ -50,22 +305,21 @@
         <div class="manu-items">
             <ul class="nav-links">
                 <li><a href="#">
-                    <!-- <i class="uil uil-estate"></i> -->
-                    <i class="uil uil-user-circle"></i>
-                    <span class="link-name">Profile</span>
-                </a></li>
+                        <i class="uil uil-user-circle"></i>
+                        <span class="link-name">Profile</span>
+                    </a></li>
                 <li><a href="#">
-                    <i class="uil uil-restaurant"></i>
-                    <span class="link-name">Donate</span>
-                </a></li>
+                        <i class="uil uil-restaurant"></i>
+                        <span class="link-name">Donate</span>
+                    </a></li>
                 <li><a href="#">
-                    <i class="uil uil-map-marker-question"></i>
-                    <span class="link-name">Track</span>
-                </a></li>
+                        <i class="uil uil-map-marker-question"></i>
+                        <span class="link-name">Track</span>
+                    </a></li>
                 <li><a href="#">
-                    <i class="uil uil-comment-medical"></i>
-                    <span class="link-name">Contact Us</span>
-                </a></li>
+                        <i class="uil uil-comment-medical"></i>
+                        <span class="link-name">Contact Us</span>
+                    </a></li>
             </ul>
             <ul class="logout-mode">
                 <li>
@@ -73,7 +327,6 @@
                         <i class="uil uil-sign-out-alt"></i>
                         <span class="link-name">Logout</span>
                     </a>
-               
                 </li>
 
                 <li class="mode">
@@ -82,17 +335,26 @@
                         <span class="link-name">Dark Mode</span>
                     </a>
                     <div class="mode-toggle">
-                    <span class="switch"></span>
-                </div>
-               
+                        <span class="switch"></span>
+                    </div>
                 </li>
             </ul>
         </div>
-       
     </nav>
 
+    <script>
+        function toggleMenu() {
+            var menu = document.querySelector('.sliding-menu');
+            menu.style.width = menu.style.width === '25%' ? '0' : '25%';
+        }
 
+        const body = document.querySelector("body");
+        const modeToggle = body.querySelector(".mode-toggle");
 
-    <script src="/js/user.dashbord.js"></script>
+        modeToggle.addEventListener("click", () => {
+            body.classList.toggle("dark");
+        });
+    </script>
 </body>
+
 </html>
