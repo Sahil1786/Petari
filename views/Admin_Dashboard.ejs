@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;600&display=swap');
+
+        body {
+            min-height: 100vh;
+            background-color: var(--primary-color);
+            transition: background-color var(--tran-03);
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body.dark {
+            --primary-color: #3A3B3C;
+            --panel-color: #242526;
+            --text-color: #CCC;
+            --black-light-color: #CCC;
+            --border-color: #4D4C4C;
+            --toggle-color: #FFF;
+            --box1-color: #3A3B3C;
+            --box2-color: #3A3B3C;
+            --box3-color: #CCC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* aditya start */
+
+        .Donatebox {
+            display: flex;
+            width: 35rem;
+            height: 25rem;
+            background-color: greenyellow;
+            justify-content: center;
+            align-self: center;
+            border-radius: 12%;
+        }
+
+        .NAME-block {
+            display: flex;
+            gap: 5px;
+            flex-direction: column;
+            align-self: center;
+            justify-content: center;
+            border-radius: 7%;
+            padding-top: 5%;
+            padding-left: 10%;
+            height: 90%;
+            width: 90%;
+            background-color: var(--panel-color);
+        }
+
+        .top-border {
+            
+            border-style: double;
+            border-color: #F07070;
+        }
+
+        .Left-name {
+            display: inline-block;
+            position: absolute;
+            right: 3%;
+            padding-top: 3px;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .Profile-sec {
+            display: flex;
+            padding: 9%;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .dashboard {
+            display: inline-block;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .sliding-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: var(--panel-color);
+            overflow-x: hidden;
+            padding-top: 60px;
+            transition: 0.5s;
+            max-width: 250px;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            z-index: 2;
+        }
+        .dash{
+            position: fixed;
+            left: 35px;
+        }
+        
+
+        /* aditya End */
+        /* colors */
+        :root {
+            --primary-color: wheat;
+            --panel-color: #FFF;
+            --text-color: black;
+            --black-light-color: #F07070;
+            --border-color: #e6e5e5;
+            --toggle-color: #DDD;
+            --box1-color: #4DA3FF;
+            --box2-color: #E7D1FC;
+            --box3-color: #fff;
+            /* transtions */
+            --tran-05: all 05s ease;
+            --tran-03: all 03s ease;
+            --tran-03: all 02s ease;
+        }
+
+        nav .logo-name {
+            display: flex;
+            align-items: center;
+        }
+
+        nav .logo-img {
+            display: flex;
+            justify-content: center;
+            min-width: 45px;
+        }
+
+        nav .logo-img img {
+            width: 45px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        nav .logo-name .logo_name {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-left: 14px;
+        }
+
+        nav .menu-items {
+            margin-top: 40px;
+            height: calc(100% - 90px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-items li {
+            list-style: none;
+        }
+
+        .menu-items li a {
+            display: flex;
+            align-items: center;
+            height: 50px;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .nav-links li a:hover:before {
+            content: "";
+            position: absolute;
+            height: 5px;
+            width: 5px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            left: -7px;
+        }
+
+        .menu-items li {
+            list-style: none;
+        }
+
+        .menu-items li a i {
+            font-size: 24px;
+            min-width: 45px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--black-light-color);
+        }
+
+        .menu-items li a .link-name {
+            font-size: 18px;
+            font-weight: 400;
+            color: green;
+        }
+
+        .nav-links li a:hover i,
+        .nav-links li a:hover .link-name {
+            color: var(--primary-color);
+        }
+
+        .menu-items .mode {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-items .mode-toggle {
+            position: absolute;
+            right: 14px;
+            height: 50px;
+            min-width: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .mode-toggle .switch {
+            position: relative;
+            display: inline-block;
+            height: 22px;
+            width: 40px;
+            border-radius: 25px;
+            background-color: var(--toggle-color);
+        }
+
+        .switch::before {
+            content: " ";
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 15px;
+            width: 15px;
+            background-color: var(--panel-color);
+            border-radius: 50%;
+            transition: var(--tran-03);
+        }
+
+        body.dark .switch::before {
+            left: 20px;
+        }
+
+        body.dark .Profile-sec {
+            background-color: #333;
+            color: #FFF;
+        }
+        button{
+            border-radius: 50%;
+            padding: 10px;
+            background-color: rgb(55, 153, 55);
+        }
+    </style>
+
+    <!-- //icon -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+    <title>Admin DashBoard</title>
+</head>
+
+<body>
+    <!-- Adityas Start -->
+
+    <section class="dashboard">
+        <div class="top">
+            <div class="menu-icon" onclick="toggleMenu()">
+                <i class="uil uil-bars"></i>
+            </div>
+            <div class="dash">DashBoard</div>
+            <div class="Left-name">Welcome, <%= fullName %>!</div>
+            
+        </div>
+        <hr class="top-border">
+        <section class="Profile-sec">
+            <div class="Donatebox">
+                <div class="NAME-block">
+                    <h4 class="User-Name">Full Name: <%= fullName %> </h4>
+                    <h4 class="User-Email">Email:   <%= email %></h4>
+                    <h4 class="User-Phone">Phone No:  <%= phoneNo %></h4>
+                    <h4 class="User-Adderss">Address:  <%= address %> </h4>
+                </div>
+            </div>
+        </section>
+        <section class="NGO-sec" style="display: none;">
+            <h2 style="text-align: center; margin-bottom: 2rem;"> NGO requests</h2>
+            <div style=" display: flex; justify-content: space-evenly"><%= NGOname %> <button type="submit"  value="Submit" style="background-color: rgb(88, 167, 88); padding: 5px; border-radius: 15%; font-size: large; font-weight: 500;">Accept</button>  <button type="submit" value="Submit" style="background-color: red; padding: 5px; border-radius: 15%; font-size: large; font-weight: 500;">Decline</button></div>
+        </section>
+        <section class="Doners-sec" style="display: none;">
+            <h2 style="text-align: center; margin-bottom: 2rem;"> Doners requests</h2>
+            <div style=" display: flex; justify-content: space-evenly"><%= Donername %>! <button type="submit"  value="Submit" style="background-color: rgb(88, 167, 88); padding: 5px; border-radius: 15%; font-size: large; font-weight: 500;">Accept</button>  <button type="submit" value="Submit" style="background-color: red; padding: 5px; border-radius: 15%; font-size: large; font-weight: 500;">Decline</button></div>
+        </section>
+        <section class="Complains-sec" style="display: none; margin-top: 2rem;">
+            <div style="display: flex; justify-content: space-evenly;">
+                <h2><%= UserName %></h2>
+                <p><%= complain %></p>
+            </div>
+        </section>
+    </section>
+
+    
+    <nav class="sliding-menu">
+        <div class="logo-name">
+            <div class="logo-img">
+                <img src="img/logo.png" alt="logo">
+            </div>
+            <span class="logo_name">Petari</span>
+        </div>
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="#">
+                    <i class="uil uil-user-circle"></i>
+                    <span id="Profile" class="link-name">Profie</span>
+                </a></li>
+                <li><a href="#">
+                        <i class="uil uil-user-circle"></i>
+                        <span id="NGO" class="link-name">NGO</span>
+                    </a></li>
+                <li><a href="#">
+                        <i class="uil uil-user-circle"></i>
+                        <span id="Doners" class="link-name">Doners</span>
+                    </a></li>
+                    <li><a href="#">
+                        <i class="uil uil-comment-medical"></i>
+                        <span id="Complains" class="link-name">Complains</span>
+                    </a></li>
+                <!-- <li><a href="#">
+                        <i class="uil uil-map-marker-question"></i>
+                        <span  id="Track" class="link-name">Track</span>
+                    </a></li> -->
+                
+            </ul>
+            <ul class="logout-mode">
+                <li>
+                    <a href="/logout">
+                        <i class="uil uil-sign-out-alt"></i>
+                        <span class="link-name">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-wind-moon"></i>
+                        <span class="link-name">Dark Mode</span>
+                    </a>
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Adityas end -->
+    <script>
+        function toggleMenu() {
+            var menu = document.querySelector('.sliding-menu');
+            menu.style.width = menu.style.width === '25%' ? '0' : '25%';
+        }
+
+        const body = document.querySelector("body");
+        const modeToggle = body.querySelector(".mode-toggle");
+
+        modeToggle.addEventListener("click", () => {
+            body.classList.toggle("dark");
+        });
+        
+        
+        let Ngo = document.querySelector("#NGO");
+        let Doners = document.querySelector("#Doners");
+        let Profile = document.querySelector("#Profile");
+        let complains = document.querySelector("#Complains");
+        let NGO_sec = document.querySelector('.NGO-sec');
+        let Profile_sec = document.querySelector('.Profile-sec');
+        let Doners_sec = document.querySelector('.Doners-sec');
+        let complain_sec = document.querySelector('.Complains-sec');
+
+        Profile.addEventListener('click', (e) =>{
+
+            e.preventDefault();
+            console.log("clicked")
+            Profile_sec.style.display = "flex";
+            NGO_sec.style.display = "none";
+            Doners_sec.style.display = "none";
+            complain_sec.style.display = "none";
+        })
+
+        Ngo.addEventListener('click', (e) =>{
+            e.preventDefault();
+            console.log("clicked")
+            Profile_sec.style.display = "none";
+            NGO_sec.style.display = "block";
+            Doners_sec.style.display = "none";
+            complain_sec.style.display = "none";
+        })
+        Doners.addEventListener('click', (e) =>{
+            e.preventDefault();
+            console.log("clicked")
+            Profile_sec.style.display = "none";
+            NGO_sec.style.display = "none";
+            Doners_sec.style.display = "block";
+            complain_sec.style.display = "none";
+        })
+
+        complains.addEventListener('click', (e) =>{
+
+            e.preventDefault();
+            console.log("clicked")
+            Profile_sec.style.display = "none";
+            NGO_sec.style.display = "none";
+            Doners_sec.style.display = "none";
+            complain_sec.style.display = "block";
+
+        })
+    </script>
+</body>
+
+</html>
