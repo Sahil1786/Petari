@@ -276,6 +276,7 @@
 
 <body>
     <!-- Adityas Start -->
+    
 
     <section class="dashboard">
         <div class="top">
@@ -283,17 +284,16 @@
                 <i class="uil uil-bars"></i>
             </div>
             <div class="dash">DashBoard</div>
-            <div class="Left-name">Welcome, <%= fullName %>!</div>
+            <div class="Left-name">Welcome, <%= email %>!</div>
             
         </div>
         <hr class="top-border">
         <section class="Profile-sec">
             <div class="Donatebox">
                 <div class="NAME-block">
-                    <h4 class="User-Name">Full Name: <%= fullName %> </h4>
-                    <h4 class="User-Email">Email:   <%= email %></h4>
-                    <h4 class="User-Phone">Phone No:  <%= phoneNo %></h4>
-                    <h4 class="User-Adderss">Address:  <%= address %> </h4>
+                    
+                    <h4 class="User-Name">Full Name: <%= name %> </h4>
+                  
                 </div>
             </div>
         </section>
@@ -347,7 +347,7 @@
             </ul>
             <ul class="logout-mode">
                 <li>
-                    <a href="/logout">
+                    <a href="/admin-logout">
                         <i class="uil uil-sign-out-alt"></i>
                         <span class="link-name">Logout</span>
                     </a>
