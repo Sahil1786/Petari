@@ -777,6 +777,12 @@ app.get('/UserDash', (req, res) => {
   }
 });
 
+app.get("/ast",((req,res)=>{
+  res.send("h1");
+}))
+
+
+
 app.post('/', async function (req, res) {
   try {
     const newQuery = new Query({
