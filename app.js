@@ -418,12 +418,14 @@ console.log(resetLink);
 
 
                                       app.get("/try", async (req, res) => {
+
+                                        const admin = await Admin.findOne();
                                         try {
                                             const dooner = await User.find(); // Assuming User is your Mongoose model for users
                                     
                                             res.render("Admin_Dashboard", {
                                                 name: "sahi112",
-                                                email: "admin.email",
+                                                email: admin.fullName,
                                                 id: "admin.id",
                                                 NGOname: "adita",
                                                 Donername: dooner,
