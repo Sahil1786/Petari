@@ -395,8 +395,8 @@ console.log(resetLink);
                                                       email: admin.email,
                                                       id: admin.id,
                                                       NGOname: "adita",
-                                                      Donername: "",
-                                                      UserName: "",
+                                                      Donername: "user",
+                                                      UserName:"sahil114",
                                                       complain: ""
                                                       // Pass other properties as needed
                                                   });
@@ -415,6 +415,26 @@ console.log(resetLink);
                                         return  res.redirect("/");
                                       });
                                       
+
+
+                                      app.get("/try", async (req, res) => {
+                                        try {
+                                            const dooner = await User.find(); // Assuming User is your Mongoose model for users
+                                    
+                                            res.render("Admin_Dashboard", {
+                                                name: "sahi112",
+                                                email: "admin.email",
+                                                id: "admin.id",
+                                                NGOname: "adita",
+                                                Donername: dooner,
+                                                UserName: "sahil114",
+                                                complain: ""
+                                            });
+                                        } catch (err) {
+                                            console.error(err);
+                                            res.status(500).send("An internal server error occurred.");
+                                        }
+                                    });
 
 
 app.get("/logout", function (req, res) {
