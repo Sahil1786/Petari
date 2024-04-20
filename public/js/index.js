@@ -27,3 +27,4 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('Login button clicked!');
     });
 });
+

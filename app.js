@@ -21,6 +21,8 @@ const Admin=require("./model/admin")
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+const NGO=require("./model/ngo")
+
 
 // app.use(flash());
 
@@ -437,6 +439,44 @@ console.log(resetLink);
                                             res.status(500).send("An internal server error occurred.");
                                         }
                                     });
+
+
+                                    app.get("/Ngo-Registration",async(req,res)=>{
+                                      res.render("NGO-Registration")
+                                    });
+                                    app.post("/NGO-Registarion", async (req, res) => {
+                                      // Check if the NGO already exists
+                                      const existingNGO = await NGO.findOne({ username: req.body.username });
+                                      if (existingNGO) {
+                                          return res.status(400).json({ error: 'NGO already exists' });
+                                      }
+                                  
+                                      // Create a new NGO registration
+                                      const newNGO = new NGO({
+                                          username: req.body.username,
+                                          password: req.body.password,
+                                          NGOName: req.body.NGOName,
+                                          Mobile: req.body.Mobile,
+                                          NgoID: req.body.NgoID,
+                                          NgoLocation: req.body.NgoLocation
+                                      });
+                                  
+                                      // Save the new NGO to the database
+                                      newNGO.save()
+                                          .then(() => {
+                                              console.log('NGO registered successfully');
+                                              res.status(200).json({ message: 'NGO registered successfully' });
+                                          })
+                                          .catch((err) => {
+                                              console.error('Error creating NGO:', err);
+                                              res.status(500).json({ error: 'Internal server error' });
+                                          });
+                                  });
+                                  
+
+
+
+                                   
 
 
 app.get("/logout", function (req, res) {
