@@ -22,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 const NGO=require("./model/ngo")
+const isAdmin=require("./middleware/isAdmin")
 
 
 // app.use(flash());
@@ -383,6 +384,25 @@ console.log(resetLink);
 
 
                                          // admin code
+                                         app.post('/approve-ngo/:id', async (req, res)=> {
+                                          const ngoId = req.params.id;
+                                      
+                                          try {
+                                              const ngo = await NGO.findById(ngoId);
+                                              if (!ngo) {
+                                                  return res.status(404).json({ error: "NGO not found" });
+                                              }
+                                      
+                                              // Update the NGO's approval status
+                                              ngo.approved = true;
+                                              await ngo.save();
+                                      
+                                              res.status(200).json({ message: "NGO approved successfully" });
+                                          } catch (error) {
+                                              console.error("Error approving NGO:", error);
+                                              res.status(500).json({ error: "Internal server error" });
+                                          }
+                                      });
 
                                          app.post("/admin-login", async (req, res) => {
                                           const username = req.body.username;
