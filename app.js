@@ -394,8 +394,24 @@ console.log(resetLink);
                                               }
                                       
                                               // Update the NGO's approval status
+                                             
                                               ngo.approved = true;
                                               await ngo.save();
+                                      
+                                              // Send an email to the NGO with the approved details
+                                              let mailOptions = {
+                                                  to: ngo.username,
+                                                  subject: 'NGO Registration Approved',
+                                                  text: 'Your NGO registration has been approved. You can now login to your account.',
+                                                  // Include any necessary information in the email body
+                                              };
+                                              transporter.sendMail(mailOptions, function (error, info) {
+                                                  if (error) {
+                                                      console.log(error);
+                                                  } else {
+                                                      console.log('Email sent: ' + info.response);
+                                                  }
+                                              });
                                       
                                               res.status(200).json({ message: "NGO approved successfully" });
                                           } catch (error) {
@@ -480,48 +496,111 @@ console.log(resetLink);
                                           NGOName: req.body.NGOName,
                                           Mobile: req.body.Mobile,
                                           NgoID: req.body.NgoID,
-                                          NgoLocation: req.body.NgoLocation
+                                          NgoLocation: req.body.NgoLocation,
+                                          approved: false
                                       });
                                   
                                       // Save the new NGO to the database
-                                      newNGO.save()
-                                      .then((ngo) => {
-                                          let mailOptions = {
-                                              to: ngo.username,
-                                              subject: 'Welcome To Petari',
-                                              template: 'Email.template',
-                                              context: {
-                                                  ngo: {
-                                                      ngoName: ngo.name,
-                                                      _id: ngo._id,
-                                                      username: ngo.password,
+
+                                      try {
+                                        // Save the new NGO to the database
+                                        await newNGO.save();
+                                
+                                        // Send an email to the admin for approval
+                                        let mailOptions = {
+                                            to:newNGO.username, // Admin's email address
+                                            subject: 'New NGO Registration',
+                                            text: 'A new NGO registration is pending approval. Login to the admin panel to review and approve.',
+                                            // Include any necessary information in the email body
+                                        };
+                                        transporter.sendMail(mailOptions, function (error, info) {
+                                            if (error) {
+                                                console.log(error);
+                                            } else {
+                                                console.log('Email sent: ' + info.response);
+                                            }
+                                        });
+                                
+                                        console.log('NGO registration request sent for approval');
+                                        res.status(200).json({ message: 'NGO registration request sent for approval' });
+                                    } catch (err) {
+                                        console.error('Error creating NGO:', err);
+                                        res.status(500).json({ error: 'Internal server error' });
+                                    }
+                                      // try {
+                                    //     await newNGO.save();
+                                
+                                    //     let mailOptions = {
+                                    //         to: newNGO.username,
+                                    //         subject: 'Welcome To Petari',
+                                    //         template: 'Email.template',
+                                    //         context: {
+                                    //             ngo: {
+                                    //                 ngoName: newNGO.name,
+                                    //                 _id: newNGO._id,
+                                    //                 username: newNGO.password,
+                                    //             },
+                                    //             year: new Date().getFullYear()
+                                    //         },
+                                    //         attachments: [{
+                                    //             filename: 'logo.png',
+                                    //             path: path.join(__dirname, 'public', 'img', 'logo.png'),
+                                    //             cid: 'logo'
+                                    //         }]
+                                    //     };
+                                
+                                    //     transporter.sendMail(mailOptions, function(error, info){
+                                    //         if (error) {
+                                    //             console.log(error);
+                                    //         } else {
+                                    //             console.log('Email sent: ' + info.response);
+                                    //         }
+                                    //     });
+                                
+                                    //     console.log('NGO registered successfully');
+                                    //     res.status(200).json({ message: 'NGO registration received. It will be reviewed by the admin.' });
+                                    // } catch (err) {
+                                    //     console.error('Error creating NGO:', err);
+                                    //     res.status(500).json({ error: 'Internal server error' });
+                                    // }
+                                      // newNGO.save()
+                                      // .then((ngo) => {
+                                      //     let mailOptions = {
+                                      //         to: ngo.username,
+                                      //         subject: 'Welcome To Petari',
+                                      //         template: 'Email.template',
+                                      //         context: {
+                                      //             ngo: {
+                                      //                 ngoName: ngo.name,
+                                      //                 _id: ngo._id,
+                                      //                 username: ngo.password,
                                                       
-                                                  },
+                                      //             },
                                                 
-                                                  year: new Date().getFullYear()
-                                              },
-                                              attachments: [{
-                                                  filename: 'logo.png',
-                                                  path: path.join(__dirname, 'public', 'img', 'logo.png'),
-                                                  cid: 'logo'
-                                              }]
-                                          };
-                                          transporter.sendMail(mailOptions, function(error, info){
-                                              if (error) {
-                                                  console.log(error);
-                                              } else {
-                                                  console.log('Email sent: ' + info.response);
-                                              }
-                                          });
+                                      //             year: new Date().getFullYear()
+                                      //         },
+                                      //         attachments: [{
+                                      //             filename: 'logo.png',
+                                      //             path: path.join(__dirname, 'public', 'img', 'logo.png'),
+                                      //             cid: 'logo'
+                                      //         }]
+                                      //     };
+                                      //     transporter.sendMail(mailOptions, function(error, info){
+                                      //         if (error) {
+                                      //             console.log(error);
+                                      //         } else {
+                                      //             console.log('Email sent: ' + info.response);
+                                      //         }
+                                      //     });
                                   
-                                          console.log('NGO registered successfully');
-                                          res.status(200).json({ message: 'NGO registered successfully' });
+                                      //     console.log('NGO registered successfully');
+                                      //     res.status(200).json({ message: 'NGO registered successfully' });
                                   
-                                      })
-                                      .catch((err) => {
-                                          console.error('Error creating NGO:', err);
-                                          res.status(500).json({ error: 'Internal server error' });
-                                      });
+                                      // })
+                                      // .catch((err) => {
+                                      //     console.error('Error creating NGO:', err);
+                                      //     res.status(500).json({ error: 'Internal server error' });
+                                      // });
                                   });
                                   
 
