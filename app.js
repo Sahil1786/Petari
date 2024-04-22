@@ -603,6 +603,19 @@ console.log(resetLink);
                                       // });
                                   });
                                   
+                                  // Assume you have a route for rendering the admin dashboard
+// Assuming `pendingNGOs` is an array of pending NGOs
+app.get("/admin-dashboard", async function (req, res) {
+  try {
+      const pendingNGOs = await PendingNGO.find({ status: 'pending' });
+      res.render("admin_dashboard", { pendingNGOs });
+  } catch (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+  }
+});
+
+
 
 
 
