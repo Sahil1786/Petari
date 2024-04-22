@@ -424,12 +424,14 @@ console.log(resetLink);
                                         const admin = await Admin.findOne();
                                         try {
                                             const dooner = await User.find(); // Assuming User is your Mongoose model for users
+                                            const ngo=await NGO.find()
+                                      
                                     
                                             res.render("Admin_Dashboard", {
-                                                name: "sahi112",
+                                                name: admin.fullName,
                                                 email: admin.fullName,
-                                                id: "admin.id",
-                                                NGOname: "adita",
+                                                id: admin._id,
+                                                NGOname: ngo,
                                                 Donername: dooner,
                                                 UserName: "sahil114",
                                                 complain: ""
@@ -463,14 +465,43 @@ console.log(resetLink);
                                   
                                       // Save the new NGO to the database
                                       newNGO.save()
-                                          .then(() => {
-                                              console.log('NGO registered successfully');
-                                              res.status(200).json({ message: 'NGO registered successfully' });
-                                          })
-                                          .catch((err) => {
-                                              console.error('Error creating NGO:', err);
-                                              res.status(500).json({ error: 'Internal server error' });
+                                      .then((ngo) => {
+                                          let mailOptions = {
+                                              to: ngo.username,
+                                              subject: 'Welcome To Petari',
+                                              template: 'Email.template',
+                                              context: {
+                                                  ngo: {
+                                                      ngoName: ngo.name,
+                                                      _id: ngo._id,
+                                                      username: ngo.password,
+                                                      
+                                                  },
+                                                
+                                                  year: new Date().getFullYear()
+                                              },
+                                              attachments: [{
+                                                  filename: 'logo.png',
+                                                  path: path.join(__dirname, 'public', 'img', 'logo.png'),
+                                                  cid: 'logo'
+                                              }]
+                                          };
+                                          transporter.sendMail(mailOptions, function(error, info){
+                                              if (error) {
+                                                  console.log(error);
+                                              } else {
+                                                  console.log('Email sent: ' + info.response);
+                                              }
                                           });
+                                  
+                                          console.log('NGO registered successfully');
+                                          res.status(200).json({ message: 'NGO registered successfully' });
+                                  
+                                      })
+                                      .catch((err) => {
+                                          console.error('Error creating NGO:', err);
+                                          res.status(500).json({ error: 'Internal server error' });
+                                      });
                                   });
                                   
 

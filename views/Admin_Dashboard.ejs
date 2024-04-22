@@ -315,6 +315,95 @@
     color: white;
 }
 
+.NGO-sec {
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.donor-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.donor-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.donor-details {
+    flex-grow: 1;
+}
+
+.donor-actions {
+    flex-shrink: 0;
+}
+
+.btn-accept,
+.btn-decline {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.btn-decline {
+    background-color: #f44336;
+}
+.Doners-sec {
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.donor-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.donor-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.donor-details {
+    flex-grow: 1;
+}
+
+.donor-actions {
+    flex-shrink: 0;
+}
+
+.btn-accept,
+.btn-decline {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.btn-decline {
+    background-color: #f44336;
+}
+
     </style>
 
     <!-- //icon -->
@@ -347,16 +436,33 @@
             </div>
         </section>
         <section class="NGO-sec" style="display: none;">
-            <h2 style="text-align: center; margin-bottom: 2rem;"> NGO requests</h2>
-            <div style=" display: flex; justify-content: space-evenly"><%= NGOname %> <button type="submit"  value="Submit" style="background-color: rgb(88, 167, 88); padding: 5px; border-radius: 15%; font-size: large; font-weight: 500;">Accept</button>  <button type="submit" value="Submit" style="background-color: red; padding: 5px; border-radius: 15%; font-size: large; font-weight: 500;">Decline</button></div>
+            <h2 style="text-align: center; margin-bottom: 2rem;">NGO requests</h2>
+            <div>
+                <ul class="donor-list">
+                    <% NGOname.forEach(ngo => { %>
+                    <li class="donor-item">
+                        <div class="donor-details">
+                            <p class="donor-name"><%= ngo.NGOName %></p>
+                            <p class="donor-email"><%= ngo.NgoID %></p>
+                            <p class="donor-email"><%= ngo.NgoLocation %></p>
+                        </div>
+                        <div class="donor-actions">
+                            <button class="btn-accept">Accept</button>
+                            <button class="btn-decline">Decline</button>
+                        </div>
+                    </li>
+                    <% }); %>
+                </ul>
+            </div>
         </section>
+        
         <section class="Doners-sec">
             <h2 class="section-title">Donor Requests</h2>
             <ul class="donor-list">
                 <% Donername.forEach(user => { %>
                     <li class="donor-item">
                         <div class="donor-details">
-                            <p class="donor-name"><%= user.fullName %></p>
+                            <p class="donor-name">Name : <%= user.fullName %></p>
                             <p class="donor-email"><%= user.email %></p>
                         </div>
                         <div class="donor-actions">
