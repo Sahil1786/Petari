@@ -41,7 +41,7 @@
             display: flex;
             width: 35rem;
             height: 25rem;
-            background-color: greenyellow;
+            background-color: darkseagreen;
             justify-content: center;
             align-self: center;
             border-radius: 12%;
@@ -261,6 +261,11 @@
             background-color: #333;
             color: #FFF;
         }
+        body.dark .top {
+            background-color: #333;
+            color: #FFF;
+        }
+
         button{
             border-radius: 50%;
             padding: 10px;
@@ -456,7 +461,7 @@
             </div>
         </section>
         
-        <section class="Doners-sec">
+        <section class="Doners-sec" style="display: none;">
             <h2 class="section-title">Donor Requests</h2>
             <ul class="donor-list">
                 <% Donername.forEach(user => { %>
