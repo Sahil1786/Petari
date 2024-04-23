@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
 
 const ngoRegisterSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  NGOName: { type: String, required: true },
+  Mobile: { type: String, required: true },
+  NgoID: { type: String, required: true },
+  NgoLocation: { type: String, required: true },
+  approved: { type: Boolean, default: false } // New field for approval status
+});
 
-  username: String,
-    password: String,
-    NGOName: String,
-    Mobile: Number,
-    NgoID:String,
-    NgoLocation:String,
-})
 
 const NGO = mongoose.model('NGO',ngoRegisterSchema);
 

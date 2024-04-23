@@ -452,7 +452,9 @@
                             <p class="donor-email"><%= ngo.NgoLocation %></p>
                         </div>
                         <div class="donor-actions">
-                            <button class="btn-accept">Accept</button>
+                            <form method="POST" action="/approve-ngo/<%= ngo._id %>">
+                                <button class="btn-accept">Accept</button>
+                            </form>
                             <button class="btn-decline">Decline</button>
                         </div>
                     </li>
