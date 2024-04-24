@@ -41,7 +41,7 @@
             display: flex;
             width: 35rem;
             height: 25rem;
-            background-color: greenyellow;
+            background-color: darkseagreen;
             justify-content: center;
             align-self: center;
             border-radius: 12%;
@@ -113,10 +113,75 @@
             z-index: 2;
         }
         .dash{
-            position: fixed;
+            position: absolute;
             left: 35px;
         }
-        
+        body.dark .top {
+            background-color: #333;
+            color: #FFF;
+        }
+        .donation{
+            display: none;
+        }
+
+        .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  .form-container {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 400px;
+    margin-bottom: 20px;
+  }
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  input[type="text"], input[type="number"], input[type="email"], select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  select {
+    margin-bottom: 10px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+  }
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th:last-child, td:last-child {
+    text-align: center;
+  }
+  .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 7%;
+  }
+  .button:hover {
+    background-color: #3e8e41; /* Green hover */
+  }
 
         /* aditya End */
         /* colors */
@@ -282,17 +347,97 @@
             
         </div>
         <hr class="top-border">
-        <div class="middle">
-            <div class="Donatebox">
-                <div class="NAME-block">
-                    <h4 class="User-Name">Full Name: <%= fullName %> </h4>
-                    <h4 class="User-Email">Email:   <%= email %></h4>
-                    <h4 class="User-Phone">Phone No:  <%= phoneNo %></h4>
-                    <h4 class="User-Adderss">Address:  <%= address %> </h4>
+        <section class="Profile-sec">
+            <div class="middle">
+                <div class="Donatebox">
+                    <div class="NAME-block">
+                        <h4 class="User-Name">Full Name: <%= fullName %> </h4>
+                        <h4 class="User-Email">Email:   <%= email %></h4>
+                        <h4 class="User-Phone">Phone No:  <%= phoneNo %></h4>
+                        <h4 class="User-Adderss">Address:  <%= address %> </h4>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+        <section class="donation">
+                <div class="container">
+                    <div class="form-container">
+                    <h2>Donation Form</h2>
+                    <form id="donationForm">
+                        
+                        <label for="flatNo">Flat/Door/Building No.:</label>
+                        <input type="text" id="flatNo" name="flatNo" required>
+                        <label for="addressLine1">Street/Locality:</label>
+                        <input type="text" id="addressLine1" name="addressLine1" required>
+                        <label for="addressLine2">Area/Landmark (Optional):</label>
+                        <input type="text" id="addressLine2" name="addressLine2">
+                        <label for="city">City:</label>
+                        <input type="text" id="city" name="city" required>
+                        <label for="state">State:</label>
+                        <select id="state" name="state" required>
+                        <option value="">Select State</option>
+                        <option value="AP">Andhra Pradesh</option>
+                        <option value="AR">Arunachal Pradesh</option>
+                        <option value="AS">Assam</option>
+                        <option value="BR">Bihar</option>
+                        <option value="CH">Chhattisgarh</option>
+                        <option value="GA">Goa</option>
+                        <option value="GU">Gujarat</option>
+                        <option value="HR">Haryana</option>
+                        <option value="HP">Himachal Pradesh</option>
+                        <option value="JH">Jharkhand</option>
+                        <option value="KA">Karnataka</option>
+                        <option value="KL">Kerala</option>
+                        <option value="MP">Madhya Pradesh</option>
+                        <option value="MH">Maharashtra</option>
+                        <option value="MN">Manipur</option>
+                        <option value="ME">Meghalaya</option>
+                        <option value="MZ">Mizoram</option>
+                        <option value="NL">Nagaland</option>
+                        <option value="OD">Odisha</option>
+                        <option value="PB">Punjab</option>
+                        <option value="RJ">Rajasthan</option>
+                        <option value="SK">Sikkim</option>
+                        <option value="TN">Tamil Nadu</option>
+                        <option value="TG">Telangana</option>
+                        <option value="TR">Tripura</option>
+                        <option value="UT">Uttarakhand</option>
+                        <option value="UP">Uttar Pradesh</option>
+                        <option value="WB">West Bengal</option>
+                        </select>
+                        <label for="zip">ZIP/Postal Code:</label>
+                        <input type="text" id="zip" name="zip" required>
+                
+                        <h3>Food Inventory</h3>
+                        <table>
+                        <thead>
+                            <tr>
+                            <th>Food Item</th>
+                            <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td><input type="text" name="foodItem" required></td>
+                            <td><input type="number" name="quantity" min="1" required></td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        <div style="display: flex; justify-content: center;">
+                        <button type="button" class="button" onclick="addRow()">Add New Item</button>
+                        <button type="button" class="button" onclick="deleteRow()">Delete Row</button>
+                        </div>
+                        <div style="display: flex; justify-content: center;">
+                        <button  class="button" type="submit">Donate</button>
+                        </div>
+                        
+                        
+                    </form>
+                    </div>
+                </div>
+            </section>
     </section>
+    
 
     <!-- Adityas end -->
     <nav class="sliding-menu">
@@ -306,19 +451,19 @@
             <ul class="nav-links">
                 <li><a href="#">
                         <i class="uil uil-user-circle"></i>
-                        <span class="link-name">Profile</span>
+                        <span id="Profile" class="link-name">Profile</span>
                     </a></li>
                 <li><a href="#">
                         <i class="uil uil-restaurant"></i>
-                        <span class="link-name">Donate</span>
+                        <span id="donate" class="link-name">Donate</span>
                     </a></li>
                 <li><a href="#">
                         <i class="uil uil-map-marker-question"></i>
-                        <span class="link-name">Track</span>
+                        <span id="track" class="link-name">Track</span>
                     </a></li>
                 <li><a href="#">
                         <i class="uil uil-comment-medical"></i>
-                        <span class="link-name">Contact Us</span>
+                        <span id="contact" class="link-name">Contact Us</span>
                     </a></li>
             </ul>
             <ul class="logout-mode">
@@ -344,6 +489,20 @@
 
     <script>
         function toggleMenu() {
+            let donate = document.querySelector('#donate');
+            let profile = document.querySelector('#Profile');
+            let Profile_sec = document.querySelector('.Profile-sec');
+            let donation_sec = document.querySelector('.donation')
+            
+            donate.addEventListener('click', (e) => {
+                Profile_sec.style.display = 'none';
+                donation_sec.style.display = 'block';
+            })
+            profile.addEventListener('click', (e) => {
+                Profile_sec.style.display = 'block';
+                donation_sec.style.display = 'none';
+            })
+
             var menu = document.querySelector('.sliding-menu');
             menu.style.width = menu.style.width === '25%' ? '0' : '25%';
         }
@@ -354,6 +513,24 @@
         modeToggle.addEventListener("click", () => {
             body.classList.toggle("dark");
         });
+        function addRow() {
+  const tableBody = document.querySelector('#donationForm tbody');
+  const newRow = tableBody.insertRow();
+  const foodItemCell = newRow.insertCell();
+  const quantityCell = newRow.insertCell();
+
+  foodItemCell.innerHTML = `<input type="text" name="foodItem" required>`;
+  quantityCell.innerHTML = `<input type="number" name="quantity" min="1" required>`;
+}
+
+function deleteRow() {
+  const tableBody = document.querySelector('#donationForm tbody');
+  if (tableBody.rows.length > 1) {
+    tableBody.deleteRow(tableBody.rows.length - 1);
+  } else {
+    alert("Cannot delete the only row");
+  }
+}
     </script>
 </body>
 

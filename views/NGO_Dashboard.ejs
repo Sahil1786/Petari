@@ -414,7 +414,7 @@
     <!-- //icon -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
-    <title>Admin DashBoard</title>
+    <title>NGO DashBoard</title>
 </head>
 
 <body>
@@ -434,48 +434,56 @@
         <section class="Profile-sec">
             <div class="Donatebox">
                 <div class="NAME-block">
-                    
-                    <h4 class="User-Name">Full Name: <%= name %> </h4>
-                  
+                    <h4 class="User-Name">Full Name: <%= fullName %> </h4>
+                        <h4 class="User-Email">Email:   <%= email %></h4>
+                        <h4 class="User-Phone">Phone No:  <%= phoneNo %></h4>
+                        <h4 class="User-Adderss">Address:  <%= address %> </h4>
                 </div>
             </div>
         </section>
         <section class="NGO-sec" style="display: none;">
-            <h2 style="text-align: center; margin-bottom: 2rem;">NGO requests</h2>
+            <h2 style="text-align: center; margin-bottom: 2rem;">Donation Pickup requests</h2>
             <div>
                 <ul class="donor-list">
-                    <% NGOname.forEach(ngo => { %>
-                    <li class="donor-item">
-                        <div class="donor-details">
-                            <p class="donor-name"><%= ngo.NGOName %></p>
-                            <p class="donor-email"><%= ngo.NgoID %></p>
-                            <p class="donor-email"><%= ngo.NgoLocation %></p>
-                        </div>
-                        <div class="donor-actions">
-                            <form method="POST" action="/approve-ngo/<%= ngo._id %>">
+                    <% Donation.forEach(user => { %>
+                        <li class="donor-item">
+                            <div class="donor-details">
+                                <p class="donor-name">Name : <%= user.fullName %></p>
+                                <p class="donor-location"><%= user.location %></p>
+                            </div>
+                            <div class="donor-actions">
                                 <button class="btn-accept">Accept</button>
-                            </form>
-                            <button class="btn-decline">Decline</button>
-                        </div>
-                    </li>
+                                <button class="btn-decline">Decline</button>
+                            </div>
+                        </li>
                     <% }); %>
                 </ul>
             </div>
         </section>
         
         <section class="Doners-sec" style="display: none;">
-            <h2 class="section-title">Donor Requests</h2>
-            <ul class="donor-list">
-                <% Donername.forEach(user => { %>
-                    <li class="donor-item">
-                        <div class="donor-details">
-                            <p class="donor-name">Name : <%= user.fullName %></p>
-                            <p class="donor-email"><%= user.email %></p>
-                        </div>
-                        <div class="donor-actions">
-                            <button class="btn-accept">Accept</button>
-                            <button class="btn-decline">Decline</button>
-                        </div>
+            <h2 class="section-title">Status Update</h2>
+            <ul class="Pickup-list" style="display: flex; flex-wrap: wrap;">
+                <% Pickup.forEach(user => { %>
+                    <li class="donor-item" style="display: flex;">
+                        <form action="" method="post">
+                            <p class="donor-name">Name : <%= Pickup.fullName %></p>
+                            <select id="status" name="status" required>
+                                <option value="PU">Picked Up</option>
+                                <option value="Dl">Delivered</option>
+                            </select>
+                            <button type="submit" style="background-color: #4CAF50; border: none; color: white; padding: 8px 16px;
+                            text-align: center;
+                            text-decoration: none;
+                            display: inline-block;
+                            font-size: 16px;
+                            margin: 4px 2px;
+                            cursor: pointer;
+                            border-radius: 12%;">Update</button>
+                        </form>
+                            
+                            
+                        
                     </li>
                 <% }); %>
             </ul>
@@ -484,8 +492,12 @@
         
         <section class="Complains-sec" style="display: none; margin-top: 2rem;">
             <div style="display: flex; justify-content: space-evenly;">
-                <h2><%= UserName %></h2>
-                <p><%= complain %></p>
+                <form action="" method="post">
+                    <label for="Doner">Doner Name</label>
+                    <input type="text" name="Doner" id="">
+                    <label for="Complain">Issue</label>
+                    <input type="text" name="Issue" id="" placeholder="Issue">
+                </form>
             </div>
         </section>
     </section>
@@ -506,15 +518,15 @@
                 </a></li>
                 <li><a href="#">
                         <i class="uil uil-user-circle"></i>
-                        <span id="NGO" class="link-name">NGO</span>
+                        <span id="NGO" class="link-name">donation Requests</span>
                     </a></li>
                 <li><a href="#">
                         <i class="uil uil-user-circle"></i>
-                        <span id="Doners" class="link-name">Doners</span>
+                        <span id="Doners" class="link-name">Status Update</span>
                     </a></li>
                     <li><a href="#">
                         <i class="uil uil-comment-medical"></i>
-                        <span id="Complains" class="link-name">Complains</span>
+                        <span id="Complains" class="link-name">Raise Issues</span>
                     </a></li>
                 <!-- <li><a href="#">
                         <i class="uil uil-map-marker-question"></i>
