@@ -409,6 +409,53 @@
     background-color: #f44336;
 }
 
+.Complains-sec {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.donor-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.donor-item {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.donor-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.donor-name {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.donor-email {
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.donor-message {
+    margin-bottom: 0.5rem;
+}
+
+/* Optional: Hover effect */
+.donor-item:hover {
+    background-color: #f0f0f0;
+    transition: background-color 0.3s;
+}
+
+
     </style>
 
     <!-- //icon -->
@@ -427,7 +474,7 @@
                 <i class="uil uil-bars"></i>
             </div>
             <div class="dash">DashBoard</div>
-            <div class="Left-name">Welcome, <%= email %>!</div>
+            <div class="Left-name">Welcome, <%= fullName %>!</div>
             
         </div>
         <hr class="top-border">
@@ -449,11 +496,25 @@
                         <li class="donor-item">
                             <div class="donor-details">
                                 <p class="donor-name">Name : <%= user.fullName %></p>
-                                <p class="donor-location"><%= user.location %></p>
+                                <p class="donor-location"> Flat no :<%= user.flatNo %></p>
+                                <p class="donor-location">Address-1 :<%= user.addressLine1 %></p>
+                                <p class="donor-location">Address-2 :<%= user.addressLine2 %></p>
+                                <p class="donor-location">City :<%= user.city %></p>
+                                <p class="donor-location"> State <%= user.state %></p>
+                                <p class="donor-location">Pin : <%= user.zip %></p>
+                                <p class="donor-location">
+                                    <% user.foodInventory.forEach(item => { %>
+                                        <p> Itmes<%= item.foodItem %></p>
+                                        <p>Quintity <%= item.quantity %></p>
+                                    <% }); %>
+                                    </p>
                             </div>
                             <div class="donor-actions">
                                 <button class="btn-accept">Accept</button>
-                                <button class="btn-decline">Decline</button>
+                                <form action="/delete-details" method="post" >
+                                    <button  class="btn-decline">Decline</button>
+                                </form>
+                                
                             </div>
                         </li>
                     <% }); %>
@@ -537,11 +598,11 @@
                     <span id="Profile" class="link-name">Profie</span>
                 </a></li>
                 <li><a href="#">
-                        <i class="uil uil-user-circle"></i>
-                        <span id="NGO" class="link-name">donation Requests</span>
+                    <i class="uil uil-dna"></i>
+                        <span id="NGO" class="link-name">Donation Requests</span>
                     </a></li>
                 <li><a href="#">
-                        <i class="uil uil-user-circle"></i>
+                    <i class="uil uil-crockery"></i>
                         <span id="Doners" class="link-name">Status Update</span>
                     </a></li>
                     <li><a href="#">

@@ -409,6 +409,56 @@
     background-color: #f44336;
 }
 
+
+.Complains-sec {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.donor-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.donor-item {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.donor-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.donor-name {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.donor-email {
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.donor-message {
+    margin-bottom: 0.5rem;
+}
+
+/* Optional: Hover effect */
+.donor-item:hover {
+    background-color: #f0f0f0;
+    transition: background-color 0.3s;
+}
+
+
+
+
     </style>
 
     <!-- //icon -->
@@ -436,6 +486,9 @@
                 <div class="NAME-block">
                     
                     <h4 class="User-Name">Full Name: <%= name %> </h4>
+             
+            
+                    
                   
                 </div>
             </div>
@@ -447,9 +500,9 @@
                     <% NGOname.forEach(ngo => { %>
                     <li class="donor-item">
                         <div class="donor-details">
-                            <p class="donor-name"><%= ngo.NGOName %></p>
-                            <p class="donor-email"><%= ngo.NgoID %></p>
-                            <p class="donor-email"><%= ngo.NgoLocation %></p>
+                            <p class="donor-name"> Ngo Name<%= ngo.NGOName %></p>
+                            <p class="donor-email">ID<%= ngo.NgoID %></p>
+                            <p class="donor-email">Location<%= ngo.NgoLocation %></p>
                         </div>
                         <div class="donor-actions">
                             <form method="POST" action="/approve-ngo/<%= ngo._id %>">
@@ -484,8 +537,26 @@
         
         <section class="Complains-sec" style="display: none; margin-top: 2rem;">
             <div style="display: flex; justify-content: space-evenly;">
-                <h2><%= UserName %></h2>
-                <p><%= complain %></p>
+                <!--  -->
+                <ul class="donor-list">
+                    <%complain .forEach(comp => { %>
+                        <li class="donor-item">
+                            <div class="donor-details">
+                                <p class="donor-name">Name : <%= comp.name %></p>
+                                <p class="donor-email"> email   <%= comp.email %></p>
+                                <p class="donor-name">sub :   <%= comp.subject %></p>
+                                <p class="donor-name">msg : <%= comp.message %>
+                                    <p class="donor-name">time : <%= comp.createdAt %>
+                                </p>
+                            </div>
+                    
+                        </li>
+                    <% }); %>
+                </ul>
+              
+            
+              
+               
             </div>
         </section>
     </section>
@@ -500,21 +571,21 @@
         </div>
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="#">
+                <li><a id="Profile" href="#">
                     <i class="uil uil-user-circle"></i>
-                    <span id="Profile" class="link-name">Profie</span>
+                    <span  class="link-name">Profie</span>
                 </a></li>
-                <li><a href="#">
-                        <i class="uil uil-user-circle"></i>
-                        <span id="NGO" class="link-name">NGO</span>
+                <li><a id="NGO"  href="#">
+                    <i class="uil uil-graduation-cap"></i>
+                        <span class="link-name">NGO</span>
                     </a></li>
-                <li><a href="#">
-                        <i class="uil uil-user-circle"></i>
-                        <span id="Doners" class="link-name">Doners</span>
+                <li><a id="Doners" href="#">
+                    <i class="uil uil-desktop-cloud-alt"></i>
+                        <span  class="link-name">Doners</span>
                     </a></li>
-                    <li><a href="#">
+                    <li><a id="Complains" href="#">
                         <i class="uil uil-comment-medical"></i>
-                        <span id="Complains" class="link-name">Complains</span>
+                        <span  class="link-name">Complains</span>
                     </a></li>
                 <!-- <li><a href="#">
                         <i class="uil uil-map-marker-question"></i>

@@ -427,12 +427,16 @@ console.log(resetLink);
 
 
 
+const problem=require("./model/query")
+  
+
 
                                          // admin code
                                          app.post('/approve-ngo/:id', async (req, res)=> {
                                           const ngoId = req.params.id;
                                       
                                           try {
+
                                               const ngo = await NGO.findById(ngoId);
                                               if (!ngo) {
                                                   return res.status(404).json({ error: "NGO not found" });
@@ -469,27 +473,29 @@ console.log(resetLink);
                                           const username = req.body.username;
                                           const password = req.body.password;
                                       
-                                          try {
+                                      
                                               const admin = await Admin.findOne({ username: username, password: password });
                                       
-                                              if (admin) {
-                                                  res.render("Admin_Dashboard", {
-                                                      name: admin.username,
-                                                      email: admin.email,
-                                                      id: admin.id,
-                                                      NGOname: "adita",
-                                                      Donername: "user",
-                                                      UserName:"sahil114",
-                                                      complain: ""
-                                                      // Pass other properties as needed
-                                                  });
-                                              } else {
-                                                  res.status(401).send("Invalid ID or password.");
-                                              }
-                                          } catch (err) {
-                                              console.log(err);
-                                              res.status(500).send("An internal server error occurred.");
-                                          }
+                                              try {
+                                                const dooner = await User.find(); // Assuming User is your Mongoose model for users
+                                                const ngo=await NGO.find()
+                                          
+                                                const query1 = await problem.Query.find();
+                                                res.render("Admin_Dashboard", {
+                                                    name: admin.fullName,
+                                                    email: admin.fullName,
+                                                    mobile:admin.Mobile,
+                                                    username:admin.username,
+                                                    id: admin._id,
+                                                    NGOname: ngo,
+                                                    Donername: dooner,
+                                                    UserName: "sahil114",
+                                                    complain:query1
+                                                });
+                                            } catch (err) {
+                                                console.error(err);
+                                                res.status(500).send("An internal server error occurred.");
+                                            }
                                       });
 
 
@@ -500,30 +506,7 @@ console.log(resetLink);
                                       
 
 
-                                      app.get("/try", async (req, res) => {
-
-                                        const admin = await Admin.findOne();
-                                        try {
-                                            const dooner = await User.find(); // Assuming User is your Mongoose model for users
-                                            const ngo=await NGO.find()
-                                      
-                                    
-                                            res.render("Admin_Dashboard", {
-                                                name: admin.fullName,
-                                                email: admin.fullName,
-                                                id: admin._id,
-                                                NGOname: ngo,
-                                                Donername: dooner,
-                                                UserName: "sahil114",
-                                                complain: ""
-                                            });
-                                        } catch (err) {
-                                            console.error(err);
-                                            res.status(500).send("An internal server error occurred.");
-                                        }
-                                    });
-
-
+                              
                                     app.get("/Ngo-Registration",async(req,res)=>{
                                       res.render("NGO-Registration")
                                     });
@@ -667,8 +650,10 @@ app.get("/admin-dashboard", async function (req, res) {
 
 
 const Ngo=require("./model/ngo")
-app.get("/Ngo-dashboard",async(req,res)=>{
-  const ngo = await Ngo.findOne();
+app.post("/Ngo-login",async(req,res)=>{
+  const username = req.body.username;
+  const password = req.body.password;
+  const ngo = await Ngo.findOne({ username: username, password: password });
   try {
       const dooner = await User.find(); // Assuming User is your Mongoose model for users
     
@@ -691,6 +676,36 @@ app.get("/Ngo-dashboard",async(req,res)=>{
 })
 
 
+
+// user delete from the databse
+
+app.post("/delete-details", async (req, res) => {
+  try {
+      // Find the user by their email
+      let user = await User.findOne({ email: req.body.email });
+
+      // If the user exists, delete their details
+      if (user) {
+          // Update the user's details
+          user.flatNo = "";
+          user.addressLine1 = "";
+          user.addressLine2 = "";
+          user.city = "";
+          user.state = "";
+          user.zip = "";
+          user.foodInventory = [];
+
+          // Save the updated user document
+          await user.save();
+          res.status(200).json({ message: 'Details deleted successfully' });
+      } else {
+          res.status(404).json({ error: 'User not found' });
+      }
+  } catch (error) {
+      console.error('Error deleting details:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 
 
