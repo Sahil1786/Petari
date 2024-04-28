@@ -12,6 +12,7 @@
     "argon2": "^0.31.2",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
+    "connect-mongo": "^5.1.0",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
     "expree": "^2.1.0",

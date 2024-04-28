@@ -360,11 +360,15 @@
             </div>
         </section>
         <section class="donation">
-                <div class="container">
-                    <div class="form-container">
+            <div class="container">
+                <div class="form-container">
                     <h2>Donation Form</h2>
-                    <form id="donationForm">
-                        
+                    <br>
+                    <form id="donationForm" action="/add-details" method="post">
+                        <!-- Include a field for the user ID -->
+                        <label for="userID">Email Id:</label>
+                        <input type="text" id="userId" name="email" >
+        
                         <label for="flatNo">Flat/Door/Building No.:</label>
                         <input type="text" id="flatNo" name="flatNo" required>
                         <label for="addressLine1">Street/Locality:</label>
@@ -375,69 +379,68 @@
                         <input type="text" id="city" name="city" required>
                         <label for="state">State:</label>
                         <select id="state" name="state" required>
-                        <option value="">Select State</option>
-                        <option value="AP">Andhra Pradesh</option>
-                        <option value="AR">Arunachal Pradesh</option>
-                        <option value="AS">Assam</option>
-                        <option value="BR">Bihar</option>
-                        <option value="CH">Chhattisgarh</option>
-                        <option value="GA">Goa</option>
-                        <option value="GU">Gujarat</option>
-                        <option value="HR">Haryana</option>
-                        <option value="HP">Himachal Pradesh</option>
-                        <option value="JH">Jharkhand</option>
-                        <option value="KA">Karnataka</option>
-                        <option value="KL">Kerala</option>
-                        <option value="MP">Madhya Pradesh</option>
-                        <option value="MH">Maharashtra</option>
-                        <option value="MN">Manipur</option>
-                        <option value="ME">Meghalaya</option>
-                        <option value="MZ">Mizoram</option>
-                        <option value="NL">Nagaland</option>
-                        <option value="OD">Odisha</option>
-                        <option value="PB">Punjab</option>
-                        <option value="RJ">Rajasthan</option>
-                        <option value="SK">Sikkim</option>
-                        <option value="TN">Tamil Nadu</option>
-                        <option value="TG">Telangana</option>
-                        <option value="TR">Tripura</option>
-                        <option value="UT">Uttarakhand</option>
-                        <option value="UP">Uttar Pradesh</option>
-                        <option value="WB">West Bengal</option>
-                        </select>
+                            <option value="">Select State</option>
+                            <option value="AP">Andhra Pradesh</option>
+                            <option value="AR">Arunachal Pradesh</option>
+                            <option value="AS">Assam</option>
+                            <option value="BR">Bihar</option>
+                            <option value="CH">Chhattisgarh</option>
+                            <option value="GA">Goa</option>
+                            <option value="GU">Gujarat</option>
+                            <option value="HR">Haryana</option>
+                            <option value="HP">Himachal Pradesh</option>
+                            <option value="JH">Jharkhand</option>
+                            <option value="KA">Karnataka</option>
+                            <option value="KL">Kerala</option>
+                            <option value="MP">Madhya Pradesh</option>
+                            <option value="MH">Maharashtra</option>
+                            <option value="MN">Manipur</option>
+                            <option value="ME">Meghalaya</option>
+                            <option value="MZ">Mizoram</option>
+                            <option value="NL">Nagaland</option>
+                            <option value="OD">Odisha</option>
+                            <option value="PB">Punjab</option>
+                            <option value="RJ">Rajasthan</option>
+                            <option value="SK">Sikkim</option>
+                            <option value="TN">Tamil Nadu</option>
+                            <option value="TG">Telangana</option>
+                            <option value="TR">Tripura</option>
+                            <option value="UT">Uttarakhand</option>
+                            <option value="UP">Uttar Pradesh</option>
+                            <option value="WB">West Bengal</option>
+                            </select>
                         <label for="zip">ZIP/Postal Code:</label>
                         <input type="text" id="zip" name="zip" required>
-                
+        
                         <h3>Food Inventory</h3>
                         <table>
-                        <thead>
-                            <tr>
-                            <th>Food Item</th>
-                            <th>Quantity</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <td><input type="text" name="foodItem" required></td>
-                            <td><input type="number" name="quantity" min="1" required></td>
-                            </tr>
-                        </tbody>
+                            <thead>
+                                <tr> 
+                                    <th>Food Item</th>
+                                    <th>Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" name="foodItem" required></td>
+                                    <td><input type="number" name="quantity" min="1" required></td>
+                                </tr>
+                            </tbody>
                         </table>
                         <div style="display: flex; justify-content: center;">
-                        <button type="button" class="button" onclick="addRow()">Add New Item</button>
-                        <button type="button" class="button" onclick="deleteRow()">Delete Row</button>
+                            <button type="button" class="button" onclick="addRow()">Add New Item</button>
+                            <button type="button" class="button" onclick="deleteRow()">Delete Row</button>
                         </div>
                         <div style="display: flex; justify-content: center;">
-                        <button  class="button" type="submit">Donate</button>
+                            <button class="button" type="submit">Donate</button>
                         </div>
-                        
-                        
                     </form>
-                    </div>
                 </div>
-            </section>
-    </section>
-    
+            </div>
+        </section>
+
+        
+        
 
     <!-- Adityas end -->
     <nav class="sliding-menu">

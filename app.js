@@ -22,7 +22,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 const NGO=require("./model/ngo")
-const isAdmin=require("./middleware/isAdmin")
+const isAdmin=require("./middleware/isAdmin");
+// const  User=require("./model/user")
+const Query=require("./model/query")
 
 
 // app.use(flash());
@@ -71,37 +73,10 @@ const transporter = nodemailer.createTransport({
 
 
 
-  const userSchema = new mongoose.Schema({
-      // username: {
-      //     type: String,
-      //     unique: true,
-      //     required: true,
-      // },
-      email: String,
-      password: String,
-      fullName: String,
-      address: String,
-      Mobile: Number,
-      dob: String,
-      gender: {
-          type: String,
-          enum: ['opt1', 'opt2', 'opt3'],
-      },
-      // googleId: String,
-      // profile: String,
-  });
-  
 
 
-const indexQuerySchema = mongoose.Schema({
-    name: String,
-    email: String,
-    subject: String,
-    message: String
-}, { timestamps: true });
 
-const User = new mongoose.model("User", userSchema);
-const Query = new mongoose.model("Query", indexQuerySchema);
+
 
 
 app.get("/", function (req, res) {
@@ -152,6 +127,41 @@ app.post("/", async function (req, res) {
     }
 });
 
+const userSchema = new mongoose.Schema({
+  // username: {
+  //     type: String,
+  //     unique: true,
+  //     required: true,
+  // },
+  email: String,
+  password: String,
+  fullName: String,
+  address: String,
+  Mobile: Number,
+  dob: String,
+  gender: {
+    type: String,
+    enum: ['male', 'female', 'other']
+},
+  flatNo: { type: String },
+  addressLine1: { type: String },
+  addressLine2: { type: String },
+  city: { type: String },
+  state: { type: String },
+  zip: { type: String },
+  foodInventory: [
+      {
+          foodItem: { type: String },
+          quantity: { type: Number }
+      }
+  ]
+  // googleId: String,
+  // profile: String,
+});
+
+
+const User = new mongoose.model("User", userSchema);
+
 
 // user Registration
 app.post("/User_singUp", async function (req, res) {
@@ -190,7 +200,7 @@ app.post("/User_singUp", async function (req, res) {
                     user: {
                         fname: user.fullName,
                         _id: user._id,
-                        username: user.username,
+                        username: user.fullName,
                         email: user.email
                     },
                     year: new Date().getFullYear()
@@ -226,28 +236,29 @@ app.post("/User_singUp", async function (req, res) {
 
 
 // user login
-app.post("/login", function (req, res) {
+app.post("/login", async function (req, res) {
+  const { username, password } = req.body;
 
-  const username=req.body.username;
-  const password=req.body.password;
-  
-  
-  User.findOne({email:username}).then((foundUser)=>{
-      if(foundUser){
-          bcrypt.compare(password, foundUser.password, function(err, result) {
-              if(result=== true){
-                  res.render("UserDashBoard");
-          
-              }
-          });
-            
+  try {
+      const foundUser = await User.findOne({ email: username });
+
+      if (!foundUser) {
+          return res.render("loginError", { message: 'User not found' });
       }
-  })
-  .catch((err)=>{
-      console.log(err);
-  });
 
-  });
+      const result = await bcrypt.compare(password, foundUser.password);
+
+      if (result) {
+          return res.render("UserDashBoard" , {fullName :foundUser.fullName,email :foundUser.email,phoneNo :foundUser.Mobile,address :foundUser.address});
+      } else {
+          return res.render("loginError", { message: 'Incorrect password' });
+      }
+  } catch (error) {
+      console.error('Error during login:', error);
+      return res.status(500).send('Internal Server Error');
+  }
+});
+
 
 
 
@@ -378,6 +389,40 @@ console.log(resetLink);
       res.status(500).send("Internal Server Error");
     }
   });
+  
+
+  // extra details added for the user
+  app.post('/add-details', async (req, res) => {
+    try {
+        // Find the user by their email
+        let user = await User.findOne({ email: req.body.email });
+
+        // If the user exists, update their details
+        if (user) {
+            // Update the user's details
+            user.flatNo = req.body.flatNo;
+            user.addressLine1 = req.body.addressLine1;
+            user.addressLine2 = req.body.addressLine2;
+            user.city = req.body.city;
+            user.state = req.body.state;
+            user.zip = req.body.zip;
+            user.foodInventory.push({ foodItem: req.body.foodItem, quantity: req.body.quantity });
+
+            // Save the updated user document
+            await user.save();
+            res.status(200).json({ message: 'Details added successfully' });
+        } else {
+            res.status(404).json({ error: 'User not found' });
+        }
+    } catch (error) {
+        console.error('Error adding details:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
+
+
 
 
 
@@ -482,6 +527,8 @@ console.log(resetLink);
                                     app.get("/Ngo-Registration",async(req,res)=>{
                                       res.render("NGO-Registration")
                                     });
+
+
                                     app.post("/NGO-Registarion", async (req, res) => {
                                       // Check if the NGO already exists
                                       const existingNGO = await NGO.findOne({ username: req.body.username });
@@ -607,13 +654,43 @@ console.log(resetLink);
 // Assuming `pendingNGOs` is an array of pending NGOs
 app.get("/admin-dashboard", async function (req, res) {
   try {
-      const pendingNGOs = await PendingNGO.find({ status: 'pending' });
+      const pendingNGOs = await NGO.find({ status: 'pending' });
       res.render("admin_dashboard", { pendingNGOs });
   } catch (error) {
       console.error(error);
       res.status(500).send("Internal Server Error");
   }
 });
+
+
+               
+
+
+const Ngo=require("./model/ngo")
+app.get("/Ngo-dashboard",async(req,res)=>{
+  const ngo = await Ngo.findOne();
+  try {
+      const dooner = await User.find(); // Assuming User is your Mongoose model for users
+    
+
+
+      res.render("NGO-Dashboard", {
+          fullName: ngo.NGOName,
+          email: ngo.username,
+          id: ngo.NgoID,
+          phoneNo:ngo.Mobile,
+          address :ngo.NgoLocation,
+          Donation : dooner,
+          Pickup : dooner,
+          complain: ""
+      });
+  } catch (err) {
+      console.error(err);
+      res.status(500).send("An internal server error occurred.");
+  }
+})
+
+
 
 
 
