@@ -24,7 +24,8 @@ app.use(express.static("public"));
 const NGO=require("./model/ngo")
 const isAdmin=require("./middleware/isAdmin");
 // const  User=require("./model/user")
-const Query=require("./model/query")
+const Query = require('./model/query'); // Adjust the path based on your project structure
+
 
 
 // app.use(flash());
@@ -109,22 +110,23 @@ app.get("/success", function (req, res) {
 
 
 app.post("/", async function (req, res) {
-    try {
-        const newQuery = new Query({
-            name: req.body.Fname,
-            email: req.body.Email,
-            subject: req.body.sub,
-            message: req.body.sms,
-        });
+  try {
+    const newQuery = new Query({
+      name: req.body.Fname,
+      email: req.body.Email,
+      subject: req.body.sub,
+      message: req.body.sms,
+  });
+  
 
-        await newQuery.save();
+      await newQuery.save();
 
-        res.status(200).send("Successfully Received Message... Thank You!");
-        console.log(newQuery);
-    } catch (error) {
-        console.error(error);
-        res.status(500).send("Internal Server Error");
-    }
+      res.status(200).send("Successfully Received Message... Thank You!");
+      console.log(newQuery);
+  } catch (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+  }
 });
 
 const userSchema = new mongoose.Schema({
@@ -430,6 +432,9 @@ console.log(resetLink);
 const problem=require("./model/query")
   
 
+const ad = Admin({username:"sahilkaitha@gmail.com",password:"123",fullName:"Sahil Hossain",Mobile:"9635955320"})
+ad.save()
+
 
                                          // admin code
                                          app.post('/approve-ngo/:id', async (req, res)=> {
@@ -480,7 +485,7 @@ const problem=require("./model/query")
                                                 const dooner = await User.find(); // Assuming User is your Mongoose model for users
                                                 const ngo=await NGO.find()
                                           
-                                                const query1 = await problem.Query.find();
+                                                const query1 = await problem.find();
                                                 res.render("Admin_Dashboard", {
                                                     name: admin.fullName,
                                                     email: admin.fullName,
