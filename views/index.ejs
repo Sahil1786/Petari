@@ -27,21 +27,19 @@
 <body>
     <!-- navgation bar -->
     <header>
-        <img class=" logo" src="img/logo.png" alt="logo">
-        <h1>Petari</h1>
+        <a href="#"><img class=" logo" src="img/logo.png" alt="logo"></a>
+        <span class="logo_name">Petari</span>
         <nav>
             <ul class="nav-links">
                 <li><a href="#"> About</a></li>
                 <li><a href="#">Projects</a></li>
                 <li><a href="#">Contact</a></li>
-
-
-
+                <a class="nav_btn" href="/admin_login"><button>Admin</button></a>
+                <a class="nav_btn" href="/Ngo_login"><button>NGO</button></a>
+                <a class="nav_btn" href="/user_login"><button>Login</button></a>
             </ul>
         </nav>
-        <a class="cta" href="/admin_login"><button>Admin</button></a>
-        <a class="donate" href="/Ngo_login"><button>NGO</button></a>
-        <a class="donate" href="/user_login"><button>Login</button></a>
+
         <div class="grid text-center" style="--bs-columns: 3;">
 
         </div>
@@ -50,6 +48,21 @@
     </header>
     <main>
         <!-- about section start -->
+        <section class="hero">
+            <div class="content">
+                <h1 class="hero_text">WELCOME</h1>
+                <h2 class="hero_text2">TO PETARI</h2>
+                <p class="hero_text3"> "Hunger is not a problem. It is an obscenity.
+                </p>
+                <p class="hero_text3">How wonderful it is
+                    that nobody need wait a single moment<br>
+                    before starting to improve the world. – Anne Frank "</p>
+                <a href="/user_login" alt="Login" target="_blank"><button class="hero_btn">Donate Food</button></a>
+            </div>
+            <div class="hero_img">
+                <img src="/img/food.jpg" alt="hero" class="hero_img">
+            </div>
+        </section>
         <section class="about" id="about">
             <div class="max-width">
                 <h2 class="title">About US</h2>
@@ -58,12 +71,6 @@
                         <img src="img/food.jpg" alt="">
                     </div>
                     <div class="column right">
-                        <div class="text" id="texts"> "Hunger is not a problem. It is an obscenity. How wonderful it is
-                            that nobody need wait a single moment before starting to improve the world. – Anne Frank "
-                            <span class="typing-2"></span>
-                        </div>
-                        <p></p>
-                        <br>
                         <p>Petari is an organisation which aims to redistribute excess food from weddings, parties,
                             events to those who are hungry.We aim to bring benefits across the spectrum of society and
                             help provide access to food to those who don’t have adequate means to access it.
@@ -85,7 +92,7 @@
                             World Hunger Free.</p>
 
 
-                        <a href="/user_login" alt="Login" target="_blank">Donate Food</a>
+                        
                     </div>
                 </div>
             </div>
@@ -151,21 +158,21 @@
                             <form action="/" method="POST"">
                     <div class=" fields">
                                 <div class="field name">
-                                    <input type="text"  name ="Fname" placeholder="Name" required>
+                                    <input type="text" name="Fname" placeholder="Name" required>
                                 </div>
                                 <div class="field email">
-                                    <input type="email" name="Email"  placeholder="Email" required>
+                                    <input type="email" name="Email" placeholder="Email" required>
                                 </div>
                         </div>
                         <div class="field">
                             <input type="text" name="sub" placeholder="Subject" required>
                         </div>
                         <div class="field textarea">
-                            <textarea cols="30" rows="10"  name="sms" placeholder="Message.." required></textarea>
+                            <textarea cols="30" rows="10" name="sms" placeholder="Message.." required></textarea>
                         </div>
                         <div class="button-area">
 
-                            <button type="submit"  id ="home">Send </button>
+                            <button type="submit" id="home">Send </button>
                         </div>
                         </form>
                     </div>
@@ -201,28 +208,31 @@
     </main>
 
 
-    
-    
+
+
 
 
     <footer>
         <div class="social-2" id="Social">
             <a href="https://twitter.com/SAHILHO07860949" target="blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/in/sahil-hossain-b14164188/" target="blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/sahil-hossain-b14164188/" target="blank"><i
+                    class="fab fa-linkedin"></i></a>
             <a href="https://www.facebook.com/captain123sahil/" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="https://instagram.com/x_captain_sahil" target="blank"><i class="fab fa-instagram"></i></a>
             <a href="https://github.com/Sahil1786" target="blank"><i class="fab fa-github"></i></a>
         </div>
         <br>
-        <span>Created By <a href="https://sahil1786.github.io/My-Portfolio/" target="_blank" style="text-decoration: none;">Sahil Hossain</a> | <span class="far fa-copyright"></span> 2023 All rights reserved.</span>
+        <span>Created By <a href="https://sahil1786.github.io/My-Portfolio/" target="_blank"
+                style="text-decoration: none;">Sahil Hossain</a> | <span class="far fa-copyright"></span> 2023 All
+            rights reserved.</span>
     </footer>
-    
 
 
 
-  
-     
-      </script>
+
+
+
+    </script>
 
 
 
