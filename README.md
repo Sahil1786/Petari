@@ -49,29 +49,42 @@ If you're new to contributing to open-source projects, don't worry! Here's how y
     git clone https://github.com/your-username/Petari.git
     ```
 
-3. **Create a Branch**: Create a new branch for your contributions.
+3. **Open project**: Open the project directory.
 
     ```
-    git checkout -b feature/contribution
+    cd Petari
+    ```
+4. **Create a new branch**: To create a new branch for your profile, run the following command:
+
+```
+git checkout -b add-profile
+```
+
+5. **Make Changes**: Make your desired changes to the codebase or documentation.
+
+6. **Test Your Changes**: Test your changes locally to ensure everything works as expected.
+
+7. **Add your changed files**: Add changed files to the stage by running the following command:
+
+```
+git add .
+```
+
+8. **Commit Your Changes**: Commit your changes with descriptive commit messages.
+
+    ```
+    git commit -m "add: <your-name>"
     ```
 
-4. **Make Changes**: Make your desired changes to the codebase or documentation.
-
-5. **Test Your Changes**: Test your changes locally to ensure everything works as expected.
-
-6. **Commit Your Changes**: Commit your changes with descriptive commit messages.
+9. **Push Changes**: Push your changes to your forked repository.
 
     ```
-    git commit -am 'Add new feature'
+    git push origin add-profile
     ```
 
-7. **Push Changes**: Push your changes to your forked repository.
-
-    ```
-    git push origin feature/contribution
-    ```
-
-8. **Create a Pull Request**: Open a pull request from your forked repository to the main PETARI repository. Provide a clear description of your changes in the pull request.
+10. **Create a Pull Request**: Open a pull request from your forked repository to the main PETARI repository. Provide a clear description of your changes in the pull request. Follow these steps
+    - Add the issue number, that you have been assigned
+    - Brief description of the changes
 
 ## Code Style Guidelines
 
@@ -88,10 +101,6 @@ All contributions to PETARI will go through a code review process to ensure code
 ## Community Guidelines
 
 PETARI is committed to fostering an inclusive and welcoming community. We encourage respectful and constructive communication among contributors. Please refer to our [Code of Conduct](CODE_OF_CONDUCT.md) for more information.
-
-## Need Help?
-
-If you have any questions or need assistance with your contributions, feel free to reach out to us via [email](mailto:petari@example.com) or [GitHub issues](https://github.com/Sahil1786/Petari/issues).
 
 
 ## Output Screenshot
