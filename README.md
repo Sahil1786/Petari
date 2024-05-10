@@ -83,7 +83,7 @@ If you're new to contributing to open-source projects, don't worry! Here's how y
     ```
 
 10. **Create a Pull Request**: Open a pull request from your forked repository to the main PETARI repository. Provide a clear description of your changes in the pull request. Follow these steps
-    - Add the issue number, that you have been assigned
+    - Add the issue number, that you have been assigned[Formate:- Isuue number #(your issue number)]
     - Brief description of the changes
 
 ## Code Style Guidelines
