@@ -19,7 +19,82 @@ PETARI, The Food Donate WebApp, is an initiative by an organization aiming to re
 - MongoDB
 - Authentication (Auth 2.0)
 
-## Features
+# Contribution Guidelines
+
+Thank you for considering contributing to PETARI! We appreciate your efforts to make a positive impact on society through food redistribution and combating hunger. By contributing to PETARI, you are helping us move closer to our goal of creating a hunger-free world and reducing food waste.
+
+## How Can You Contribute?
+
+There are several ways you can contribute to PETARI:
+
+1. **Code Contributions**: Help improve the PETARI codebase by fixing bugs, adding new features, or enhancing existing functionalities.
+
+2. **Documentation**: Improve the project's documentation to make it more comprehensive and user-friendly.
+
+3. **Testing**: Test the application and report any bugs or issues you encounter. You can also contribute by writing and running test cases.
+
+4. **Design**: If you have design skills, you can contribute by creating or improving the user interface and experience of PETARI.
+
+5. **Feedback**: Provide feedback on the existing features, suggest new ideas, or share your thoughts on how PETARI can be further improved.
+
+## Getting Started
+
+If you're new to contributing to open-source projects, don't worry! Here's how you can get started:
+
+1. **Fork the Repository**: Fork the PETARI repository to your GitHub account.
+
+2. **Clone the Repository**: Clone the forked repository to your local machine using Git.
+
+    ```
+    git clone https://github.com/your-username/Petari.git
+    ```
+
+3. **Create a Branch**: Create a new branch for your contributions.
+
+    ```
+    git checkout -b feature/contribution
+    ```
+
+4. **Make Changes**: Make your desired changes to the codebase or documentation.
+
+5. **Test Your Changes**: Test your changes locally to ensure everything works as expected.
+
+6. **Commit Your Changes**: Commit your changes with descriptive commit messages.
+
+    ```
+    git commit -am 'Add new feature'
+    ```
+
+7. **Push Changes**: Push your changes to your forked repository.
+
+    ```
+    git push origin feature/contribution
+    ```
+
+8. **Create a Pull Request**: Open a pull request from your forked repository to the main PETARI repository. Provide a clear description of your changes in the pull request.
+
+## Code Style Guidelines
+
+To maintain consistency and readability, please follow these code style guidelines:
+
+- Use meaningful variable and function names.
+- Follow indentation and formatting conventions used in the existing codebase.
+- Write clear and concise comments to explain complex logic or algorithms.
+
+## Code Review Process
+
+All contributions to PETARI will go through a code review process to ensure code quality, consistency, and adherence to project standards. Your contributions are valuable, and we appreciate your patience during the review process.
+
+## Community Guidelines
+
+PETARI is committed to fostering an inclusive and welcoming community. We encourage respectful and constructive communication among contributors. Please refer to our [Code of Conduct](CODE_OF_CONDUCT.md) for more information.
+
+## Need Help?
+
+If you have any questions or need assistance with your contributions, feel free to reach out to us via [email](mailto:petari@example.com) or [GitHub issues](https://github.com/Sahil1786/Petari/issues).
+
+
+## Output Screenshot
 
 ### 1. Index Page
 The index page serves as the main landing page for PETARI. It showcases the mission and purpose of the organization, along with relevant information about its activities.
@@ -40,23 +115,3 @@ Users can log in to their accounts on PETARI's platform. This feature enables us
 Admins have special privileges and access to manage the platform. The admin login page provides authentication for authorized personnel to perform administrative tasks, such as managing user accounts, overseeing donations, and maintaining the system.
 
 ![Admin Login Page](https://github.com/Sahil1786/Petari/assets/111786720/fb1cc46a-e3ad-40fd-93c6-268849e05e91)
-
-## Contribution
-
-Contributions to PETARI are welcome! If you'd like to contribute to the project, please follow these steps:
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature/contribution`)
-3. Make your changes
-4. Commit your changes (`git commit -am 'Add new feature'`)
-5. Push to the branch (`git push origin feature/contribution`)
-6. Create a new Pull Request
-
-## Tags
-
-- Food Redistribution
-- Food Donation
-- Hunger Relief
-- Sustainability
-- Web Development
-- Community Impact
-- Technology for Good
