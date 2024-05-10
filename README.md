@@ -1,29 +1,62 @@
+# PETARI Documentation
 
-# PETARI (The Food Donate WebApp) : -
+## Introduction
 
- Petari is an organisation which aims to redistribute excess food from weddings, parties, events to those who are hungry.We aim to bring benefits across the spectrum of society and help provide access to food to those who don’t have adequate means to access it. Petari is working in alignment with India Sustainable Development Goals for making the World Hunger Free and Zero Food Waste.In addition to its important economic and societal impact, food waste places undue pressure on finite natural resources and the environment. 
+PETARI, The Food Donate WebApp, is an initiative by an organization aiming to redistribute excess food from various events to those in need. The project aligns with India's Sustainable Development Goals to achieve a hunger-free world and zero food waste. By leveraging technology, PETARI seeks to bridge the gap between surplus food and hunger, thereby benefiting society and the environment.
 
+## Tech Stack
 
- 
-## Tech Stack :-
+### Frontend
+- HTML
+- CSS
+- Bootstrap
+- JavaScript
 
-**Frontend used :-:** HTML, CSS, BOOTSTRAP ,  JAVASCRIPT .
+### Backend
+- Node.js
+- EJS
+- Express.js
+- MongoDB
+- Authentication (Auth 2.0)
 
-**Backend used :-:** NODEJS , EJS , EXPRESSJS , MONGODB,AUTH , AUTH 2.0 .
+## Features
 
+### 1. Index Page
+The index page serves as the main landing page for PETARI. It showcases the mission and purpose of the organization, along with relevant information about its activities.
 
+![Index Page](https://github.com/Sahil1786/Petari/assets/111786720/7725fc9d-429b-415c-b3ca-bd2d8518233a)
 
-# INDEX PAGE : -
-![Screenshot 2023-10-02 153433](https://github.com/Sahil1786/Petari/assets/111786720/7725fc9d-429b-415c-b3ca-bd2d8518233a)
+### 2. Contact Page
+This page allows users to get in touch with PETARI for inquiries, collaborations, or any other relevant communication. It provides contact information and possibly a contact form for convenience.
 
-# CONTACT ME  PAGE : -
-![Screenshot 2023-10-02 153450](https://github.com/Sahil1786/Petari/assets/111786720/1a40bb53-57ce-49ff-bb38-b55179c53a3e)
+![Contact Page](https://github.com/Sahil1786/Petari/assets/111786720/1a40bb53-57ce-49ff-bb38-b55179c53a3e)
 
-# USER LOGIN PAGE : -
+### 3. User Login
+Users can log in to their accounts on PETARI's platform. This feature enables users to access personalized services, such as tracking their donations, managing their profiles, and more.
 
-![Screenshot 2023-10-02 153507](https://github.com/Sahil1786/Petari/assets/111786720/5ecb087b-c96a-4af7-b4a8-c7c3a7ba594d)
+![User Login Page](https://github.com/Sahil1786/Petari/assets/111786720/5ecb087b-c96a-4af7-b4a8-c7c3a7ba594d)
 
-# ADMIN LOGIN PAGE : -
+### 4. Admin Login
+Admins have special privileges and access to manage the platform. The admin login page provides authentication for authorized personnel to perform administrative tasks, such as managing user accounts, overseeing donations, and maintaining the system.
 
+![Admin Login Page](https://github.com/Sahil1786/Petari/assets/111786720/fb1cc46a-e3ad-40fd-93c6-268849e05e91)
 
-![Screenshot 2023-10-02 153609](https://github.com/Sahil1786/Petari/assets/111786720/fb1cc46a-e3ad-40fd-93c6-268849e05e91)
+## Contribution
+
+Contributions to PETARI are welcome! If you'd like to contribute to the project, please follow these steps:
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/contribution`)
+3. Make your changes
+4. Commit your changes (`git commit -am 'Add new feature'`)
+5. Push to the branch (`git push origin feature/contribution`)
+6. Create a new Pull Request
+
+## Tags
+
+- Food Redistribution
+- Food Donation
+- Hunger Relief
+- Sustainability
+- Web Development
+- Community Impact
+- Technology for Good
