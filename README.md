@@ -56,9 +56,9 @@ If you're new to contributing to open-source projects, don't worry! Here's how y
     ```
 4. **Create a new branch**: To create a new branch for your profile, run the following command:
 
-```
-git checkout -b add-profile
-```
+    ```
+    git checkout -b add-profile
+    ```
 
 5. **Make Changes**: Make your desired changes to the codebase or documentation.
 
@@ -66,9 +66,9 @@ git checkout -b add-profile
 
 7. **Add your changed files**: Add changed files to the stage by running the following command:
 
-```
-git add .
-```
+    ```
+    git add .
+    ```
 
 8. **Commit Your Changes**: Commit your changes with descriptive commit messages.
 
