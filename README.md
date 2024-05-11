@@ -115,12 +115,12 @@ This page allows users to get in touch with PETARI for inquiries, collaborations
 
 ![Contact Page](https://github.com/Sahil1786/Petari/assets/111786720/1a40bb53-57ce-49ff-bb38-b55179c53a3e)
 
-### 3. User Login
+### 3. User Login Page
 Users can log in to their accounts on PETARI's platform. This feature enables users to access personalized services, such as tracking their donations, managing their profiles, and more.
 
 ![User Login Page](https://github.com/Sahil1786/Petari/assets/111786720/5ecb087b-c96a-4af7-b4a8-c7c3a7ba594d)
 
-### 4. Admin Login
+### 4. Admin Login Page
 Admins have special privileges and access to manage the platform. The admin login page provides authentication for authorized personnel to perform administrative tasks, such as managing user accounts, overseeing donations, and maintaining the system.
 
 ![Admin Login Page](https://github.com/Sahil1786/Petari/assets/111786720/fb1cc46a-e3ad-40fd-93c6-268849e05e91)
