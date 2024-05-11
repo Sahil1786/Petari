@@ -7,14 +7,14 @@ const jwt = require("jsonwebtoken");
 
 const User=require("../model/user")
 const Admin=require("../model/admin")
-const Ngo=require("../model/ngo")
+const NGO=require("../model/ngo")
 const Query = require("../model/query"); // Adjust the path based on your project structure
 
 
-router.post("/Ngo-login",async(req,res)=>{
+router.post("/NGO-login",async(req,res)=>{
     const username = req.body.username;
     const password = req.body.password;
-    const ngo = await Ngo.findOne({ username: username, password: password });
+    const ngo = await NGO.findOne({ username: username, password: password });
     try {
         const dooner = await User.find(); // Assuming User is your Mongoose model for users
       
@@ -23,9 +23,9 @@ router.post("/Ngo-login",async(req,res)=>{
         res.render("NGO-Dashboard", {
             fullName: ngo.NGOName,
             email: ngo.username,
-            id: ngo.NgoID,
+            id: ngo.NGOID,
             phoneNo:ngo.Mobile,
-            address :ngo.NgoLocation,
+            address :ngo.NGOLocation,
             Donation : dooner,
             Pickup : dooner,
             complain: ""
@@ -49,8 +49,8 @@ router.post("/Ngo-login",async(req,res)=>{
         password: req.body.password,
         NGOName: req.body.NGOName,
         Mobile: req.body.Mobile,
-        NgoID: req.body.NgoID,
-        NgoLocation: req.body.NgoLocation,
+        NGOID: req.body.NGOID,
+        NGOLocation: req.body.NGOLocation,
         approved: false
     });
 
