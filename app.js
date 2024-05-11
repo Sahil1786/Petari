@@ -26,7 +26,8 @@ const isAdmin=require("./middleware/isAdmin");
 // const  User=require("./model/user")
 const Query = require('./model/query'); // Adjust the path based on your project structure
 
-
+//connecting to database
+require("./db/db")
 
 // app.use(flash());
 
@@ -64,13 +65,7 @@ const transporter = nodemailer.createTransport({
   app.locals.moment = moment;
   
 
-  mongoose.connect('mongodb://127.0.0.1:27017/PetariDB')
-  .then(() => {
-      console.log("Database Connected");
-  })
-  .catch((err) => {
-      console.log(err.message);
-  });
+  
 
 
 
