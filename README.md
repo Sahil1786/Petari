@@ -46,7 +46,7 @@ If you're new to contributing to open-source projects, don't worry! Here's how y
 2. **Clone the Repository**: Clone the forked repository to your local machine using Git.
 
     ```
-    git clone https://github.com/your-username/Petari.git
+    git clone https://github.com/yeerekarsneha/Petari.git
     ```
 
 3. **Open project**: Open the project directory.
