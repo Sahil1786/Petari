@@ -16,16 +16,16 @@ const {transporter}=require("../helpers/emailHelpers")
 
 
 
-const ad = Admin({username:"sahilkaitha@gmail.com",password:"123",fullName:"Sahil Hossain",Mobile:"9635955320"})
+const ad = Admin({email:"sahilkaitha@gmail.com",password:"123",fullName:"Sahil Hossain",Mobile:"9635955320"})
 ad.save()
 
 
 router.post("/admin-login", async (req, res) => {
-    const username = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
 
 
-        const admin = await Admin.findOne({ username: username, password: password });
+        const admin = await Admin.findOne({ email , password });
             console.log(admin);
         try {
           const dooner = await User.find(); // Assuming User is your Mongoose model for users
