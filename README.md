@@ -74,10 +74,10 @@ If you're new to contributing to open-source projects, don't worry! Here's how y
     PORT=3000
     ACCESS_TOKEN_SECRET = youraccesstokensecret
     MAIL_ID = yourmailid
-    PASS_ID = yourpassword
+    PASS_ID = your gamil app password 
     ```
 
-7. **Database**: If MongoDB is not installed on your local machine, install it. Once you run the project, databases and collections will be automatically created.
+7. **Database**: If MongoDB is not installed on your local machine, install it. Once you run the project, databases and collections will be automatically created,  write the commnd "mongod" on your terminal .
 
 8. **Running The Project On Local Machine**: To render the website, go to
 
