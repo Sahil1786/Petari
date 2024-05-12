@@ -70,44 +70,98 @@ If you're new to contributing to open-source projects, don't worry! Here's how y
 6. **Setting up dotenv file**: In the Project directory, create a file named ".env". Now add the following data to it
 
     ```
-
     PORT=3000
     ACCESS_TOKEN_SECRET = youraccesstokensecret
     MAIL_ID = yourmailid
     PASS_ID = yourpassword
     ```
 
-7. **Database**: If MongoDB is not installed on your local machine, install it. Once you run the project, databases and collections will be automatically created.
+7. **Database**: If MongoDB is not installed on your local machine, install it. Once you run the project, databases and collections will be automatically created. For installation, you can follow the installation manual given on the MongoDB website for your respective operating system:
 
-8. **Running The Project On Local Machine**: To render the website, go to
+    [MongoDB Installation Manual](https://www.mongodb.com/docs/manual/installation/)
+
+Once installation is done, open your terminal:
+- If you have installed MongoDB as a service, run this command to open the MongoDB Shell:
 
     ```
-    http://localhost:3000 or http://localhost:${PORT_MENTIONED_IN_DOTENV}
+    mongosh  
     ```
 
-9. **Make Changes**: Make your desired changes to the codebase or documentation.
+- Otherwise, you can run MongoDB Community Edition from the Windows command prompt instead of as a service. Open the command prompt, navigate to the MongoDB directory (e.g., `C:\Program Files\MongoDB\Server\<version>\bin`), and run this command:
 
-10. **Test Your Changes**: Test your changes locally to ensure everything works as expected.
+    ```
+    mongod
+    ``` 
 
-11. **Add your changed files**: Add changed files to the stage by running the following command:
+  This will start the MongoDB service. Don't close this terminal window while you are working on the project. Now run this command to open the MongoDB Shell in a new command prompt window/tab:
+
+    ```
+    mongosh  
+    ```
+
+Once MongoDB is running as a service, proceed to the next step.
+
+8. **Running The Project On Local Machine**: To run the project, navigate to the project directory. Now run the command:  
+
+    ```
+    nodemon app.js 
+    ```
+
+    If the above command gives an error, run this command:
+
+    ```
+    npx nodemon app.js
+    ```
+
+    Once the server starts listening, to render the webpage, go to:
+
+    ```
+    http://localhost:${PORT_MENTIONED_IN_DOTENV} or http://localhost:3000
+    ```
+
+9. **Checking Database**: After running the project for the first time, databases and collections will be automatically created. To check if they are properly made, open the MongoDB Shell and run these commands:
+
+    ```
+    show dbs
+    ```
+
+    You will find a database named `PetariDB`. Now, run this command in the MongoDB Shell to use that database:
+
+    ```
+    use PetariDB
+    ```
+
+    To check collections inside the PetariDB, run this command in the MongoDB Shell:
+
+    ```
+    show collections
+    ```
+
+    You will see 4 collections inside the PetariDB: `admins`, `ngos`, `queries`, `users`.
+    
+10. **Make Changes**: Make your desired changes to the codebase or documentation.
+
+11. **Test Your Changes**: Test your changes locally to ensure everything works as expected.
+
+12. **Add your changed files**: Add changed files to the stage by running the following command:
 
     ```
     git add .
     ```
 
-12. **Commit Your Changes**: Commit your changes with descriptive commit messages.
+13. **Commit Your Changes**: Commit your changes with descriptive commit messages.
 
     ```
     git commit -m "message"
     ```
 
-13. **Push Changes**: Push your changes to your forked repository.
+14. **Push Changes**: Push your changes to your forked repository.
 
     ```
     git push
     ```
 
-14. **Create a Pull Request**: Open a pull request from your forked repository to the main PETARI repository. Provide a clear description of your changes in the pull request. Follow these steps
+15. **Create a Pull Request**: Open a pull request from your forked repository to the main PETARI repository. Provide a clear description of your changes in the pull request. Follow these steps
     - Add the issue number, that you have been assigned[Formate:- Isuue number #(your issue number)]
     - Brief description of the changes
 
