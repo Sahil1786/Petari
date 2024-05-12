@@ -80,26 +80,26 @@ If you're new to contributing to open-source projects, don't worry! Here's how y
 
     [MongoDB Installation Manual](https://www.mongodb.com/docs/manual/installation/)
 
-Once installation is done, open your terminal:
-- If you have installed MongoDB as a service, run this command to open the MongoDB Shell:
+    Once installation is done, open your terminal:
+    - If you have installed MongoDB as a service, run this command to open the  MongoDB Shell:
+    
+        ```
+        mongosh  
+        ```
+    
+    - Otherwise, you can run MongoDB Community Edition from the Windows command     prompt instead of as a service. Open the command prompt, navigate to the    MongoDB directory (e.g., `C:\Program Files\MongoDB\Server\<version>\bin`),     and run this command:
+    
+        ```
+        mongod
+        ``` 
+    
+      This will start the MongoDB service. Don't close this terminal window     while you are working on the project. Now run this command to open the  MongoDB Shell in a new command prompt window/tab:
+    
+        ```
+        mongosh  
+        ```
 
-    ```
-    mongosh  
-    ```
-
-- Otherwise, you can run MongoDB Community Edition from the Windows command prompt instead of as a service. Open the command prompt, navigate to the MongoDB directory (e.g., `C:\Program Files\MongoDB\Server\<version>\bin`), and run this command:
-
-    ```
-    mongod
-    ``` 
-
-  This will start the MongoDB service. Don't close this terminal window while you are working on the project. Now run this command to open the MongoDB Shell in a new command prompt window/tab:
-
-    ```
-    mongosh  
-    ```
-
-Once MongoDB is running as a service, proceed to the next step.
+    Once MongoDB is running as a service, proceed to the next step.
 
 8. **Running The Project On Local Machine**: To run the project, navigate to the project directory. Now run the command:  
 
