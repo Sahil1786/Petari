@@ -18,7 +18,7 @@ body{
   li,a,button{
     font-family: "Montserrat",sans-serif;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 20px;
     color: #edf0f1;
     text-decoration: none;
   }
@@ -33,7 +33,7 @@ body{
 h1{
     padding-right:20% ;
     margin-right: auto;
-    color:rgb(0, 255, 64);;
+    color:rgb(113, 130, 41);;
 
 }
 h1:hover{
@@ -67,7 +67,7 @@ h1:hover{
   button{
     margin-left: 20px;
     padding: 9px 25px ;
-    background-color: rgba(0, 136, 169, 1);
+    background-color: rgb(73, 130, 144);
     border-radius: 50px;
     cursor:pointer ;
     transition: all 0.3s ease 0s;
@@ -78,7 +78,7 @@ h1:hover{
 
   }
  body {
-    background-color:#ECF2FF;
+    background-color:#c5c6ca;
   }
   header{
     background-color: #24252A;
@@ -145,11 +145,12 @@ section .title::after{
     position: absolute;
     bottom: -8px;
     left: 50%;
-    font-size:15px;
-    color: crimson;
+    font-size:20px;
+    color: rgb(190, 66, 91);
     padding: 0 5px;
     background: #fff;
     transform: translateX(-50%);
+    
 }
 
 
@@ -157,6 +158,7 @@ section .title::after{
 /* about section styling */
 .about .title::after{
     content: "Who We are";
+    
 }
 .about .about-content .left{
     width: 45%;
@@ -176,7 +178,7 @@ section .title::after{
     margin-bottom: 10px;
 }
 .about .about-content .right .text span{
-    color: crimson;
+    color: rgb(153, 43, 65);
 }
 .about .about-content .right p{
     text-align: justify;
@@ -286,8 +288,8 @@ section .title::after{
   border-radius: 6px;
   cursor: pointer;
   flex-wrap: nowrap;
-  background: crimson;
-  border: 2px solid crimson;
+  background: rgb(147, 58, 76);
+  border: 2px solid rgb(147, 58, 76);
   transition: all 0.3s ease;
 }
 
@@ -304,7 +306,7 @@ footer{
    
 }
 footer span a{
-    color: crimson;
+    color: rgb(147, 58, 76);
     text-decoration: none;
 }
 footer span a:hover{
@@ -314,10 +316,10 @@ footer span a:hover{
 
 
 #texts{
-    color: green;
+    color: rgb(79, 28, 196);
 }
 .text{
-    color: #eb29c1; ;
+    color: #3e12c5; ;
 }
 
 body{

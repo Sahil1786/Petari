@@ -36,7 +36,7 @@ body.dark{
     /* position: absolute; */
     width: 35rem;
     height: 25rem;
-    background-color: greenyellow;
+    background-color: rgb(126, 179, 206);
     justify-content: center;
     align-self: center;
     border-radius: 12%;
@@ -60,7 +60,7 @@ body.dark{
     
     margin-top: 1.5%;
     border-style:double;
-    border-color: #F07070;
+    border-color: #dc4848;
     
 }
 .Left-name{
@@ -166,8 +166,8 @@ nav .logo-img img{
         align-items: center;
 
         height: 50px;
-   text-decoration: none;
-   position: relative;
+       text-decoration: none;
+       position: relative;
     }
 
     .nav-links li a:hover:before{
@@ -186,19 +186,19 @@ nav .logo-img img{
 
     .manu-items li a i{
         font-size: 24px;
-  min-width: 45px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-color:var(--black-light-color);
+        min-width: 45px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color:var(--black-light-color);
 
 
     }
     .manu-items li a .link-name{
         font-size: 18px;
-font-weight: 400;
-color:green;
+        font-weight: 400;
+        color:rgb(185, 67, 116);
 
     }
     .nav-links li a:hover  i,

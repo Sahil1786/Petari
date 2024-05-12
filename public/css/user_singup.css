@@ -62,7 +62,7 @@ body {
   padding: 0 15px;
 }
 .input-box input:focus {
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 0 rgba(43, 42, 42, 0.1);
 }
 .form .column {
   display: flex;
@@ -72,7 +72,7 @@ body {
   margin-top: 20px;
 }
 .gender-box ,.TypeFood ,h3 {
-  color: #333;
+  color: #1b1b1b;
   font-size: 1rem;
   font-weight: 400;
   margin-bottom: 8px;
@@ -87,7 +87,7 @@ body {
   column-gap: 5px;
 }
 .gender .Type-option input {
-  accent-color: rgb(130, 106, 251);
+  accent-color: rgb(88, 64, 207);
 }
 .form :where(.gender input, .gender label,.Type-option) {
   cursor: pointer;
