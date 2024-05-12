@@ -54,35 +54,60 @@ If you're new to contributing to open-source projects, don't worry! Here's how y
     ```
     cd Petari
     ```
+
 4. **Create a new branch**: To create a new branch for your profile, run the following command:
 
     ```
     git checkout -b add-profile
     ```
 
-5. **Make Changes**: Make your desired changes to the codebase or documentation.
+5. **Setting up Project**: Once you are in the Project directory, run this command to install all necessary npm modules
 
-6. **Test Your Changes**: Test your changes locally to ensure everything works as expected.
+    ```
+    npm install
+    ```
 
-7. **Add your changed files**: Add changed files to the stage by running the following command:
+6. **Setting up dotenv file**: In the Project directory, create a file named ".env". Now add the following data to it
+
+    ```
+
+    PORT=3000
+    ACCESS_TOKEN_SECRET = youraccesstokensecret
+    MAIL_ID = yourmailid
+    PASS_ID = yourpassword
+    ```
+
+7. **Database**: If MongoDB is not installed on your local machine, install it. Once you run the project, databases and collections will be automatically created.
+
+8. **Running The Project On Local Machine**: To render the website, go to
+
+    ```
+    http://localhost:3000 or http://localhost:${PORT_MENTIONED_IN_DOTENV}
+    ```
+
+9. **Make Changes**: Make your desired changes to the codebase or documentation.
+
+10. **Test Your Changes**: Test your changes locally to ensure everything works as expected.
+
+11. **Add your changed files**: Add changed files to the stage by running the following command:
 
     ```
     git add .
     ```
 
-8. **Commit Your Changes**: Commit your changes with descriptive commit messages.
+12. **Commit Your Changes**: Commit your changes with descriptive commit messages.
 
     ```
     git commit -m "message"
     ```
 
-9. **Push Changes**: Push your changes to your forked repository.
+13. **Push Changes**: Push your changes to your forked repository.
 
     ```
     git push
     ```
 
-10. **Create a Pull Request**: Open a pull request from your forked repository to the main PETARI repository. Provide a clear description of your changes in the pull request. Follow these steps
+14. **Create a Pull Request**: Open a pull request from your forked repository to the main PETARI repository. Provide a clear description of your changes in the pull request. Follow these steps
     - Add the issue number, that you have been assigned[Formate:- Isuue number #(your issue number)]
     - Brief description of the changes
 
