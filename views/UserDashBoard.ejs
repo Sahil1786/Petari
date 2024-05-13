@@ -62,7 +62,7 @@
         }
 
         .top-border {
-            
+
             border-style: double;
             border-color: #F07070;
         }
@@ -112,76 +112,94 @@
             cursor: pointer;
             z-index: 2;
         }
-        .dash{
+
+        .dash {
             position: absolute;
             left: 35px;
         }
+
         body.dark .top {
             background-color: #333;
             color: #FFF;
         }
-        .donation{
+
+        .donation {
             display: none;
         }
 
         .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  .form-container {
-    border: 1px solid #ddd;
-    padding: 20px;
-    width: 400px;
-    margin-bottom: 20px;
-  }
-  label {
-    display: block;
-    margin-bottom: 8px;
-  }
-  input[type="text"], input[type="number"], input[type="email"], select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-  }
-  select {
-    margin-bottom: 10px;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 20px;
-    font-family: Arial, sans-serif;
-  }
-  th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  th:last-child, td:last-child {
-    text-align: center;
-  }
-  .button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 7%;
-  }
-  .button:hover {
-    background-color: #3e8e41; /* Green hover */
-  }
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 400px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        select {
+            margin-bottom: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th:last-child,
+        td:last-child {
+            text-align: center;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 7%;
+        }
+
+        .button:hover {
+            background-color: #3e8e41;
+            /* Green hover */
+        }
 
         /* aditya End */
         /* colors */
@@ -344,19 +362,43 @@
             </div>
             <div class="dash">DashBoard</div>
             <div class="Left-name">Welcome, <%= fullName %>!</div>
-            
+
         </div>
         <hr class="top-border">
         <section class="Profile-sec">
             <div class="middle">
                 <div class="Donatebox">
                     <div class="NAME-block">
-                        <h4 class="User-Name">Full Name: <%= fullName %> </h4>
-                        <h4 class="User-Email">Email:   <%= email %></h4>
-                        <h4 class="User-Phone">Phone No:  <%= phoneNo %></h4>
-                        <h4 class="User-Adderss">Address:  <%= address %> </h4>
+                        <h4 class="User-Name">Full Name: <%= fullName %>
+                        </h4>
+                        <h4 class="User-Email">Email: <%= email %>
+                        </h4>
+                        <h4 class="User-Phone">Phone No: <%= phoneNo %>
+                        </h4>
+                        <h4 class="User-Adderss">Address: <%= address %>
+                        </h4>
+
+                        <!-- view nearby ngo using google map -->
                     </div>
+                    <a href="http://127.0.0.1:5500/Petari/views/map.html">
+                        <button style="background-color: #86bb88; /* Green */
+                        position: absolute;
+                         bottom: 0;
+                         left: 50%;
+                        transform: translateX(-50%); 
+                        border: none;
+                        color: white;
+                        padding: 15px 32px;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        border-radius: 10px;
+                        font-size: 16px;
+                        margin: 4px 2px;
+                        cursor: pointer;">View</button>
+                    </a>  
                 </div>
+                <!-- end------------- -->
             </div>
         </section>
         <section class="donation">
@@ -367,8 +409,8 @@
                     <form id="donationForm" action="/add-details" method="post">
                         <!-- Include a field for the user ID -->
                         <label for="userID">Email Id:</label>
-                        <input type="text" id="userId" name="email" >
-        
+                        <input type="text" id="userId" name="email">
+
                         <label for="flatNo">Flat/Door/Building No.:</label>
                         <input type="text" id="flatNo" name="flatNo" required>
                         <label for="addressLine1">Street/Locality:</label>
@@ -408,14 +450,14 @@
                             <option value="UT">Uttarakhand</option>
                             <option value="UP">Uttar Pradesh</option>
                             <option value="WB">West Bengal</option>
-                            </select>
+                        </select>
                         <label for="zip">ZIP/Postal Code:</label>
                         <input type="text" id="zip" name="zip" required>
-        
+
                         <h3>Food Inventory</h3>
                         <table>
                             <thead>
-                                <tr> 
+                                <tr>
                                     <th>Food Item</th>
                                     <th>Quantity</th>
                                 </tr>
@@ -439,102 +481,102 @@
             </div>
         </section>
 
-        
-        
 
-    <!-- Adityas end -->
-    <nav class="sliding-menu">
-        <div class="logo-name">
-            <div class="logo-img">
-                <img src="img/logo.png" alt="logo">
+
+
+        <!-- Adityas end -->
+        <nav class="sliding-menu">
+            <div class="logo-name">
+                <div class="logo-img">
+                    <img src="img/logo.png" alt="logo">
+                </div>
+                <span class="logo_name">Petari</span>
             </div>
-            <span class="logo_name">Petari</span>
-        </div>
-        <div class="manu-items">
-            <ul class="nav-links">
-                <li><a href="#">
-                        <i class="uil uil-user-circle"></i>
-                        <span id="Profile" class="link-name">Profile</span>
-                    </a></li>
-                <li><a href="#">
-                        <i class="uil uil-restaurant"></i>
-                        <span id="donate" class="link-name">Donate</span>
-                    </a></li>
-                <li><a href="#">
-                        <i class="uil uil-map-marker-question"></i>
-                        <span id="track" class="link-name">Track</span>
-                    </a></li>
-                <li><a href="#">
-                        <i class="uil uil-comment-medical"></i>
-                        <span id="contact" class="link-name">Contact Us</span>
-                    </a></li>
-            </ul>
-            <ul class="logout-mode">
-                <li>
-                    <a href="/logout">
-                        <i class="uil uil-sign-out-alt"></i>
-                        <span class="link-name">Logout</span>
-                    </a>
-                </li>
+            <div class="manu-items">
+                <ul class="nav-links">
+                    <li><a href="#">
+                            <i class="uil uil-user-circle"></i>
+                            <span id="Profile" class="link-name">Profile</span>
+                        </a></li>
+                    <li><a href="#">
+                            <i class="uil uil-restaurant"></i>
+                            <span id="donate" class="link-name">Donate</span>
+                        </a></li>
+                    <li><a href="#">
+                            <i class="uil uil-map-marker-question"></i>
+                            <span id="track" class="link-name">Track</span>
+                        </a></li>
+                    <li><a href="#">
+                            <i class="uil uil-comment-medical"></i>
+                            <span id="contact" class="link-name">Contact Us</span>
+                        </a></li>
+                </ul>
+                <ul class="logout-mode">
+                    <li>
+                        <a href="/logout">
+                            <i class="uil uil-sign-out-alt"></i>
+                            <span class="link-name">Logout</span>
+                        </a>
+                    </li>
 
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-wind-moon"></i>
-                        <span class="link-name">Dark Mode</span>
-                    </a>
-                    <div class="mode-toggle">
-                        <span class="switch"></span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
+                    <li class="mode">
+                        <a href="#">
+                            <i class="uil uil-wind-moon"></i>
+                            <span class="link-name">Dark Mode</span>
+                        </a>
+                        <div class="mode-toggle">
+                            <span class="switch"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-    <script>
-        function toggleMenu() {
-            let donate = document.querySelector('#donate');
-            let profile = document.querySelector('#Profile');
-            let Profile_sec = document.querySelector('.Profile-sec');
-            let donation_sec = document.querySelector('.donation')
-            
-            donate.addEventListener('click', (e) => {
-                Profile_sec.style.display = 'none';
-                donation_sec.style.display = 'block';
-            })
-            profile.addEventListener('click', (e) => {
-                Profile_sec.style.display = 'block';
-                donation_sec.style.display = 'none';
-            })
+        <script>
+            function toggleMenu() {
+                let donate = document.querySelector('#donate');
+                let profile = document.querySelector('#Profile');
+                let Profile_sec = document.querySelector('.Profile-sec');
+                let donation_sec = document.querySelector('.donation')
 
-            var menu = document.querySelector('.sliding-menu');
-            menu.style.width = menu.style.width === '25%' ? '0' : '25%';
-        }
+                donate.addEventListener('click', (e) => {
+                    Profile_sec.style.display = 'none';
+                    donation_sec.style.display = 'block';
+                })
+                profile.addEventListener('click', (e) => {
+                    Profile_sec.style.display = 'block';
+                    donation_sec.style.display = 'none';
+                })
 
-        const body = document.querySelector("body");
-        const modeToggle = body.querySelector(".mode-toggle");
+                var menu = document.querySelector('.sliding-menu');
+                menu.style.width = menu.style.width === '25%' ? '0' : '25%';
+            }
 
-        modeToggle.addEventListener("click", () => {
-            body.classList.toggle("dark");
-        });
-        function addRow() {
-  const tableBody = document.querySelector('#donationForm tbody');
-  const newRow = tableBody.insertRow();
-  const foodItemCell = newRow.insertCell();
-  const quantityCell = newRow.insertCell();
+            const body = document.querySelector("body");
+            const modeToggle = body.querySelector(".mode-toggle");
 
-  foodItemCell.innerHTML = `<input type="text" name="foodItem" required>`;
-  quantityCell.innerHTML = `<input type="number" name="quantity" min="1" required>`;
-}
+            modeToggle.addEventListener("click", () => {
+                body.classList.toggle("dark");
+            });
+            function addRow() {
+                const tableBody = document.querySelector('#donationForm tbody');
+                const newRow = tableBody.insertRow();
+                const foodItemCell = newRow.insertCell();
+                const quantityCell = newRow.insertCell();
 
-function deleteRow() {
-  const tableBody = document.querySelector('#donationForm tbody');
-  if (tableBody.rows.length > 1) {
-    tableBody.deleteRow(tableBody.rows.length - 1);
-  } else {
-    alert("Cannot delete the only row");
-  }
-}
-    </script>
+                foodItemCell.innerHTML = `<input type="text" name="foodItem" required>`;
+                quantityCell.innerHTML = `<input type="number" name="quantity" min="1" required>`;
+            }
+
+            function deleteRow() {
+                const tableBody = document.querySelector('#donationForm tbody');
+                if (tableBody.rows.length > 1) {
+                    tableBody.deleteRow(tableBody.rows.length - 1);
+                } else {
+                    alert("Cannot delete the only row");
+                }
+            }
+        </script>
 </body>
 
 </html>
