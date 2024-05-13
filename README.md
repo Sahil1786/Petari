@@ -203,3 +203,5 @@ Users can log in to their accounts on PETARI's platform. This feature enables us
 Admins have special privileges and access to manage the platform. The admin login page provides authentication for authorized personnel to perform administrative tasks, such as managing user accounts, overseeing donations, and maintaining the system.
 
 ![Admin Login Page](https://github.com/Sahil1786/Petari/assets/111786720/fb1cc46a-e3ad-40fd-93c6-268849e05e91)
+
+**Please follow me and give a star to my repository 
