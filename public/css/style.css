@@ -1,20 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 body{
-    
+    scroll-behavior: smooth;
 }
   
   *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-  }
-
-  li,a,button{
     font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    color: #edf0f1;
-    text-decoration: none;
   }
   .logo_name{
     font-family: 'Poppins', sans-serif;
@@ -23,57 +16,16 @@ body{
     color:rgb(0, 255, 64);
     font-size: 45px;
     transition: all 0.3s;
+    margin-top: 12px !important;
     cursor: pointer;
   }
   .logo_name:hover{
     color: rgb(255, 0, 98);
   }
-
-  header{
-    display: flex;
-    justify-content:flex-end;
-    align-items: center;
-    padding: 30px 10%;
-    background-color: #24252A;
-    height: 100px;
-  }
-
   
   .logo{
-    margin-right: 12px;
+    margin-left: 22px;
     width: 80px;
-  }
-  .nav-links{
-    list-style: none;
-    margin-left: 70px;
-  }
-
-  .nav-links li {
-    display: inline-block;
-    padding: 0 20px ;
-  }
-
-  .nav-links li a {
-    transition: all 0.3s ease 0s;
-  }
-
-  .nav-links li a:hover {
-    color: #0088a9;
-  }
-  button{
-    margin-left:10px;
-    font-size: 15px;
-    padding: 9px 25px ;
-    background-color: rgba(0, 136, 169, 1);
-    border-radius: 50px;
-    border: none;
-    cursor:pointer ;
-    transition: all 0.3s ease 0s;
-  }
-
-  button:hover{
-    background-color: rgba(0, 136, 169, 0.8);
-
   }
  body {
     background-color:#ECF2FF;
