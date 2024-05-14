@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation list</title>
+    <!-- -----Tailwind------- -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- -------CSS---------- -->
+    <link rel="stylesheet" href="donationlist.css">
+</head>
+<style>
+    .map{
+    width:100%;
+    height:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+iframe{
+    width:100%;
+    height:300px;
+}
+</style>
+<body>
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448698.08864805836!2d76.61864844489759!3d28.526076117680127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x52c2b7494e204dce!2sNew%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1712399326029!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="list">
+        
+        <section class="text-gray-600 body-font mt-0">
+            <div class="container px-5 py-10 mx-auto">
+              <!-- <div class="flex flex-wrap w-full mb-20">
+                <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                  <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Pitchfork Kickstarter Taxidermy</h1>
+                  <div class="h-1 w-20 bg-green-500 rounded"></div>
+                 </div> 
+                <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+              </div> -->
+              <div class="flex flex-wrap -m-4">
+                <div class="xl:w-1/4 md:w-1/2 p-4">
+                  <div class="bg-gray-100 p-6 rounded-lg">
+                    <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://images.hindustantimes.com/rf/image_size_630x354/HT/p2/2017/07/04/Pictures/kasmir-science-department-choudhary-social-freedom-poster_18b4b474-60cf-11e7-89bd-50891d422d4c.jpg" alt="content">
+                    <!-- <h3 class="tracking-widest text-green-500 text-xs font-medium title-font">SUBTITLE</h3> -->
+                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4">NGO 1</h2>
+                    <p class="leading-relaxed text-base">12A, Vasant Kunj, New Delhi, 110070 </p>
+                    <a href="http://127.0.0.1:5501/donation.html">
+                    <button class="flex mx-auto mt-6 text-white bg-green-500 border-0 py-2 px-5 focus:outline-none hover:bg-green-600 rounded">Support</button>
+                </a>
+                  </div>
+                </div>
+                <div class="xl:w-1/4 md:w-1/2 p-4">
+                  <div class="bg-gray-100 p-6 rounded-lg">
+                    <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://content.jdmagicbox.com/comp/delhi/77/011p54677/catalogue/prayas-ngo-jahangir-puri-delhi-ngos-2isdxxjmyx.jpg" alt="content">
+                    <!-- <h3 class="tracking-widest text-green-500 text-xs font-medium title-font">SUBTITLE</h3> -->
+                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4">NGO 2</h2>
+                    <p class="leading-relaxed text-base">12A, Vasant Kunj, New Delhi, 110070 </p>
+                    <a href="http://127.0.0.1:5501/donation.html">
+                    <button class="flex mx-auto mt-6 text-white bg-green-500 border-0 py-2 px-5 focus:outline-none hover:bg-green-600 rounded">Support</button></a>
+                  </div>
+                </div>
+                <div class="xl:w-1/4 md:w-1/2 p-4">
+                  <div class="bg-gray-100 p-6 rounded-lg">
+                    <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://englishtribuneimages.blob.core.windows.net/gallary-content/2021/6/2021_6$largeimg_1838889561.JPG" alt="content">
+                    <!-- <h3 class="tracking-widest text-green-500 text-xs font-medium title-font">SUBTITLE</h3> -->
+                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4">NGO 3</h2>
+                    <p class="leading-relaxed text-base">12A, Vasant Kunj, New Delhi, 110070 </p>
+                    <a href="http://127.0.0.1:5501/donation.html">
+                    <button class="flex mx-auto mt-6 text-white bg-green-500 border-0 py-2 px-5 focus:outline-none hover:bg-green-600 rounded">Support</button></a>
+                  </div>
+                </div>
+                <div class="xl:w-1/4 md:w-1/2 p-4">
+                  <div class="bg-gray-100 p-6 rounded-lg">
+                    <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://content3.jdmagicbox.com/comp/delhi/g4/011pxx11.xx11.000872733175.u8g4/catalogue/butterflies-ngo-green-park-delhi-ngos-t8iujkdfxd.jpg" alt="content">
+                    <!-- <h3 class="tracking-widest text-green-500 text-xs font-medium title-font">SUBTITLE</h3> -->
+                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4">NGO 4</h2>
+                    <p class="leading-relaxed text-base">12A, Vasant Kunj, New Delhi, 110070 </p>
+                    <a href="http://127.0.0.1:5501/donation.html">
+                      
+                    <button class="flex mx-auto mt-6 text-white bg-green-500 border-0 py-2 px-5 focus:outline-none hover:bg-green-600 rounded">Support</button></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+    </div>
+</body>
+</html>
