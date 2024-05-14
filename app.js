@@ -16,7 +16,7 @@ const Admin=require("./model/admin")
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-
+app.use(bodyParser.json());
 const NGO=require("./model/ngo")
 const isAdmin=require("./middleware/isAdmin");
 
