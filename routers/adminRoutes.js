@@ -12,18 +12,38 @@ const Query = require("../model/query"); // Adjust the path based on your projec
 const problem=require("../model/query")
 
 
+
 const {transporter}=require("../helpers/emailHelpers")
 
 
-
-const ad = Admin({username:"sahilkaitha@gmail.com",password:"123",fullName:"Sahil Hossain",Mobile:"9635955320"})
-ad.save()
-
+router.post("/register-admin", async (req, res) => {
+    //       Dummy data for admin 
+    // {
+    //     "username": "sahilkaitha@gmail.com",
+    //     "password": "123",
+    //     "fullName": "Sahil Hossain",
+    //     "Mobile": "9635955320"
+    // }
+    try {
+        const admin = await Admin.findOne({ username: req.body.username });
+        if (admin) {
+            res.status(302).send("Already have an account, Please Login ");
+        } else {
+            const { username, password, fullName, mobile } = req.body;
+            const hashedPassword = await bcrypt.hash(password, saltRounds);
+            const admin = new Admin({ username, password: hashedPassword, fullName, mobile });
+            await admin.save();
+            res.status(201).send("Admin registered successfully");
+        } 
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error,"An error occurred while registering the admin");
+    }
+});
 
 router.post("/admin-login", async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-
 
         const admin = await Admin.findOne({ username: username, password: password });
             console.log(admin);

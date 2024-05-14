@@ -15,6 +15,7 @@ const flash = require('express-flash');
 const Admin=require("./model/admin")
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static("public"));
 
 const NGO=require("./model/ngo")
