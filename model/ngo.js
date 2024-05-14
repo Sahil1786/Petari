@@ -5,8 +5,8 @@ const ngoRegisterSchema = new mongoose.Schema({
   password: { type: String, required: true },
   NGOName: { type: String, required: true },
   Mobile: { type: String, required: true },
-  NgoID: { type: String, required: true },
-  NgoLocation: { type: String, required: true },
+  NGOID: { type: String, required: true },
+  NGOLocation: { type: String, required: true },
   approved: { type: Boolean, default: false } // New field for approval status
 });
 

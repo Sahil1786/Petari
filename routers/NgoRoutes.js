@@ -1,5 +1,7 @@
 const express = require("express")
 const router = new express.Router()
+const fs = require("fs");
+const path = require('path');
 
 const bcrypt=require("bcrypt")
 const saltRounds = 10;
@@ -8,6 +10,7 @@ const jwt = require("jsonwebtoken");
 const User=require("../model/user")
 const Admin=require("../model/admin")
 const NGO=require("../model/ngo")
+const transporter = require("./../helpers/emailHelpers");
 const Query = require("../model/query"); // Adjust the path based on your project structure
 
 
@@ -62,12 +65,13 @@ router.post("/NGO-login",async(req,res)=>{
 
       // Send an email to the admin for approval
       let mailOptions = {
-          to:newNGO.username, // Admin's email address
+          to: newNGO.username, // Admin's email address
+          html: fs.readFileSync(path.join(__dirname, '../views', 'Email.template.handlebars'), 'utf8'),
           subject: 'New NGO Registration',
           text: 'A new NGO registration is pending approval. Login to the admin panel to review and approve.',
           // Include any necessary information in the email body
       };
-      transporter.sendMail(mailOptions, function (error, info) {
+      transporter.transporter.sendMail(mailOptions, function (error, info) {
           if (error) {
               console.log(error);
           } else {
@@ -75,7 +79,6 @@ router.post("/NGO-login",async(req,res)=>{
           }
       });
 
-      console.log('NGO registration request sent for approval');
       res.status(200).json({ message: 'NGO registration request sent for approval' });
   } catch (err) {
       console.error('Error creating NGO:', err);
