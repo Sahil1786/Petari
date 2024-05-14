@@ -511,10 +511,10 @@
                                     </p>
                                 </div>
                                 <div class="donor-actions">
-                                    <form method="POST" action="/approve-ngo/<%= ngo._id %>">
+                                    <form method="POST" action="/approve-ngo/<%= ngo._id %>/<%= id %>">
                                         <button class="btn-accept">Accept</button>
                                     </form>
-                                    <form method="POST" action="/decline-ngo/<%= ngo._id %>">
+                                    <form method="POST" action="/decline-ngo/<%= ngo._id %>/<%= id %>">
                                         <button class="btn-decline">Decline</button>
                                     </form>
                                 </div>
@@ -540,7 +540,9 @@
                                     <p class="donor-email">Location : <%= ngo.NgoLocation %>
                                     </p>
                                 </div>
-
+                                <form method="POST" action="/decline-ngo/<%= ngo._id %>/<%= id %>">
+                                    <button class="btn-decline">Remove</button>
+                                </form>
                             </li>
                             <% } %>
                                 <% }); %>
@@ -563,10 +565,10 @@
                                 </p>
                             </div>
                             <div class="donor-actions">
-                                <form method="POST" action="/accept-donor/<%= user._id %>">
+                                <form method="POST" action="/accept-donor/<%= user._id %>/<%= id %>">
                                     <button class="btn-accept">Accept</button>
                                 </form>
-                                <form method="POST" action="/decline-donor/<%= user._id %>">
+                                <form method="POST" action="/decline-donor/<%= user._id %>/<%= id %>">
                                     <button class="btn-decline">Decline</button>
                                 </form>
                             </div>
@@ -589,6 +591,9 @@
                                     <%= user.email %>
                                 </p>
                             </div>
+                            <form method="POST" action="/decline-donor/<%= user._id %>/<%= id %>">
+                                <button class="btn-decline">Remove</button>
+                            </form>
                         </li>
                         <% } %>
                             <% }); %>
@@ -618,11 +623,11 @@
                                                 </p>
                                     </div>
                                     <div class="donor-actions">
-                                        <form method="POST" action="/accept-complain/<%= comp._id %>">
+                                        <form method="POST" action="/accept-complain/<%= comp._id %>/<%= id %>">
                                             <button class="btn-accept">Accept</button>
                                         </form>
 
-                                        <form method="POST" action="/delete-complain/<%= comp._id %>">
+                                        <form method="POST" action="/delete-complain/<%= comp._id %>/<%= id %>">
                                             <button class="btn-decline">Decline</button>
                                         </form>
                                     </div>
@@ -654,7 +659,7 @@
                                                 </p>
                                     </div>
                                     <div class="donor-actions">
-                                        <form method="POST" action="/delete-complain/<%= comp._id %>">
+                                        <form method="POST" action="/delete-complain/<%= comp._id %>/<%= id %>">
                                             <button class="btn-decline">Resolved</button>
                                         </form>
                                     </div>
