@@ -1,6 +1,4 @@
-body{
-    
-}
+
  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
   
   *{
@@ -47,6 +45,11 @@ h1:hover{
     width: 7%;
 
   }
+
+  nav .fas {
+    margin-right: 5px; /* Add some space between the icon and text */
+}
+
   .nav-links{
     list-style: none;
 
