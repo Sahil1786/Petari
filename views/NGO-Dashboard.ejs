@@ -477,6 +477,7 @@
             <div class="dash">DashBoard</div>
             <div class="Left-name">Welcome, <%= fullName %>!</div>
 
+
         </div>
         <hr class="top-border">
         <section class="Profile-sec">
@@ -495,11 +496,11 @@
         </section>
         <section class="NGO-sec" style="display: none;">
             <h2 style="text-align: center; margin-bottom: 2rem;">Pending Donation Pickup : <%= (Donation.filter(user=>
-                    user.zip !== "" && user.approved == false)).length %></h2>
+                    user.foodInventory.length !== 0 && user.approved == false)).length %></h2>
             <div>
                 <ul class="donor-list">
                     <% Donation.forEach(user=> { %>
-                        <% if(!user.approved && user.zip !=="" ){%>
+                        <% if(!user.approved && user.foodInventory.length !==0 ){%>
                             <li class="donor-item">
                                 <div class="donor-details">
                                     <p class="donor-name">Name : <%= user.fullName %>
@@ -526,9 +527,10 @@
                                     </p>
                                 </div>
                                 <div class="donor-actions">
-                                    <form action="/approve-donation/<%= user.email %>" method="post"><button
-                                            class="btn-accept">Accept</button></form>
-                                    <form action="/delete-details/<%= user.email %>" method="post">
+                                    <form action="/approve-donation/<%= user.email %>/<%= email %>" method="POST">
+                                        <button class="btn-accept">Accept</button>
+                                    </form>
+                                    <form action="/delete-details/<%= user.email %>/<%= email %>" method="POST">
                                         <button class="btn-decline">Decline</button>
                                     </form>
 
@@ -541,11 +543,11 @@
 
             <!-- DISPLAYING ACCEPTED USER REQUEST -->
             <h2 style="text-align: center; margin-bottom: 2rem;">Active Donation Pickup : <%= (Donation.filter(user=>
-                    user.approved == true)).length %></h2>
+                    user.approved == true && user.foodInventory.length !== 0)).length %></h2>
             <div>
                 <ul class="donor-list">
                     <% Donation.forEach(user=> { %>
-                        <% if(user.approved){%>
+                        <% if(user.approved && user.foodInventory.length !==0 ){%>
                             <li class="donor-item">
                                 <div class="donor-details">
                                     <p class="donor-name">Name : <%= user.fullName %>
@@ -573,7 +575,7 @@
 
                                 </div>
                                 <div class="donor-actions">
-                                    <form action="/delete-details/<%= user.email %>" method="post">
+                                    <form action="/delete-details/<%= user.email %>/<%= email %>" method="post">
                                         <button class="btn-decline">Done</button>
                                     </form>
 

@@ -9,6 +9,7 @@ const User = require("../model/user");
 const Query = require("../model/query"); // Adjust the path based on your project structure
 
 const { transporter } = require("../helpers/emailHelpers");
+const NGO = require("../model/ngo");
 
 router.get("/", function (req, res) {
   res.render("index");
@@ -180,8 +181,11 @@ router.post("/add-details", async (req, res) => {
       });
 
       // Save the updated user document
-      await user.save();
-      res.status(200).json({ message: "Details added successfully" });
+      const saveDetails = await user.save();
+      if (saveDetails) {
+        res.status(200).json({ message: "Details added successfully" });
+        console.log("added details", saveDetails);
+      }
     } else {
       res.status(404).json({ error: "User not found" });
     }
@@ -192,7 +196,8 @@ router.post("/add-details", async (req, res) => {
 });
 
 // user delete from the databse
-router.post("/delete-details/:email", async (req, res) => {
+router.post("/delete-details/:email/:ngoEmail", async (req, res) => {
+  const ngoEmail = req.params.ngoEmail;
   try {
     // Find the user by their email
     let user = await User.findOne({ email: req.params.email });
@@ -211,7 +216,21 @@ router.post("/delete-details/:email", async (req, res) => {
 
       // Save the updated user document
       await user.save();
-      res.status(200).json({ message: "Details deleted successfully" });
+
+      //navigating to the NGO DASHBOARD
+      const ngo = await NGO.findOne({ username: ngoEmail });
+      const dooner = await User.find(); // Assuming User is your Mongoose model for users
+
+      res.render("NGO-Dashboard", {
+        fullName: ngo.NGOName,
+        email: ngo.username,
+        id: ngo.NGOID,
+        phoneNo: ngo.Mobile,
+        address: ngo.NGOLocation,
+        Donation: dooner,
+        Pickup: dooner,
+        complain: "",
+      });
     } else {
       res.status(404).json({ error: "User not found" });
     }
@@ -222,7 +241,8 @@ router.post("/delete-details/:email", async (req, res) => {
 });
 
 //making a POST method for accepting the USER DONATION
-router.post("/approve-donation/:email", async (req, res) => {
+router.post("/approve-donation/:email/:ngoEmail", async (req, res) => {
+  const ngoEmail = req.params.ngoEmail;
   try {
     // Find the user by their email
     let user = await User.findOne({ email: req.params.email });
@@ -233,7 +253,21 @@ router.post("/approve-donation/:email", async (req, res) => {
 
       // Save the updated user document
       await user.save();
-      res.status(200).json({ message: "Donation approved successfully" });
+
+      const ngo = await NGO.findOne({ username: ngoEmail });
+      //navigating to the NGO DASHBOARD
+      const dooner = await User.find(); // Assuming User is your Mongoose model for users
+
+      res.render("NGO-Dashboard", {
+        fullName: ngo.NGOName,
+        email: ngo.username,
+        id: ngo.NGOID,
+        phoneNo: ngo.Mobile,
+        address: ngo.NGOLocation,
+        Donation: dooner,
+        Pickup: dooner,
+        complain: "",
+      });
     } else {
       res.status(404).json({ error: "User not found" });
     }
