@@ -4,6 +4,7 @@ const router = new express.Router();
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const jwt = require("jsonwebtoken");
+const Mailgen = require("mailgen");
 
 const User = require("../model/user");
 const Admin = require("../model/admin");
@@ -12,6 +13,7 @@ const Query = require("../model/query"); // Adjust the path based on your projec
 const problem = require("../model/query");
 
 const { transporter } = require("../helpers/emailHelpers");
+const nodemailer = require("nodemailer");
 
 const ad = Admin({
   username: "sahilkaitha@gmail.com",
@@ -85,19 +87,31 @@ router.post("/approve-ngo/:id/:userId", async (req, res) => {
     await ngo1.save();
 
     // Send an email to the NGO with the approved details
-    // let mailOptions = {
-    //   to: ngo.username,
-    //   subject: "NGO Registration Approved",
-    //   text: "Your NGO registration has been approved. You can now login to your account.",
-    //   // Include any necessary information in the email body
-    // };
-    // transporter.sendMail(mailOptions, function (error, info) {
-    //   if (error) {
-    //     console.log(error);
-    //   } else {
-    //     console.log("Email sent: " + info.response);
-    //   }
-    // });
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.mail_id,
+        pass: process.env.pass_id,
+      },
+    });
+
+    let mailOptions = {
+      to: ngo1.username,
+      subject: "NGO Registration Approved",
+      text: "Your NGO registration has been approved. You can now login to your account.",
+      // Include any necessary information in the email body
+    };
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
 
     // navigating to the admin dashboard
     const admin = await Admin.findById(userId);
@@ -303,6 +317,89 @@ router.post("/accept-complain/:id/:userId", async (req, res) => {
     });
   } catch (error) {
     res.status(500).jso({ error: "Internal server error" });
+  }
+});
+
+//making a POST method for RESPONDE to email
+router.post("/complains-response/:email/:userId", async (req, res) => {
+  const email = req.params.email;
+  const answere = req.body.answere;
+  const userId = req.params.userId;
+  console.log(email, answere, userId);
+
+  //sending email to the COMPLAIN email
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.mail_id,
+        pass: process.env.pass_id,
+      },
+    });
+
+    let MailGenerator = new Mailgen({
+      theme: "default",
+      product: {
+        name: "PETARI",
+        link: "https://mailgen.js",
+      },
+    });
+
+    let response = {
+      body: {
+        name: "",
+        intro: "Welcome to PETARI! We're very excited to have you on board.",
+        action: {
+          instructions: answere,
+          button: {
+            color: "#22BC66", // Optional action button color
+            text: "Have a good day",
+            link: "",
+          },
+        },
+        outro: "Thankyou for a part of PETARI",
+      },
+    };
+
+    let mail = MailGenerator.generate(response);
+
+    let message = {
+      to: email,
+      subject: "Petari Support team",
+      html: mail,
+    };
+
+    transporter
+      .sendMail(message)
+      .then(() => {
+        console.log("email is send successfully");
+      })
+      .catch((error) => {
+        console.log("Email is not send", error);
+      });
+    const admin = await Admin.findById(userId);
+    console.log("admin details in approve-ngo", admin);
+    const dooner = await User.find(); // Assuming User is your Mongoose model for users
+    const ngo = await NGO.find();
+
+    const query1 = await problem.find();
+    res.render("Admin_Dashboard", {
+      name: admin.fullName,
+      email: admin.fullName,
+      mobile: admin.Mobile,
+      username: admin.username,
+      id: admin._id,
+      NGOname: ngo,
+      Donername: dooner,
+      UserName: "sahil114",
+      complain: query1,
+    });
+  } catch (error) {
+    console.log("Internal server error", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
