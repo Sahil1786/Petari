@@ -420,6 +420,17 @@
             margin-top: 2rem;
         }
 
+        #myTextarea {
+            min-height: 50px;
+            overflow-y: hidden;
+            resize: none;
+            padding: 5px;
+            border-radius: 5px;
+            width: -webkit-fill-available;
+            margin-right: 10px;
+            outline: gray;
+        }
+
         .donor-list {
             list-style-type: none;
             padding: 0;
@@ -657,6 +668,15 @@
                                         <p class="donor-name">msg : <%= comp.message %>
                                                 <p class="donor-name">time : <%= comp.createdAt %>
                                                 </p>
+                                        </p>
+                                        <div class="complains-response">
+                                            <form method="POST" action="/complains-response/<%= comp.email %>/<%= id %>"
+                                                style="display: flex; flex-direction: row; justify-content: space-between">
+                                                <textarea id="myTextarea" placeholder="Your answer"
+                                                    name="answere"></textarea>
+                                                <button class="btn-accept" style="margin-right: 10px;">Send</button>
+                                            </form>
+                                        </div>
                                     </div>
                                     <div class="donor-actions">
                                         <form method="POST" action="/delete-complain/<%= comp._id %>/<%= id %>">
@@ -785,6 +805,14 @@
             complain_sec.style.display = "block";
 
         })
+
+        const textarea = document.getElementById('myTextarea');
+
+        textarea.addEventListener('input', function () {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+
     </script>
 </body>
 
