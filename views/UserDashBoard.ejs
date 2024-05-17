@@ -365,53 +365,65 @@
                     <h2>Donation Form</h2>
                     <br>
                     <form id="donationForm" action="/donate" method="post">
-                        <!-- Include a field for the user ID -->
-                        <label for="userID">Email Id:</label>
-                        <input type="text" id="userId" name="email" >
-        
+                        <label for="userId">Email Id:</label>
+                        <input type="email" id="userId" name="email" required>
+                        <span id="emailError" class="error"></span>
+                    
                         <label for="flatNo">Flat/Door/Building No.:</label>
                         <input type="text" id="flatNo" name="flatNo" required>
+                        <span id="flatNoError" class="error"></span>
+                    
                         <label for="addressLine1">Street/Locality:</label>
                         <input type="text" id="addressLine1" name="addressLine1" required>
+                        <span id="addressLine1Error" class="error"></span>
+                    
                         <label for="addressLine2">Area/Landmark (Optional):</label>
                         <input type="text" id="addressLine2" name="addressLine2">
+                        
                         <label for="city">City:</label>
                         <input type="text" id="city" name="city" required>
+                        <span id="cityError" class="error"></span>
+                    
                         <label for="state">State:</label>
                         <select id="state" name="state" required>
-                            <option value="">Select State</option>
-                            <option value="AP">Andhra Pradesh</option>
-                            <option value="AR">Arunachal Pradesh</option>
-                            <option value="AS">Assam</option>
-                            <option value="BR">Bihar</option>
-                            <option value="CH">Chhattisgarh</option>
-                            <option value="GA">Goa</option>
-                            <option value="GU">Gujarat</option>
-                            <option value="HR">Haryana</option>
-                            <option value="HP">Himachal Pradesh</option>
-                            <option value="JH">Jharkhand</option>
-                            <option value="KA">Karnataka</option>
-                            <option value="KL">Kerala</option>
-                            <option value="MP">Madhya Pradesh</option>
-                            <option value="MH">Maharashtra</option>
-                            <option value="MN">Manipur</option>
-                            <option value="ME">Meghalaya</option>
-                            <option value="MZ">Mizoram</option>
-                            <option value="NL">Nagaland</option>
-                            <option value="OD">Odisha</option>
-                            <option value="PB">Punjab</option>
-                            <option value="RJ">Rajasthan</option>
-                            <option value="SK">Sikkim</option>
-                            <option value="TN">Tamil Nadu</option>
-                            <option value="TG">Telangana</option>
-                            <option value="TR">Tripura</option>
-                            <option value="UT">Uttarakhand</option>
-                            <option value="UP">Uttar Pradesh</option>
-                            <option value="WB">West Bengal</option>
-                            </select>
+                            
+                                <option value="">Select State</option>
+                                <option value="AP">Andhra Pradesh</option>
+                                <option value="AR">Arunachal Pradesh</option>
+                                <option value="AS">Assam</option>
+                                <option value="BR">Bihar</option>
+                                <option value="CH">Chhattisgarh</option>
+                                <option value="GA">Goa</option>
+                                <option value="GU">Gujarat</option>
+                                <option value="HR">Haryana</option>
+                                <option value="HP">Himachal Pradesh</option>
+                                <option value="JH">Jharkhand</option>
+                                <option value="KA">Karnataka</option>
+                                <option value="KL">Kerala</option>
+                                <option value="MP">Madhya Pradesh</option>
+                                <option value="MH">Maharashtra</option>
+                                <option value="MN">Manipur</option>
+                                <option value="ME">Meghalaya</option>
+                                <option value="MZ">Mizoram</option>
+                                <option value="NL">Nagaland</option>
+                                <option value="OD">Odisha</option>
+                                <option value="PB">Punjab</option>
+                                <option value="RJ">Rajasthan</option>
+                                <option value="SK">Sikkim</option>
+                                <option value="TN">Tamil Nadu</option>
+                                <option value="TG">Telangana</option>
+                                <option value="TR">Tripura</option>
+                                <option value="UT">Uttarakhand</option>
+                                <option value="UP">Uttar Pradesh</option>
+                                <option value="WB">West Bengal</option>
+                            
+                        </select>
+                        <span id="stateError" class="error"></span>
+                    
                         <label for="zip">ZIP/Postal Code:</label>
-                        <input type="text" id="zip" name="zip" required>
-        
+                        <input type="text" id="zip" name="zip" required pattern="[0-9]{6}">
+                        <span id="zipError" class="error"></span>
+                    
                         <h3>Food Inventory</h3>
                         <table>
                             <thead>
@@ -434,9 +446,7 @@
                         <div style="display: flex; justify-content: center;">
                             <button class="button" type="submit">Donate</button>
                         </div>
-                    </form>
-                </div>
-            </div>
+                    </form> 
         </section>
 
         
@@ -534,6 +544,72 @@ function deleteRow() {
     alert("Cannot delete the only row");
   }
 }
+
+    function validateForm() {
+        var isValid = true;
+
+        // Validate Email
+        var email = document.getElementById("userId").value;
+        var emailError = document.getElementById("emailError");
+        if (!email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
+            emailError.textContent = "Please enter a valid email address";
+            isValid = false;
+        } else {
+            emailError.textContent = "";
+        }
+
+        // Validate Flat/Door/Building No.
+        var flatNo = document.getElementById("flatNo").value;
+        var flatNoError = document.getElementById("flatNoError");
+        if (!flatNo.match(/^[\w\s]*$/)) {
+            flatNoError.textContent = "Please enter a valid flat/door/building number";
+            isValid = false;
+        } else {
+            flatNoError.textContent = "";
+        }
+
+        // Validate Street/Locality
+        var addressLine1 = document.getElementById("addressLine1").value;
+        var addressLine1Error = document.getElementById("addressLine1Error");
+        if (addressLine1 === "") {
+            addressLine1Error.textContent = "This field is required";
+            isValid = false;
+        } else {
+            addressLine1Error.textContent = "";
+        }
+
+        // Validate City
+        var city = document.getElementById("city").value;
+        var cityError = document.getElementById("cityError");
+        if (!city.match(/^[\w\s]*$/)) {
+            cityError.textContent = "Please enter a valid city name";
+            isValid = false;
+        } else {
+            cityError.textContent = "";
+        }
+
+        // Validate State
+        var state = document.getElementById("state").value;
+        var stateError = document.getElementById("stateError");
+        if (state === "") {
+            stateError.textContent = "Please select a state";
+            isValid = false;
+        } else {
+            stateError.textContent = "";
+        }
+
+        // Validate ZIP/Postal Code
+        var zip = document.getElementById("zip").value;
+        var zipError = document.getElementById("zipError");
+        if (!zip.match(/^\d{6}$/)) {
+            zipError.textContent = "Please enter a valid ZIP/Postal code (6 digits)";
+            isValid = false;
+        } else {
+            zipError.textContent = "";
+        }
+
+        return isValid;
+    }
     </script>
 </body>
 
