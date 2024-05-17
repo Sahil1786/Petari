@@ -1,20 +1,17 @@
-# **Contributing Guidelines** 📄
+<h1 align="center">✨ Contributing Guidelines ✨</h1>
 
-This documentation contains a set of guidelines to help you during the contribution process.
-We are happy to welcome all the contributions from anyone willing to improve/add new scripts to this project.
-Thank you for helping out and remember, **no contribution is too small.**
+Welcome to PETARI! We appreciate your interest in contributing to our project. This document provides guidelines to help you during the contribution process. Remember, no contribution is too small, and we welcome contributions from anyone willing to improve or add new features to PETARI. 
 <br>
-Please note we have a [code of conduct](CODE_OF_CONDUCT.md)  please follow it in all your interactions with the project.
+Please ensure you follow our [code of conduct](CODE_OF_CONDUCT.md) in all your interactions with the project.
 
 
 
 <br>
 
-## **Need some help regarding the basics?🤔**
+## **Need Some Help?  🤔**
 
 
-You can refer to the following articles on basics of Git and Github and also contact the Project Mentors,
-in case you are stuck:
+If you need assistance with the basics of Git and GitHub or have any questions, feel free to refer to the following resources:
 
 - [Forking a Repo](https://help.github.com/en/github/getting-started-with-github/fork-a-repo)
 - [Cloning a Repo](https://help.github.com/en/desktop/contributing-to-projects/creating-an-issue-or-pull-request)
@@ -44,4 +41,4 @@ in case you are stuck:
 
 <br>
 
-# **Thank you for contributing💗** 
+# **Thank you for contributing to PETARI! 💗** 
