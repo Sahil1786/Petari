@@ -16,7 +16,7 @@ router.get("/", function (req, res) {
 });
 
 router.get("/user_login", function (req, res) {
-  res.render("user_login");
+  res.render("user_login.ejs");
 });
 
 router.get("/Ngo_login", function (req, res) {
@@ -160,40 +160,6 @@ router.post(async (req, res) => {
   }
 });
 
-// extra details added for the user
-router.post("/add-details", async (req, res) => {
-  try {
-    // Find the user by their email
-    let user = await User.findOne({ email: req.body.email });
-
-    // If the user exists, update their details
-    if (user) {
-      // Update the user's details
-      user.flatNo = req.body.flatNo;
-      user.addressLine1 = req.body.addressLine1;
-      user.addressLine2 = req.body.addressLine2;
-      user.city = req.body.city;
-      user.state = req.body.state;
-      user.zip = req.body.zip;
-      user.foodInventory.push({
-        foodItem: req.body.foodItem,
-        quantity: req.body.quantity,
-      });
-
-      // Save the updated user document
-      const saveDetails = await user.save();
-      if (saveDetails) {
-        res.status(200).json({ message: "Details added successfully" });
-        console.log("added details", saveDetails);
-      }
-    } else {
-      res.status(404).json({ error: "User not found" });
-    }
-  } catch (error) {
-    console.error("Error adding details:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
 
 // user delete from the databse
 router.post("/delete-details/:email/:ngoEmail", async (req, res) => {
