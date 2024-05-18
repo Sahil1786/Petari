@@ -1,8 +1,8 @@
 const express = require("express");
 const router = new express.Router();
 const fs = require("fs");
-const path = require('path');
-const Handlebars = require('handlebars');
+const path = require("path");
+const Handlebars = require("handlebars");
 
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -19,6 +19,11 @@ router.post("/NGO-login", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   const ngo = await NGO.findOne({ username: username, password: password });
+
+  //checking NGO is APPROVED or NOT 
+  if (ngo.approved == false) {
+    res.status(500).json({ messaage: "NGO is send for approval" });
+  }
   try {
     const dooner = await User.find(); // Assuming User is your Mongoose model for users
 
@@ -61,24 +66,28 @@ router.post("/NGO-Registarion", async (req, res) => {
     // Save the new NGO to the database
     await newNGO.save();
 
-    const templatePath = path.join(__dirname, '../views', 'Email.template.handlebars');
-    const templateContent = fs.readFileSync(templatePath, 'utf8');
+    const templatePath = path.join(
+      __dirname,
+      "../views",
+      "Email.template.handlebars"
+    );
+    const templateContent = fs.readFileSync(templatePath, "utf8");
 
-// Compile the Handlebars template with the provided context data
-const compiledHtml = Handlebars.compile(templateContent)({
-    user: {
-      _id: newNGO.NgoID, // Example ID
-      username: newNGO.NGOName, // Example username
-      email: newNGO.username, // Example email
-      fname: newNGO.NGOName // Example first name
-    }
-  });
+    // Compile the Handlebars template with the provided context data
+    const compiledHtml = Handlebars.compile(templateContent)({
+      user: {
+        _id: newNGO.NgoID, // Example ID
+        username: newNGO.NGOName, // Example username
+        email: newNGO.username, // Example email
+        fname: newNGO.NGOName, // Example first name
+      },
+    });
     // Send an email to the admin for approval
     const mailOptions = {
       to: newNGO.username, // Admin's email address
       subject: "New NGO Registration",
       text: "A new NGO registration is pending approval. Login to the admin panel to review and approve.",
-      html: compiledHtml
+      html: compiledHtml,
       // Include any necessary information in the email body
     };
     transporter.transporter.sendMail(mailOptions, function (error, info) {
