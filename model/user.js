@@ -31,6 +31,8 @@ const userSchema = new mongoose.Schema({
   approved: { type: Boolean, default: false },
   // googleId: String,
   // profile: String,
+  resetTokenExpiration: Date,
+  resetToken:String
 });
 
 const User = new mongoose.model("User", userSchema);
