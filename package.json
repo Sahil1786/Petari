@@ -32,7 +32,7 @@
     "netlify-lambda": "^2.0.16",
     "nodemailer": "^6.9.7",
     "nodemailer-express-handlebars": "^6.1.0",
-    "nodemon": "^3.0.2",
+    "nodemon": "^3.1.0",
     "passport": "^0.6.0",
     "passport-google-oauth2": "^0.2.0",
     "passport-local-mongoose": "^8.0.0",

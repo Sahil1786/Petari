@@ -48,11 +48,13 @@ app.set('view engine', 'ejs');
 const userRouter=require("./routers/userRoutes")
 const NgoRouter=require("./routers/NgoRoutes")
 const adminRouter=require("./routers/adminRoutes")
+const donationRouter=require("./routers/donationRoutes");
 
 //api endpoints
 app.use(userRouter)
 app.use(NgoRouter)
 app.use(adminRouter)
+app.use(donationRouter)
 
 
 
