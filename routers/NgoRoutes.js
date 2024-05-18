@@ -65,20 +65,33 @@ router.post("/NGO-Registration", async (req, res) => {
         // Save the new NGO to the database
         await newNGO.save();
 
-        // Send an email to the admin for approval
-        let mailOptions = {
-            to:newNGO.username, // Admin's email address
-            subject: 'New NGO Registration',
-            text: 'A new NGO registration is pending approval. Login to the admin panel to review and approve.',
-            // Include any necessary information in the email body
-        };
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                console.log(error);
-            } else {
-                console.log('Email sent: ' + info.response);
-            }
-        });
+        const templatePath = path.join(__dirname, '../views', 'Email.template.handlebars');
+    const templateContent = fs.readFileSync(templatePath, 'utf8');
+
+// Compile the Handlebars template with the provided context data
+const compiledHtml = Handlebars.compile(templateContent)({
+    user: {
+      _id: newNGO.NgoID, // Example ID
+      username: newNGO.NGOName, // Example username
+      email: newNGO.username, // Example email
+      fname: newNGO.NGOName // Example first name
+    }
+  });
+    // Send an email to the admin for approval
+    const mailOptions = {
+      to: newNGO.username, // Admin's email address
+      subject: "New NGO Registration",
+      text: "A new NGO registration is pending approval. Login to the admin panel to review and approve.",
+      html: compiledHtml
+      // Include any necessary information in the email body
+    };
+    transporter.transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
 
         console.log('NGO registration request sent for approval');
         res.status(200).json({ message: 'NGO registration request sent for approval' });
