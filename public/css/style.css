@@ -29,29 +29,11 @@ body{
   }
  body {
     background-color:#ECF2FF;
-  }
-  header{
-    background-color: #24252A;
-  }
-
-.max-width{
-    max-width: 1300px;
-    padding: 0 80px;
-    margin: auto;
-}
-.about{
-    font-family: 'Poppins', sans-serif;
-}
-.about .about-content{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-}
+  }  
 
 /* landing section */
 .hero{
-    height: 90vh;
+    height: 100vh;
     display: flex;
     align-items: center;
 }
@@ -97,11 +79,51 @@ body{
     transition: all 0.3s ease 0s;
     margin-bottom: 40px;
 }
-/*  */
+/* about section */
+.about{
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    padding: 20px;
+}
+.hero2_img{
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    margin-left: 80px;
+}
+.about-txt{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 50px;
+    margin-top: 70px;
+}
+#more {display: none;}
+#myBtn {cursor: pointer;}
 
 
+/* contact section */
+.contact{
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    gap: 500px;
+    justify-content: center;
+}
+.contact1{
+    display: block;
+    margin-top: 70px;
+    font-size:medium;
+}
+.contact2{
+    margin-top: 70px;
+    width: 400px;
+}
+.address-info{
+    display: block;
+}
 /* all similar content styling codes */
-section{
+/* section{
     padding: 100px 0;
 }
 .max-width{
@@ -139,7 +161,7 @@ section .title{
     background: #111;
     transform: translateX(-50%);
 } */
-section .title::after{
+/* section .title::after{
     position: absolute;
     bottom: -8px;
     left: 50%;
@@ -149,14 +171,11 @@ section .title::after{
     background: #fff;
     transform: translateX(-50%);
 }
-
+ */ 
 
 
 /* about section styling */
-.about .title::after{
-    content: "Who We are";
-}
-.about .about-content .left{
+/* .about .about-content .left{
     width: 45%;
 }
 .about .about-content .left img{
@@ -194,11 +213,11 @@ section .title::after{
 .about .about-content .right a:hover{
     color: crimson;
     background: none;
-}
+} */
 
 
 /* contact section styling */
-.contact .title::after{
+/* .contact .title::after{
     content: "Get In Touch";
 }
 .contact .contact-content .column{
@@ -287,7 +306,7 @@ section .title::after{
   background: crimson;
   border: 2px solid crimson;
   transition: all 0.3s ease;
-}
+} */
 
 
 
@@ -295,7 +314,7 @@ section .title::after{
 
 /* footer section styling */
 footer{
-    background: #111;
+    background: #353535;
     padding: 15px 23px;
     color: #fff;
     text-align: center;
@@ -325,4 +344,72 @@ body{
 
 #contact {
     margin-bottom: 50px; /* Adjust the value as needed */
+}
+@media (min-width: 768px) {
+    #myBtn { display: none; }
+    #dots { display: none; }
+    #more { display: inline; } 
+}
+@media (max-width: 768px) {
+    .hero{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-top: 120px;
+    }
+    .hero_img{
+        width: 300px;
+        height: 300px;
+        margin-left: 0px;
+    }
+    .left{
+       display: none;
+    }
+    .hero_text{
+        margin-left: auto;
+    }
+    .hero_text2{
+        margin-left: auto;
+    }
+    .hero_text3{
+        margin-left: auto;
+    }
+    .hero_btn{
+        margin-left: auto;
+    }
+    /* about section */
+    .abt-txt{
+        margin-top: 20px;
+    }
+    .about{
+        flex-direction: column-reverse;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+    .hero2_img{
+        width: 280px;
+        height: 280px;
+        margin-left: 0px;
+    }
+    .about-txt{
+        margin-left: auto;
+        font-size:17px;
+        margin-top: 0px;
+    }
+    /* contact section */
+    .contact{
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    .con-txt{
+        margin-top: 20px;
+    }
+    .contact2{
+        width: 350px;
+    }
 }
