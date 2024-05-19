@@ -1,6 +1,6 @@
 const express = require("express");
 const router = new express.Router();
-const path =require("path");
+const path = require("path");
 
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -37,18 +37,34 @@ router.get("/success", function (req, res) {
 });
 
 router.post("/", async function (req, res) {
+  const email = req.body.Email;
   try {
-    const newQuery = new Query({
-      name: req.body.Fname,
-      email: req.body.Email,
-      subject: req.body.sub,
-      message: req.body.sms,
-    });
+    //finding the user EXIST or NOT in DATABASE
+    const userExist = await User.findOne({ email });
+    if (userExist) {
+      const newQuery = new Query({
+        name: req.body.Fname,
+        email: req.body.Email,
+        subject: req.body.sub,
+        message: req.body.sms,
+        user_id: userExist._id,
+      });
 
-    await newQuery.save();
+      await newQuery.save();
+      console.log(newQuery);
+    } else {
+      const newQuery = new Query({
+        name: req.body.Fname,
+        email: req.body.Email,
+        subject: req.body.sub,
+        message: req.body.sms,
+      });
+
+      await newQuery.save();
+      console.log(newQuery);
+    }
 
     res.status(200).send("Successfully Received Message... Thank You!");
-    console.log(newQuery);
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -68,12 +84,14 @@ router.post("/login", async function (req, res) {
 
     const result = await bcrypt.compare(password, foundUser.password);
 
+    const userQuerys = await Query.find({ user_id: foundUser._id });
     if (result) {
       return res.render("UserDashBoard", {
         fullName: foundUser.fullName,
         email: foundUser.email,
         phoneNo: foundUser.Mobile,
         address: foundUser.address,
+        complain: userQuerys,
       });
     } else {
       return res.render("loginError", { message: "Incorrect password" });
@@ -265,12 +283,14 @@ router.post("/User_singUp", async function (req, res) {
       });
     });
 
+    const userQuerys = await Query.find({ user_id: foundUser._id });
+
     return res.render("UserDashBoard", {
-      fullName: req.body.fname,
-      email: username,
-      phoneNo: req.body.phn,
-      address: req.body.address,
-      // Do not include 'profile' here unless it's relevant to registration
+      fullName: foundUser.fullName,
+      email: foundUser.email,
+      phoneNo: foundUser.Mobile,
+      address: foundUser.address,
+      complain: userQuerys,
     });
   } catch (error) {
     console.error("Error during user registration:", error);
@@ -301,7 +321,7 @@ router.route("/forgot-password").post(async (req, res) => {
     user.resetTokenExpiration = Date.now() + 300000; // 5 minutes
     user.resetToken = resetToken;
 
-    console.log("use after setting ",user);
+    console.log("use after setting ", user);
     await user.save();
 
     // Send the reset link to the user via email
@@ -325,7 +345,7 @@ router.route("/forgot-password").post(async (req, res) => {
       attachments: [
         {
           filename: "logo.png",
-          path: path.join( "public", "img", "logo.png"),
+          path: path.join("public", "img", "logo.png"),
           cid: "logo",
         },
       ],
@@ -379,10 +399,9 @@ router.route("/reset-password").get(async (req, res) => {
   }
 });
 
-
 //verify the password
 router.route("/reset-password").post(async (req, res) => {
-  const {email,token} =req.query;
+  const { email, token } = req.query;
   const { newPassword } = req.body;
   // console.log(" User Info",email,token,newPassword);
 
@@ -417,13 +436,37 @@ router.route("/reset-password").post(async (req, res) => {
         address: user.address,
       });
 
-       // Redirect to login page or any other desired page
+      // Redirect to login page or any other desired page
     } catch (error) {
       // Handle JWT verification errors
       console.error("JWT verification error:", error.message);
       // You might want to send an error response or redirect the user
       res.status(401).send("Unauthorized");
     }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+//making a POST method for DELETING the COMPLAINt
+router.post("/delete-query/:id/:email", async (req, res) => {
+  const compId = req.params.id;
+  const email = req.params.email;
+  try {
+    const dele = await Query.findByIdAndDelete(compId);
+
+    //rendering USER DASHBOARD
+    const foundUser = await User.findOne({ email });
+    const userQuerys = await Query.find({ user_id: foundUser._id });
+
+    return res.render("UserDashBoard", {
+      fullName: foundUser.fullName,
+      email: foundUser.email,
+      phoneNo: foundUser.Mobile,
+      address: foundUser.address,
+      complain: userQuerys,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");

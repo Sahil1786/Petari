@@ -33,7 +33,8 @@ router.post("/admin-login", async (req, res) => {
     const dooner = await User.find(); // Assuming User is your Mongoose model for users
     const ngo = await NGO.find();
 
-    const query1 = await problem.find();
+    //return UNRESOLVED query
+    const query1 = await problem.find({ answere: { $exists: false } });
     res.render("Admin_Dashboard", {
       name: admin.fullName,
       email: admin.fullName,
@@ -119,7 +120,8 @@ router.post("/approve-ngo/:id/:userId", async (req, res) => {
     const dooner = await User.find(); // Assuming User is your Mongoose model for users
     const ngo = await NGO.find();
 
-    const query1 = await problem.find();
+    //return UNRESOLVED query
+    const query1 = await problem.find({ answere: { $exists: false } });
     res.render("Admin_Dashboard", {
       name: admin.fullName,
       email: admin.fullName,
@@ -156,7 +158,8 @@ router.post("/decline-ngo/:id/:userId", async (req, res) => {
     const dooner = await User.find(); // Assuming User is your Mongoose model for users
     const ngo = await NGO.find();
 
-    const query1 = await problem.find();
+    //return UNRESOLVED query
+    const query1 = await problem.find({ answere: { $exists: false } });
     res.render("Admin_Dashboard", {
       name: admin.fullName,
       email: admin.fullName,
@@ -193,7 +196,8 @@ router.post("/decline-donor/:id/:userId", async (req, res) => {
     const dooner = await User.find(); // Assuming User is your Mongoose model for users
     const ngo = await NGO.find();
 
-    const query1 = await problem.find();
+    //return UNRESOLVED query
+    const query1 = await problem.find({ answere: { $exists: false } });
     res.render("Admin_Dashboard", {
       name: admin.fullName,
       email: admin.fullName,
@@ -231,7 +235,8 @@ router.post("/accept-donor/:id/:userId", async (req, res) => {
     const dooner = await User.find(); // Assuming User is your Mongoose model for users
     const ngo = await NGO.find();
 
-    const query1 = await problem.find();
+    //return UNRESOLVED query
+    const query1 = await problem.find({ answere: { $exists: false } });
     res.render("Admin_Dashboard", {
       name: admin.fullName,
       email: admin.fullName,
@@ -267,7 +272,8 @@ router.post("/delete-complain/:id/:userId", async (req, res) => {
     const dooner = await User.find(); // Assuming User is your Mongoose model for users
     const ngo = await NGO.find();
 
-    const query1 = await problem.find();
+    //return UNRESOLVED query
+    const query1 = await problem.find({ answere: { $exists: false } });
     res.render("Admin_Dashboard", {
       name: admin.fullName,
       email: admin.fullName,
@@ -303,7 +309,8 @@ router.post("/accept-complain/:id/:userId", async (req, res) => {
     const dooner = await User.find(); // Assuming User is your Mongoose model for users
     const ngo = await NGO.find();
 
-    const query1 = await problem.find();
+    //return UNRESOLVED query
+    const query1 = await problem.find({ answere: { $exists: false } });
     res.render("Admin_Dashboard", {
       name: admin.fullName,
       email: admin.fullName,
@@ -321,71 +328,78 @@ router.post("/accept-complain/:id/:userId", async (req, res) => {
 });
 
 //making a POST method for RESPONDE to email
-router.post("/complains-response/:email/:userId", async (req, res) => {
+router.post("/complains-response/:email/:userId/:id", async (req, res) => {
   const email = req.params.email;
   const answere = req.body.answere;
   const userId = req.params.userId;
-  console.log(email, answere, userId);
+  const compId = req.params.id;
 
-  //sending email to the COMPLAIN email
   try {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: process.env.mail_id,
-        pass: process.env.pass_id,
-      },
-    });
-
-    let MailGenerator = new Mailgen({
-      theme: "default",
-      product: {
-        name: "PETARI",
-        link: "https://mailgen.js",
-      },
-    });
-
-    let response = {
-      body: {
-        name: "",
-        intro: "Welcome to PETARI! We're very excited to have you on board.",
-        action: {
-          instructions: answere,
-          button: {
-            color: "#22BC66", // Optional action button color
-            text: "Have a good day",
-            link: "",
-          },
-        },
-        outro: "Thankyou for a part of PETARI",
-      },
-    };
-
-    let mail = MailGenerator.generate(response);
-
-    let message = {
-      to: email,
-      subject: "Petari Support team",
-      html: mail,
-    };
-
-    transporter
-      .sendMail(message)
-      .then(() => {
-        console.log("email is send successfully");
-      })
-      .catch((error) => {
-        console.log("Email is not send", error);
+    //checking user EXIST or NOT
+    const userExist = await User.findOne({ email });
+    if (userExist) {
+      const complaint = await Query.findByIdAndUpdate(compId, {
+        answere,
       });
+    } else {
+      //sending email to the COMPLAIN email
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+          user: process.env.mail_id,
+          pass: process.env.pass_id,
+        },
+      });
+      let MailGenerator = new Mailgen({
+        theme: "default",
+        product: {
+          name: "PETARI",
+          link: "https://mailgen.js",
+        },
+      });
+      let response = {
+        body: {
+          name: "",
+          intro: "Welcome to PETARI! We're very excited to have you on board.",
+          action: {
+            instructions: answere,
+            button: {
+              color: "#22BC66",
+              text: "Have a good day",
+              link: "",
+            },
+          },
+          outro: "Thankyou for a part of PETARI",
+        },
+      };
+      let mail = MailGenerator.generate(response);
+      let message = {
+        to: email,
+        subject: "Petari Support team",
+        html: mail,
+      };
+      transporter
+        .sendMail(message)
+        .then(() => {
+          console.log("email is send successfully");
+        })
+        .catch((error) => {
+          console.log("Email is not send", error);
+        });
+
+      //DELETING complain after response because user does not exist
+      await Query.findByIdAndDelete(compId);
+    }
+
     const admin = await Admin.findById(userId);
     console.log("admin details in approve-ngo", admin);
     const dooner = await User.find(); // Assuming User is your Mongoose model for users
     const ngo = await NGO.find();
 
-    const query1 = await problem.find();
+    const query1 = await problem.find({ answere: { $exists: false } });
     res.render("Admin_Dashboard", {
       name: admin.fullName,
       email: admin.fullName,
