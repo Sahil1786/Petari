@@ -62,7 +62,7 @@
         }
 
         .top-border {
-            
+
             border-style: double;
             border-color: #F07070;
         }
@@ -112,76 +112,94 @@
             cursor: pointer;
             z-index: 2;
         }
-        .dash{
+
+        .dash {
             position: absolute;
             left: 35px;
         }
+
         body.dark .top {
             background-color: #333;
             color: #FFF;
         }
-        .donation{
+
+        .donation {
             display: none;
         }
 
         .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  .form-container {
-    border: 1px solid #ddd;
-    padding: 20px;
-    width: 400px;
-    margin-bottom: 20px;
-  }
-  label {
-    display: block;
-    margin-bottom: 8px;
-  }
-  input[type="text"], input[type="number"], input[type="email"], select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-  }
-  select {
-    margin-bottom: 10px;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 20px;
-    font-family: Arial, sans-serif;
-  }
-  th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  th:last-child, td:last-child {
-    text-align: center;
-  }
-  .button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 7%;
-  }
-  .button:hover {
-    background-color: #3e8e41; /* Green hover */
-  }
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 400px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        select {
+            margin-bottom: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th:last-child,
+        td:last-child {
+            text-align: center;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 7%;
+        }
+
+        .button:hover {
+            background-color: #3e8e41;
+            /* Green hover */
+        }
 
         /* aditya End */
         /* colors */
@@ -326,6 +344,56 @@
             background-color: #333;
             color: #FFF;
         }
+
+        .query-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2rem;
+        }
+
+        .query-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .query-item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .query-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .query-ques {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .query-ans {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-decline {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            margin-right: 5px;
+        }
     </style>
 
     <!-- //icon -->
@@ -344,17 +412,21 @@
             </div>
             <div class="dash">DashBoard</div>
             <div class="Left-name">Welcome, <%= fullName %>!</div>
-            
+
         </div>
         <hr class="top-border">
         <section class="Profile-sec">
             <div class="middle">
                 <div class="Donatebox">
                     <div class="NAME-block">
-                        <h4 class="User-Name">Full Name: <%= fullName %> </h4>
-                        <h4 class="User-Email">Email:   <%= email %></h4>
-                        <h4 class="User-Phone">Phone No:  <%= phoneNo %></h4>
-                        <h4 class="User-Adderss">Address:  <%= address %> </h4>
+                        <h4 class="User-Name">Full Name: <%= fullName %>
+                        </h4>
+                        <h4 class="User-Email">Email: <%= email %>
+                        </h4>
+                        <h4 class="User-Phone">Phone No: <%= phoneNo %>
+                        </h4>
+                        <h4 class="User-Adderss">Address: <%= address %>
+                        </h4>
                     </div>
                 </div>
             </div>
@@ -365,20 +437,27 @@
                     <h2>Donation Form</h2>
                     <br>
                     <form id="donationForm" action="/donate" method="post">
-                        <!-- Include a field for the user ID -->
-                        <label for="userID">Email Id:</label>
-                        <input type="text" id="userId" name="email" >
-        
+                        <label for="userId">Email Id:</label>
+                        <input type="email" id="userId" name="email" required>
+                        <span id="emailError" class="error"></span>
                         <label for="flatNo">Flat/Door/Building No.:</label>
                         <input type="text" id="flatNo" name="flatNo" required>
+                        <span id="flatNoError" class="error"></span>
+
                         <label for="addressLine1">Street/Locality:</label>
                         <input type="text" id="addressLine1" name="addressLine1" required>
+                        <span id="addressLine1Error" class="error"></span>
+
                         <label for="addressLine2">Area/Landmark (Optional):</label>
                         <input type="text" id="addressLine2" name="addressLine2">
+
                         <label for="city">City:</label>
                         <input type="text" id="city" name="city" required>
+                        <span id="cityError" class="error"></span>
+
                         <label for="state">State:</label>
                         <select id="state" name="state" required>
+
                             <option value="">Select State</option>
                             <option value="AP">Andhra Pradesh</option>
                             <option value="AR">Arunachal Pradesh</option>
@@ -408,14 +487,18 @@
                             <option value="UT">Uttarakhand</option>
                             <option value="UP">Uttar Pradesh</option>
                             <option value="WB">West Bengal</option>
-                            </select>
+
+                        </select>
+                        <span id="stateError" class="error"></span>
+
                         <label for="zip">ZIP/Postal Code:</label>
-                        <input type="text" id="zip" name="zip" required>
-        
+                        <input type="text" id="zip" name="zip" required pattern="[0-9]{6}">
+                        <span id="zipError" class="error"></span>
+
                         <h3>Food Inventory</h3>
                         <table>
                             <thead>
-                                <tr> 
+                                <tr>
                                     <th>Food Item</th>
                                     <th>Quantity</th>
                                 </tr>
@@ -435,106 +518,210 @@
                             <button class="button" type="submit">Donate</button>
                         </div>
                     </form>
-                </div>
+        </section>
+
+        <!-- //QUERY SECTION -->
+        <section class="query-sec" style="display: none; margin-top: 2rem;">
+            <div class="query-container">
+                <h2 class="section-title">Total Query : <%= complain.length %>
+                </h2>
+                <% complain.forEach(comp=> { %>
+                    <div style="display: flex; justify-content: space-evenly; width: 55%;">
+                        <ul class="query-list" style="width: 100%;">
+                            <li class="query-item">
+                                <div class="query-details">
+                                    <p class="query-ques">Subject : <%= comp.subject %>
+                                    </p>
+                                    <p class="query-ans"> Your Query : <%= comp.message %>
+                                    </p>
+                                    <p class="query-ans"> Response : <%= comp.answere %>
+                                    </p>
+                                </div>
+                                <div class="query-actions">
+                                    <form method="POST" action="/delete-query/<%= comp._id %>/<%= email %>">
+                                        <button class="btn-decline">Resolved</button>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <% }); %>
             </div>
         </section>
 
-        
-        
 
-    <!-- Adityas end -->
-    <nav class="sliding-menu">
-        <div class="logo-name">
-            <div class="logo-img">
-                <img src="img/logo.png" alt="logo">
+        <!-- Adityas end -->
+        <nav class="sliding-menu">
+            <div class="logo-name">
+                <div class="logo-img">
+                    <img src="img/logo.png" alt="logo">
+                </div>
+                <span class="logo_name">Petari</span>
             </div>
-            <span class="logo_name">Petari</span>
-        </div>
-        <div class="manu-items">
-            <ul class="nav-links">
-                <li><a href="#">
-                        <i class="uil uil-user-circle"></i>
-                        <span id="Profile" class="link-name">Profile</span>
-                    </a></li>
-                <li><a href="#">
-                        <i class="uil uil-restaurant"></i>
-                        <span id="donate" class="link-name">Donate</span>
-                    </a></li>
-                <li><a href="#">
-                        <i class="uil uil-map-marker-question"></i>
-                        <span id="track" class="link-name">Track</span>
-                    </a></li>
-                <li><a href="#">
-                        <i class="uil uil-comment-medical"></i>
-                        <span id="contact" class="link-name">Contact Us</span>
-                    </a></li>
-            </ul>
-            <ul class="logout-mode">
-                <li>
-                    <a href="/logout">
-                        <i class="uil uil-sign-out-alt"></i>
-                        <span class="link-name">Logout</span>
-                    </a>
-                </li>
+            <div class="manu-items">
+                <ul class="nav-links">
+                    <li><a href="#">
+                            <i class="uil uil-user-circle"></i>
+                            <span id="Profile" class="link-name">Profile</span>
+                        </a></li>
+                    <li><a href="#">
+                            <i class="uil uil-restaurant"></i>
+                            <span id="donate" class="link-name">Donate</span>
+                        </a></li>
+                    <li><a href="#">
+                            <i class="uil uil-map-marker-question"></i>
+                            <span id="track" class="link-name">Track</span>
+                        </a></li>
+                    <li><a href="#">
+                            <i class="uil uil-comment-medical"></i>
+                            <span id="contact" class="link-name">Contact Us</span>
+                        </a></li>
+                    <li><a href="#">
+                            <i class="uil uil-comment-alt-question"></i>
+                            <span id="query" class="link-name">Query</span>
+                        </a></li>
+                </ul>
+                <ul class="logout-mode">
+                    <li>
+                        <a href="/logout">
+                            <i class="uil uil-sign-out-alt"></i>
+                            <span class="link-name">Logout</span>
+                        </a>
+                    </li>
 
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-wind-moon"></i>
-                        <span class="link-name">Dark Mode</span>
-                    </a>
-                    <div class="mode-toggle">
-                        <span class="switch"></span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
+                    <li class="mode">
+                        <a href="#">
+                            <i class="uil uil-wind-moon"></i>
+                            <span class="link-name">Dark Mode</span>
+                        </a>
+                        <div class="mode-toggle">
+                            <span class="switch"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-    <script>
-        function toggleMenu() {
+        <script>
+            function toggleMenu() {
+                var menu = document.querySelector('.sliding-menu');
+                menu.style.width = menu.style.width === '25%' ? '0' : '25%';
+            }
+
             let donate = document.querySelector('#donate');
             let profile = document.querySelector('#Profile');
             let Profile_sec = document.querySelector('.Profile-sec');
             let donation_sec = document.querySelector('.donation')
-            
+            let query_sec = document.querySelector('.query-sec');
+            let query = document.querySelector("#query");
+
             donate.addEventListener('click', (e) => {
                 Profile_sec.style.display = 'none';
                 donation_sec.style.display = 'block';
+                query_sec.style.display = 'none';
             })
             profile.addEventListener('click', (e) => {
                 Profile_sec.style.display = 'block';
                 donation_sec.style.display = 'none';
+                query_sec.style.display = 'none';
+            })
+            query.addEventListener('click', () => {
+                Profile_sec.style.display = 'none';
+                query_sec.style.display = 'block';
+                donation_sec.style.display = 'none';
             })
 
-            var menu = document.querySelector('.sliding-menu');
-            menu.style.width = menu.style.width === '25%' ? '0' : '25%';
-        }
+            const body = document.querySelector("body");
+            const modeToggle = body.querySelector(".mode-toggle");
 
-        const body = document.querySelector("body");
-        const modeToggle = body.querySelector(".mode-toggle");
+            modeToggle.addEventListener("click", () => {
+                body.classList.toggle("dark");
+            });
+            function addRow() {
+                const tableBody = document.querySelector('#donationForm tbody');
+                const newRow = tableBody.insertRow();
+                const foodItemCell = newRow.insertCell();
+                const quantityCell = newRow.insertCell();
 
-        modeToggle.addEventListener("click", () => {
-            body.classList.toggle("dark");
-        });
-        function addRow() {
-  const tableBody = document.querySelector('#donationForm tbody');
-  const newRow = tableBody.insertRow();
-  const foodItemCell = newRow.insertCell();
-  const quantityCell = newRow.insertCell();
+                foodItemCell.innerHTML = `<input type="text" name="foodItem" required>`;
+                quantityCell.innerHTML = `<input type="number" name="quantity" min="1" required>`;
+            }
 
-  foodItemCell.innerHTML = `<input type="text" name="foodItem" required>`;
-  quantityCell.innerHTML = `<input type="number" name="quantity" min="1" required>`;
-}
+            function deleteRow() {
+                const tableBody = document.querySelector('#donationForm tbody');
+                if (tableBody.rows.length > 1) {
+                    tableBody.deleteRow(tableBody.rows.length - 1);
+                } else {
+                    alert("Cannot delete the only row");
+                }
+            }
 
-function deleteRow() {
-  const tableBody = document.querySelector('#donationForm tbody');
-  if (tableBody.rows.length > 1) {
-    tableBody.deleteRow(tableBody.rows.length - 1);
-  } else {
-    alert("Cannot delete the only row");
-  }
-}
-    </script>
+            function validateForm() {
+                var isValid = true;
+
+                // Validate Email
+                var email = document.getElementById("userId").value;
+                var emailError = document.getElementById("emailError");
+                if (!email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
+                    emailError.textContent = "Please enter a valid email address";
+                    isValid = false;
+                } else {
+                    emailError.textContent = "";
+                }
+
+                // Validate Flat/Door/Building No.
+                var flatNo = document.getElementById("flatNo").value;
+                var flatNoError = document.getElementById("flatNoError");
+                if (!flatNo.match(/^[\w\s]*$/)) {
+                    flatNoError.textContent = "Please enter a valid flat/door/building number";
+                    isValid = false;
+                } else {
+                    flatNoError.textContent = "";
+                }
+
+                // Validate Street/Locality
+                var addressLine1 = document.getElementById("addressLine1").value;
+                var addressLine1Error = document.getElementById("addressLine1Error");
+                if (addressLine1 === "") {
+                    addressLine1Error.textContent = "This field is required";
+                    isValid = false;
+                } else {
+                    addressLine1Error.textContent = "";
+                }
+
+                // Validate City
+                var city = document.getElementById("city").value;
+                var cityError = document.getElementById("cityError");
+                if (!city.match(/^[\w\s]*$/)) {
+                    cityError.textContent = "Please enter a valid city name";
+                    isValid = false;
+                } else {
+                    cityError.textContent = "";
+                }
+
+                // Validate State
+                var state = document.getElementById("state").value;
+                var stateError = document.getElementById("stateError");
+                if (state === "") {
+                    stateError.textContent = "Please select a state";
+                    isValid = false;
+                } else {
+                    stateError.textContent = "";
+                }
+
+                // Validate ZIP/Postal Code
+                var zip = document.getElementById("zip").value;
+                var zipError = document.getElementById("zipError");
+                if (!zip.match(/^\d{6}$/)) {
+                    zipError.textContent = "Please enter a valid ZIP/Postal code (6 digits)";
+                    isValid = false;
+                } else {
+                    zipError.textContent = "";
+                }
+
+                return isValid;
+            }
+        </script>
 </body>
 
 </html>
