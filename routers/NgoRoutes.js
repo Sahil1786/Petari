@@ -60,7 +60,7 @@ router.post("/NGO-Registration", async (req, res) => {
         const newNGO = new NGO({
             username: req.body.username,
             password: hashedPassword, // Save the hashed password
-            NGOName: req.body.NGOName,
+            NGOName: req.body.NgoName,
             Mobile: req.body.Mobile,
             NgoID: req.body.NgoID,
             NgoLocation: req.body.NgoLocation,
