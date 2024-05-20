@@ -238,13 +238,16 @@ section .title{
     display: flex;
     height: 65px;
     align-items: center;
+    flex-wrap: nowrap;
 }
 .contact .contact-content .row .info{
     margin-left: 30px;
 }
 .contact .contact-content .row i{
+    display: flex;
     font-size: 25px;
     color: crimson;
+    width: 10px;
 }
 .contact .contact-content .info .head{
     font-weight: 500;
@@ -344,6 +347,61 @@ body{
 
 #contact {
     margin-bottom: 50px; /* Adjust the value as needed */
+}
+
+body {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.navbar.bg-body-secondary {
+    background-color: var(--bs-body-bg);
+}
+
+.dark-mode .navbar.bg-body-secondary {
+    background-color: #1c1c1c;
+}
+
+.dark-mode .hero_text,
+.dark-mode .hero_text2,
+.dark-mode .hero_text3 {
+    color: #e0e0e0;
+}
+
+/* Dark mode styles */
+.dark-mode .navbar {
+    background-color: #333 !important; 
+}
+
+.dark-mode .navbar .navbar-brand,
+.dark-mode .navbar .nav-link,
+.dark-mode .navbar .btn {
+    color: #e0e0e0; 
+}
+
+.dark-mode .navbar-toggler {
+    border-color: #e0e0e0;
+}
+
+.dark-mode .navbar-toggler-icon {
+    filter: invert(1); 
+}
+
+.dark-mode .contact .text {
+    color: #e0e0e0;
+}
+
+.dark-mode .title {
+    color: #e0e0e0;
+}
+
+.dark-mode .icons .info .head,
+.dark-mode .icons .info .sub-title {
+    color: #e0e0e0;
 }
 @media (min-width: 768px) {
     #myBtn { display: none; }

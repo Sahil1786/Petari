@@ -92,12 +92,12 @@
             <h1>Registration Successful!</h1>
         </div>
         <div class="content">
-            <p>Thank you <span class="highlight">{{user.fname}}</span> for registering on Petari. Your account has been successfully created.</p>
+            <p>Thank you <span class="highlight"> {{ user.fname }}</span> for registering on Petari. Your account has been successfully created.</p>
 
             <div class="details">
-                <strong>User ID:</strong> {{{ user._id }}}<br>
-                <strong>Username:</strong> {{{ user.username }}}<br>
-                <strong>Email:</strong> {{{ user.email }}}
+                <strong>User ID:</strong> {{ user._id }}<br>
+                <strong>Username:</strong> {{ user.username }}<br>
+                <strong>Email:</strong> {{ user.email }}
             </div>
 
             <p>
