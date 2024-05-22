@@ -5,6 +5,46 @@ body{
     background: #ececec;
 }
 
+/* Dark Mode */
+
+.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-mode #darkModeToggle {
+    background-color: #333; /* Dark background color */
+}
+
+.dark-mode #darkModeIcon {
+    color: #e0e0e0; /* Dark mode icon color */
+}
+
+/* Dark Mode Toggle Button - Hover */
+#darkModeToggle:hover {
+    background-color: #555; /* Dark background color on hover */
+}
+
+/* Dark Mode Toggle Button */
+#darkModeToggle {
+    width: 50px;
+    height: 50px;
+    border: none; /* Remove border */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+#darkModeIcon {
+    font-size: 24px;
+}
+
+.dark-mode .custom-box {
+    background-color: #333 !important;  /* Dark mode background color for the login container */
+    color: #e0e0e0; /* Dark mode text color for the login container */
+}
+
 /*------------ Login container ------------*/
 
 .box-area{

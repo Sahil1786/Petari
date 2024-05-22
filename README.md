@@ -7,17 +7,17 @@ PETARI, The Food Donate WebApp, is an initiative by an organization aiming to re
 ## Tech Stack
 
 ### Frontend
-- HTML
-- CSS
-- Bootstrap
-- JavaScript
+- [HTML](https://www.w3schools.com/html/html_intro.asp)
+- [CSS](https://www.w3schools.com/cssref/index.php)
+- [Bootstrap](https://getbootstrap.com/)
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 ### Backend
-- Node.js
-- EJS
-- Express.js
-- MongoDB
-- Authentication (Auth 2.0)
+- [Node.js](https://nodejs.org/docs/latest/api/)
+- [EJS](https://www.npmjs.com/package/ejs)
+- [Express.js](https://expressjs.com/)
+- [MongoDB](https://www.npmjs.com/package/mongodb)
+- [Authentication (Auth 2.0)](https://oauth.net/2/)
 
 # Contribution Guidelines
 
