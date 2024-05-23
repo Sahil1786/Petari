@@ -7,7 +7,9 @@ const ngoRegisterSchema = new mongoose.Schema({
   Mobile: { type: String, required: true },
   NgoID: { type: String, required: true },
   NgoLocation: { type: String, required: true },
-  approved: { type: Boolean, default: false } // New field for approval status
+  approved: { type: Boolean, default: false },
+  resetTokenExpiration: Date,
+  resetToken:String // New field for approval status
 });
 
 

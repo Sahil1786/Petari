@@ -298,12 +298,12 @@ router.post("/User_singUp", async function (req, res) {
   }
 });
 
-router.route("/forgot-password").get(async (req, res) => {
-  res.render("forget-password");
+router.route("/forgot-password-user").get(async (req, res) => {
+  res.render("forget-password",{role:"user"});
 });
 
 //send Email for the reset password
-router.route("/forgot-password").post(async (req, res) => {
+router.route("/forgot-password-user").post(async (req, res) => {
   const { email } = req.body;
   try {
     const user = await User.findOne({ email });
@@ -325,7 +325,7 @@ router.route("/forgot-password").post(async (req, res) => {
     await user.save();
 
     // Send the reset link to the user via email
-    const resetLink = `http://localhost:3000/reset-password?email=${encodeURIComponent(
+    const resetLink = `http://localhost:3000/reset-password-user?email=${encodeURIComponent(
       user.email
     )}&token=${encodeURIComponent(resetToken)}`; // Replace with the actual path to your logo
     console.log(resetLink);
@@ -367,7 +367,7 @@ router.route("/forgot-password").post(async (req, res) => {
 });
 
 // verify Email and render reset password page
-router.route("/reset-password").get(async (req, res) => {
+router.route("/reset-password-user").get(async (req, res) => {
   const { email, token } = req.query;
   try {
     const user = await User.findOne({
@@ -386,7 +386,7 @@ router.route("/reset-password").get(async (req, res) => {
       // Process the decoded token (e.g., extract information from it)
       console.log(decodedToken);
       // Continue with the reset-password logic
-      res.render("set_password", { email, token });
+      res.render("set_password", { email, token,role:"user" });
     } catch (error) {
       // Handle JWT verification errors
       console.error("JWT verification error:", error.message);
@@ -400,7 +400,7 @@ router.route("/reset-password").get(async (req, res) => {
 });
 
 //verify the password
-router.route("/reset-password").post(async (req, res) => {
+router.route("/reset-password-user").post(async (req, res) => {
   const { email, token } = req.query;
   const { newPassword } = req.body;
   // console.log(" User Info",email,token,newPassword);
@@ -428,12 +428,13 @@ router.route("/reset-password").post(async (req, res) => {
       user.resetToken = null;
       user.resetTokenExpiration = null;
       await user.save();
-
+      const userQuerys = await Query.find({ user_id: user._id });
       return res.render("UserDashBoard", {
         fullName: user.fullName,
         email: user.email,
         phoneNo: user.Mobile,
         address: user.address,
+        complain:userQuerys
       });
 
       // Redirect to login page or any other desired page

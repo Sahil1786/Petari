@@ -417,4 +417,165 @@ router.post("/complains-response/:email/:userId/:id", async (req, res) => {
   }
 });
 
+router.route("/forgot-password-admin").get(async (req, res) => {
+  res.render("forget-password",{role:"admin"});
+});
+
+//send Email for the reset password
+router.route("/forgot-password-admin").post(async (req, res) => {
+  const { email } = req.body;
+  try {
+    const admin = await Admin.findOne({ email });
+    if (!admin) {
+      return res.send("Admin Not Exist");
+    }
+
+    // Generate a reset token and save it to the user
+    const resetToken = jwt.sign(
+      { email: admin.email },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    admin.resetTokenExpiration = Date.now() + 300000; // 5 minutes
+    admin.resetToken = resetToken;
+
+    console.log("use after setting ", admin);
+    await admin.save();
+
+    // Send the reset link to the user via email
+    const resetLink = `http://localhost:3000/reset-password-admin?email=${encodeURIComponent(
+      admin.email
+    )}&token=${encodeURIComponent(resetToken)}`; // Replace with the actual path to your logo
+    console.log(resetLink);
+    const mailOptions = {
+      to: admin.email,
+      subject: "Password Reset",
+      template: "reset-password", // Use the Handlebars template
+      context: {
+        admin: {
+          fname: admin.fullName,
+          _id: admin._id,
+          username: admin.username,
+          email: admin.email,
+        },
+        resetLink,
+      },
+      attachments: [
+        {
+          filename: "logo.png",
+          path: path.join("public", "img", "logo.png"),
+          cid: "logo",
+        },
+      ],
+    };
+    console.log("Admin email:", admin.email);
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error(error);
+        return res.status(500).send("Error sending reset email");
+      }
+      console.log(`Reset email sent: ${info.response}`);
+      res.send("Password reset link sent successfully");
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// verify Email and render reset password page
+router.route("/reset-password-admin").get(async (req, res) => {
+  const { email, token } = req.query;
+  try {
+    const admin = await Admin.findOne({
+      email,
+      resetToken: token,
+      resetTokenExpiration: { $gt: Date.now() },
+    });
+
+    if (!admin) {
+      return res.status(400).send("Invalid or expired reset token");
+    }
+
+    // Verify the token
+    try {
+      const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+      // Process the decoded token (e.g., extract information from it)
+      console.log(decodedToken);
+      // Continue with the reset-password logic
+      res.render("set_password", { email, token,role:"admin"});
+    } catch (error) {
+      // Handle JWT verification errors
+      console.error("JWT verification error:", error.message);
+      // You might want to send an error response or redirect the user
+      res.status(401).send("Unauthorized");
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+//verify the password
+router.route("/reset-password-admin").post(async (req, res) => {
+  const { email, token } = req.query;
+  const { newPassword } = req.body;
+  // console.log(" User Info",email,token,newPassword);
+
+  try {
+    // Verify the token again
+    const admin = await Admin.findOne({
+      email,
+      resetToken: token,
+      resetTokenExpiration: { $gt: Date.now() },
+    });
+
+    if (!admin) {
+      return res.status(400).send("Invalid or expired reset token");
+    }
+
+    try {
+      const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+      // Process the decoded token (e.g., extract information from it)
+      console.log(decodedToken);
+
+      // Update the user's password and reset the resetToken fields
+      const hash = await bcrypt.hash(newPassword, saltRounds);
+      admin.password = hash;
+      admin.resetToken = null;
+      admin.resetTokenExpiration = null;
+      await admin.save();
+
+      const dooner = await User.find(); // Assuming User is your Mongoose model for users
+      const ngo = await NGO.find();
+
+      //return UNRESOLVED query
+       const query1 = await problem.find({ answere: { $exists: false } });
+
+      return res.render("Admin_DashBoard", {
+        fullName: admin.fullName,
+        email: admin.email,
+        phoneNo: admin.Mobile,
+        address: admin.address,
+        NGOname: ngo,
+        Donername: dooner,
+        UserName: "sahil114",
+        complain: query1,
+      });
+
+      // Redirect to login page or any other desired page
+    } catch (error) {
+      // Handle JWT verification errors
+      console.error("JWT verification error:", error.message);
+      // You might want to send an error response or redirect the user
+      res.status(401).send("Unauthorized");
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 module.exports = router;
