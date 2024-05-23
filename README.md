@@ -24,6 +24,7 @@ PETARI, The Food Donate WebApp, is an initiative by an organization aiming to re
 ## Tech Stack
 <a v="tech-stack"></a>
 ### Frontend
+
 <a F="frontend"></a>
 <p>
   <a href="https://www.w3schools.com/html/"> <img src="https://img.icons8.com/color/70/000000/html-5--v1.png" alt="HTML" /></a>
@@ -54,6 +55,7 @@ PETARI, The Food Donate WebApp, is an initiative by an organization aiming to re
 - <h4>Collaboration with Events:</h4> Petari likely collaborates with various events, such as weddings and parties, to collect surplus food, emphasizing the importance of partnerships and community involvement in achieving its goals.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
 
 # Contribution Guidelines
 <a g="contribution-guidelines"></a>
