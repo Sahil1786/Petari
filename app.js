@@ -26,7 +26,7 @@ require("./db/db")
 // app.use(flash());
 
 app.set('view engine', 'ejs');
-
+app.set("views", path.join(__dirname, "views"));
 
   const handlebarOptions = {
     viewEngine: {
@@ -44,16 +44,21 @@ app.set('view engine', 'ejs');
   
   app.locals.moment = moment;
   
+
+
+  const apiRouter = require("./routers/api");
+  app.use("/api", apiRouter);
+
 //load routers
 const userRouter=require("./routers/userRoutes")
 const NgoRouter=require("./routers/NgoRoutes")
 const adminRouter=require("./routers/adminRoutes")
-
+const voiceRouter = require("./routers/voiceRoutes");
 //api endpoints
 app.use(userRouter)
 app.use(NgoRouter)
 app.use(adminRouter)
-
+app.use(voiceRouter)
 
 
 app.listen( process.env.port|| 3000,function(){
