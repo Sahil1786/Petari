@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Petari</title>
-    <link rel="icon" href="/img/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="public/img/logo.png" type="image/x-icon">
+
     <link rel="stylesheet" href="/css/style.css">
     <!-- Icon -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- BOOTSTRAP CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
 </head>
+
 <body>
     <!-- navgation bar -->
     <header>
@@ -46,89 +53,127 @@
     <main class="main mt-5">
         <!-- about section start -->
         <section class="hero">
-            <div class="content mt-5">
+            <div class="content">
                 <h1 class="hero_text">WELCOME</h1>
                 <h2 class="hero_text2">TO PETARI</h2>
-                <p class="hero_text3">
-                    "How wonderful it is
+                <p class="hero_text3"> "Hunger is not a problem. It is an obscenity.
+                </p>
+                <p class="hero_text3">How wonderful it is
                     that nobody need wait a single moment<br>
                     before starting to improve the world. – Anne Frank "</p>
                 <a href="/user_login" alt="Login" target="_blank"><button class="hero_btn">Donate Food</button></a>
             </div>
-            <div class="hero_img mt-5">
+            <div class="hero_img">
                 <img src="/img/hero.png" alt="hero" class="hero_img">
             </div>
         </section>
-        <h1 class="text-center  abt-txt">About us</h1>
         <section class="about" id="about">
-            <div class="hero2">
-                <img src="/img/food.jpg" alt="hero2" class="hero2_img">
-            </div>
-            <div class="about-txt ">
-                <p>
-                    Petari is an organisation which aims to redistribute excess food from weddings, parties,
-                    events to those who are hungry.We aim to bring benefits across the spectrum of society and
-                    help provide access to food to those who don’t have adequate means to access it.
-                    <span id="dots">...</span>
-                    <span id="more">
-                        Petari is working in alignment with India Sustainable Development Goals for making the World
-                        Hunger Free and Zero Food Waste.In addition to its important economic and societal impact,
-                        food waste places undue pressure on finite natural resources and the environment. The
-                        economic costs of this food wastage are substantial and amount to about $1 trillion each
-                        year. Food that is harvested but ultimately lost or wasted consumes about one-quarter of all
-                        water used by agriculture each year and requires a cropland area the size of China. Also,
-                        Food waste generates about 8% of global greenhouse gas emissions annually and it is the
-                        third-largest emitter of greenhouse gases in the world.In the Global Hunger Index report
-                        2020, India ranked 94th out of 107 countries with a score of 27.2 indicating a “Serious”
-                        hunger situation prevailing in the Nation.</span>
-                    <i onclick="myFunction()" id="myBtn" class="text-success">Read more</i>
-                    <br>
-                    <br>
-                    <b>Our Aim:</b>
-                    To bring a social change in every individual in-order to reduce food waste and to make the
-                    World Hunger Free.
-                </p>
-            </div>
-        </section>
-        <!-- contact section start -->
-        <h1 class="text-center  con-txt">Contact us</h1>
-        <section class="contact" id="contact">
-            <div class="contact1">
-                <h3>Contact information</h3>
-                <div>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <p>Address : 123 Main Street, Anytown, USA</p>
-                </div>
-                <div>
-                    <i class="fas fa-phone-alt"></i>
-                    <p>Phone : 123-456-7890</p>
-                </div>
-                <div>
-                    <i class="fas fa-envelope"></i>
-                    <p>Email : 3nZ9d@example.com</p>
+            <div class="max-width">
+                <h2 class="title">About US</h2>
+                <div class="about-content">
+                    <div class="column left">
+                        <img src="img/food.jpg" alt="">
+                    </div>
+                    <div class="column right">
+                        <p>Petari is an organisation which aims to redistribute excess food from weddings, parties,
+                            events to those who are hungry.We aim to bring benefits across the spectrum of society and
+                            help provide access to food to those who don’t have adequate means to access it.
+
+                            Petari is working in alignment with India Sustainable Development Goals for making the World
+                            Hunger Free and Zero Food Waste.In addition to its important economic and societal impact,
+                            food waste places undue pressure on finite natural resources and the environment. The
+                            economic costs of this food wastage are substantial and amount to about $1 trillion each
+                            year. Food that is harvested but ultimately lost or wasted consumes about one-quarter of all
+                            water used by agriculture each year and requires a cropland area the size of China. Also,
+                            Food waste generates about 8% of global greenhouse gas emissions annually and it is the
+                            third-largest emitter of greenhouse gases in the world.In the Global Hunger Index report
+                            2020, India ranked 94th out of 107 countries with a score of 27.2 indicating a “Serious”
+                            hunger situation prevailing in the Nation. </p>
+                        <br>
+                        <h3> Our Vision : </h3>
+                        <p>
+                            To bring a social change in every individual in-order to reduce food waste and to make the
+                            World Hunger Free.</p>
+
+
+                        
+                    </div>
                 </div>
             </div>
-            <div class="contact2">
-                <h2>feedback form</h2>
-                <form action="/contact" method="POST" class="mb-3 border rounded p-3 text-dark shadow">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name"
-                            required>
+
+
+
+
+            <!-- contact section start -->
+            <section class="contact" id="contact">
+                <div class="max-width">
+                    <h2 class="title">Contact me</h2>
+                    <div class="contact-content">
+                        <div class="column left">
+                            <div class="text">Get in Touch</div>
+                            <p>Thank you for visiting to petari. Connect with me over socials.
+                                <br>
+                                Please wait for a while all major projects will be listed soon. Till then keep visiting.
+                                Connect with me over live chat!
+                            </p>
+                            <br>
+                            <br>
+                            <div class="icons">
+                                <div class="row">
+                                    <i class="fas fa-user"></i>
+                                    <div class="info">
+                                        <div class="head">Name</div>
+                                        <div class="sub-title">Sahil
+                                            Hossain</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <div class="info">
+                                        <div class="head">Address</div>
+                                        <div class="sub-title">Nalhati, West Bengal</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <i class="fas fa-envelope"></i>
+                                    <div class="info">
+                                        <div class="head">Email</div>
+                                        <div class="sub-title">sahilkaitha@gmail.com</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column right">
+                            <div class="text">Message me</div>
+                            <form action="/" method="POST"">
+                    <div class=" fields">
+                                <div class="field name">
+                                    <input type="text" name="Fname" placeholder="Name" required>
+                                </div>
+                                <div class="field email">
+                                    <input type="email" name="Email" placeholder="Email" required>
+                                </div>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="sub" placeholder="Subject" required>
+                        </div>
+                        <div class="field textarea">
+                            <textarea cols="30" rows="10" name="sms" placeholder="Message.." required></textarea>
+                        </div>
+                        <div class="button-area">
+
+                            <button type="submit" id="home">Send </button>
+                        </div>
+                        </form>
                     </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email"
-                            required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea class="form-control" id="message" name="message" rows="3"
-                            placeholder="Enter your message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-50 text-center">Submit</button>
-                </form>
-            </div>
+                </div>
+                </div>
+            </section>
+
+
+
+            <!-- footer section start -->
+
         </section>
 
 
@@ -187,23 +232,10 @@
         darkModeToggle.addEventListener('click', toggleDarkMode);
     });
 
-        function myFunction() {
-            var dots = document.getElementById("dots");
-            var moreText = document.getElementById("more");
-            var btnText = document.getElementById("myBtn");
-
-            if (dots.style.display === "none") {
-                dots.style.display = "inline";
-                btnText.innerHTML = "Read more";
-                moreText.style.display = "none";
-            } else {
-                dots.style.display = "none";
-                btnText.innerHTML = "Read less";
-                moreText.style.display = "inline";
-            }
-        }
     </script>
+
+
     <script src="index.JS"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
