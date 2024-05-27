@@ -1,30 +1,68 @@
-# PETARI Documentation
+# <p align="center"> Petari - The Food Donation Management System</p>
+<div id="top"></div>
+<h2>Table of Contents</h2>
+
+- [Introduction](#introduction)
+- [Tech Stack](#tech-stack)
+   <br>
+  - [Frontend](#frontend)<br>
+  - [Backend](#backend)
+- [Features](#features)
+- [Contribution Guidelines](#contribution-guidelines)
+  - [How Can You Contribute?](#how-can-you-contribute)
+- [Getting Started](#getting-started)
+- [Code Style Guidelines](#code-style-guidelines)
+- [Code Review Process](#code-review-process)
+- [Community Guidelines](#community-guidelines)
+- [Output Screenshot](#output-screenshot)
+<br>
 
 ## Introduction
-
+<a name="introduction"></a>
 PETARI, The Food Donate WebApp, is an initiative by an organization aiming to redistribute excess food from various events to those in need. The project aligns with India's Sustainable Development Goals to achieve a hunger-free world and zero food waste. By leveraging technology, PETARI seeks to bridge the gap between surplus food and hunger, thereby benefiting society and the environment.
 
 ## Tech Stack
-
+<a v="tech-stack"></a>
 ### Frontend
-- [HTML](https://www.w3schools.com/html/html_intro.asp)
-- [CSS](https://www.w3schools.com/cssref/index.php)
-- [Bootstrap](https://getbootstrap.com/)
-- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+<a F="frontend"></a>
+<p>
+  <a href="https://www.w3schools.com/html/"> <img src="https://img.icons8.com/color/70/000000/html-5--v1.png" alt="HTML" /></a>
+  <a href="https://www.w3schools.com/css/"> <img src="https://img.icons8.com/color/70/000000/css3.png" alt="CSS" /></a>
+  <a href="https://www.w3schools.com/js/"><img src="https://img.icons8.com/color/70/000000/javascript--v1.png" alt="JS" /></a>
+  <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/"> <img src="https://img.icons8.com/color/70/000000/bootstrap.png" alt="Bootstrap" /></a>
+
+</p>
 
 ### Backend
-- [Node.js](https://nodejs.org/docs/latest/api/)
-- [EJS](https://www.npmjs.com/package/ejs)
-- [Express.js](https://expressjs.com/)
-- [MongoDB](https://www.npmjs.com/package/mongodb)
-- [Authentication (Auth 2.0)](https://oauth.net/2/)
+<a m="backend"></a>
+<a href="https://www.w3schools.com/nodejs/"><img src="https://e7.pngegg.com/pngimages/247/558/png-clipart-node-js-javascript-express-js-npm-react-github-angle-text.png" alt="Node.js" width="50" height="50" /></a>
+<a href="https://www.javatpoint.com/expressjs-tutorial"><img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/expressjs_logo_icon_169185.png" alt="expressjs" width="50" height="50" /></a>
+<a href="https://www.mongodb.com/docs/"><img src="https://w7.pngwing.com/pngs/956/695/png-transparent-mongodb-original-wordmark-logo-icon-thumbnail.png" alt="MongoDB" width="50" height="50" /></a>
+<a href="https://www.npmjs.com/package/ejs"><img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/ejs.png" alt="EJS" width="50" height="50" /></a>
+<a href="https://oauth.net/2/"><img src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*e2x6biTeTNWeMc-C4aPogw.jpeg" alt="Auth2.0" width="70" height="60" /></a>
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+# Features
+<a c="features"></a>
+- <h4>Redistribution of Excess Food:</h4>
+  Petari focuses on collecting excess food from weddings, parties, and events to redistribute it to individuals who are hungry, thereby reducing food waste and ensuring that surplus food benefits those in need.
+- <h4>Societal Impact:</h4> The organization aims to bring benefits across society by providing access to food for individuals who may not have adequate means to access it, addressing food insecurity and hunger issues.
+- <h4>Alignment with Sustainable Development Goals: </h4>Petari's mission aligns with India's Sustainable Development Goals, particularly focusing on making the world hunger-free and reducing food waste to contribute to a sustainable and equitable society.
+- <h4>Environmental Consciousness: </h4> By redistributing excess food and reducing food waste, Petari helps alleviate the pressure on finite natural resources and minimizes the environmental impact associated with food wastage.
+- <h4>Economic Impact:</h4> Through its activities, Petari not only addresses social issues related to hunger but also contributes to economic sustainability by efficiently utilizing excess resources and reducing wastage.
+- <h4>Collaboration with Events:</h4> Petari likely collaborates with various events, such as weddings and parties, to collect surplus food, emphasizing the importance of partnerships and community involvement in achieving its goals.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 # Contribution Guidelines
-
+<a g="contribution-guidelines"></a>
 Thank you for considering contributing to PETARI! We appreciate your efforts to make a positive impact on society through food redistribution and combating hunger. By contributing to PETARI, you are helping us move closer to our goal of creating a hunger-free world and reducing food waste.
 
 ## How Can You Contribute?
-
+<a h="how-can-you-contribute"></a>
 There are several ways you can contribute to PETARI:
 
 1. **Code Contributions**: Help improve the PETARI codebase by fixing bugs, adding new features, or enhancing existing functionalities.
@@ -37,8 +75,10 @@ There are several ways you can contribute to PETARI:
 
 5. **Feedback**: Provide feedback on the existing features, suggest new ideas, or share your thoughts on how PETARI can be further improved.
 
-## Getting Started
+<p align="right">(<a href="#top">back to top</a>)</p>
 
+## Getting Started
+<a h="getting-started"></a>
 If you're new to contributing to open-source projects, don't worry! Here's how you can get started:
 
 1. **Fork the Repository**: Fork the PETARI repository to your GitHub account.
@@ -164,9 +204,11 @@ If you're new to contributing to open-source projects, don't worry! Here's how y
 15. **Create a Pull Request**: Open a pull request from your forked repository to the main PETARI repository. Provide a clear description of your changes in the pull request. Follow these steps
     - Add the issue number, that you have been assigned[Formate:- Isuue number #(your issue number)]
     - Brief description of the changes
+   
+    <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Code Style Guidelines
-
+<a h="code-style-guidelines"></a>
 To maintain consistency and readability, please follow these code style guidelines:
 
 - Use meaningful variable and function names.
@@ -174,16 +216,19 @@ To maintain consistency and readability, please follow these code style guidelin
 - Write clear and concise comments to explain complex logic or algorithms.
 
 ## Code Review Process
-
+<a k="code-review-process"></a>
 All contributions to PETARI will go through a code review process to ensure code quality, consistency, and adherence to project standards. Your contributions are valuable, and we appreciate your patience during the review process.
 
 ## Community Guidelines
 
+<a j="community-guidelines"></a>
 PETARI is committed to fostering an inclusive and welcoming community. We encourage respectful and constructive communication among contributors. Please refer to our [Code of Conduct]-(https://github.com/Sahil1786/Petari/blob/dffa12d5f33b3227ec287af602762ef1f7bc3f89/Code_of_conduct.md) for more information.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 ## Output Screenshot
-
+<a i="output-screenshot"></a>
 ### 1. Index Page
 The index page serves as the main landing page for PETARI. It showcases the mission and purpose of the organization, along with relevant information about its activities.
 
@@ -205,3 +250,5 @@ Admins have special privileges and access to manage the platform. The admin logi
 ![Admin Login Page](https://github.com/Sahil1786/Petari/assets/111786720/fb1cc46a-e3ad-40fd-93c6-268849e05e91)
 
 **Please follow me and give a star to my repository 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
