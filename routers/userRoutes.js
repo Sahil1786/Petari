@@ -5,6 +5,7 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 
 const User = require("../model/user");
 const Query = require("../model/query"); // Adjust the path based on your project structure
@@ -226,6 +227,7 @@ router.get("/logout", function (req, res) {
 // user Registration
 router.post("/User_singUp", async function (req, res) {
   const { username } = req.body;
+  const fullName = req.body.fname;
 
   try {
     // Check if the email already exists
@@ -252,36 +254,54 @@ router.post("/User_singUp", async function (req, res) {
       password: hash,
     });
 
+    // creating a message for USER
+    const message = `Thank you, ${(fullName).toUpperCase()}, for connecting with the PETARI organization.`
+
     await newUser.save().then((user) => {
       let mailOptions = {
         to: user.email,
         subject: "Welcome To Petari",
         template: "Email.template",
-        context: {
-          user: {
-            fname: user.fullName,
-            _id: user._id,
-            username: user.fullName,
-            email: user.email,
-          },
-          year: new Date().getFullYear(),
-        },
+        // context: {
+        //   user: {
+        //     fname: user.fullName,
+        //     _id: user._id,
+        //     username: user.fullName,
+        //     email: user.email,
+        //   },
+        //   year: new Date().getFullYear(),
+        // },
+        text: message,
         attachments: [
           {
             filename: "logo.png",
-            path: path.join(__dirname, "public", "img", "logo.png"),
+            path: path.join(__dirname, "..", "public", "img", "logo.png"),
             cid: "logo",
           },
         ],
       };
+
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+          user: process.env.mail_id,
+          pass: process.env.pass_id,
+        },
+      });
+
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
           console.log(error);
         } else {
-          console.log("Email sent: " + info.response);
+          console.log("Email sent successfully: " + info.response);
         }
       });
     });
+
+    const foundUser = await User.findOne({ email: username });
 
     const userQuerys = await Query.find({ user_id: foundUser._id });
 
