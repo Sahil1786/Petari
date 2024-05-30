@@ -22,30 +22,33 @@
 <body>
     <!-- navgation bar -->
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-secondary  fixed-top">
+        <nav class="navbar navbar-expand-lg bg-body-secondary fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand fs-1 fw-bold text-success ms-5" href="#">
                     <img src="img/logo.png" alt="Logo" width="60" height="60" class="d-inline-flex align-text-center img-fluid">
                     Petari
                 </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                </ul>
-                <div class="navbar-nav gap-3 text-center">
-                    <a href="#" class="nav-link d-block">About</a>
-                    <a href="#" class="nav-link d-block">Projects</a>
-                    <a href="#" class="nav-link d-block">Contact</a>
-                    <a href="/admin_login" class="btn btn-success">Admin</a>
-                    <a href="/Ngo_login" class="btn btn-secondary">NGO</a>
-                    <a href="/user_login" class="btn btn-primary">Login</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+                    <div class="navbar-nav gap-3 text-center">
+                        <a href="#" class="nav-link d-block">About</a>
+                        <a href="#" class="nav-link d-block">Projects</a>
+                        <a href="#" class="nav-link d-block">Contact</a>
+                        <a href="/policies" class="nav-link d-block">Policies</a>
+                        <a href="/admin_login" class="btn btn-success">Admin</a>
+                        <a href="/Ngo_login" class="btn btn-secondary">NGO</a>
+                        <a href="/user_login" class="btn btn-primary">Login</a>
+                        <button id="darkModeToggle" class="btn btn-dark">
+                            <i id="darkModeIcon" class="fas fa-sun"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-            
-            </div>
-          </nav>
+        </nav>        
 
     </header>
     <main class="main mt-5">
@@ -207,6 +210,28 @@
         navLinks.classList.toggle('active');
     });
 });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const darkModeIcon = document.getElementById('darkModeIcon');
+        const body = document.body;
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            const isDark = body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            darkModeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun'; // Change icon based on mode
+        }
+
+        // Set initial mode based on localStorage
+        if (isDarkMode) {
+            toggleDarkMode();
+        }
+
+        // Event listener for dark mode toggle button
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+    });
 
     </script>
 

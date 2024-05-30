@@ -1,9 +1,11 @@
 const express = require("express");
 const router = new express.Router();
+const path = require("path");
 
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 
 const User = require("../model/user");
 const Query = require("../model/query"); // Adjust the path based on your project structure
@@ -36,18 +38,34 @@ router.get("/success", function (req, res) {
 });
 
 router.post("/", async function (req, res) {
+  const email = req.body.Email;
   try {
-    const newQuery = new Query({
-      name: req.body.Fname,
-      email: req.body.Email,
-      subject: req.body.sub,
-      message: req.body.sms,
-    });
+    //finding the user EXIST or NOT in DATABASE
+    const userExist = await User.findOne({ email });
+    if (userExist) {
+      const newQuery = new Query({
+        name: req.body.Fname,
+        email: req.body.Email,
+        subject: req.body.sub,
+        message: req.body.sms,
+        user_id: userExist._id,
+      });
 
-    await newQuery.save();
+      await newQuery.save();
+      console.log(newQuery);
+    } else {
+      const newQuery = new Query({
+        name: req.body.Fname,
+        email: req.body.Email,
+        subject: req.body.sub,
+        message: req.body.sms,
+      });
+
+      await newQuery.save();
+      console.log(newQuery);
+    }
 
     res.status(200).send("Successfully Received Message... Thank You!");
-    console.log(newQuery);
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -67,12 +85,14 @@ router.post("/login", async function (req, res) {
 
     const result = await bcrypt.compare(password, foundUser.password);
 
+    const userQuerys = await Query.find({ user_id: foundUser._id });
     if (result) {
       return res.render("UserDashBoard", {
         fullName: foundUser.fullName,
         email: foundUser.email,
         phoneNo: foundUser.Mobile,
         address: foundUser.address,
+        complain: userQuerys,
       });
     } else {
       return res.render("loginError", { message: "Incorrect password" });
@@ -80,83 +100,6 @@ router.post("/login", async function (req, res) {
   } catch (error) {
     console.error("Error during login:", error);
     return res.status(500).send("Internal Server Error");
-  }
-});
-
-router.route("/forgot-password").get(async (req, res) => {
-  res.render("forget-password");
-});
-
-router.route("/reset-password").get(async (req, res) => {
-  const { email, token } = req.query;
-
-  try {
-    const user = await User.findOne({
-      email,
-      resetToken: token,
-      resetTokenExpiration: { $gt: Date.now() },
-    });
-
-    if (!user) {
-      return res.status(400).send("Invalid or expired reset token");
-    }
-
-    // Verify the token
-    try {
-      const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-      // Process the decoded token (e.g., extract information from it)
-      console.log(decodedToken);
-      // Continue with the reset-password logic
-      res.render("reset-password", { email, token });
-    } catch (error) {
-      // Handle JWT verification errors
-      console.error("JWT verification error:", error.message);
-      // You might want to send an error response or redirect the user
-      res.status(401).send("Unauthorized");
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-router.post(async (req, res) => {
-  const { email, token, newPassword } = req.body;
-
-  try {
-    // Verify the token again
-    const user = await User.findOne({
-      email,
-      resetToken: token,
-      resetTokenExpiration: { $gt: Date.now() },
-    });
-
-    if (!user) {
-      return res.status(400).send("Invalid or expired reset token");
-    }
-
-    try {
-      const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-      // Process the decoded token (e.g., extract information from it)
-      console.log(decodedToken);
-
-      // Update the user's password and reset the resetToken fields
-      const hash = await bcrypt.hash(newPassword, saltRounds);
-      user.password = hash;
-      user.resetToken = null;
-      user.resetTokenExpiration = null;
-      await user.save();
-
-      res.redirect("/login"); // Redirect to login page or any other desired page
-    } catch (error) {
-      // Handle JWT verification errors
-      console.error("JWT verification error:", error.message);
-      // You might want to send an error response or redirect the user
-      res.status(401).send("Unauthorized");
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal Server Error");
   }
 });
 
@@ -284,6 +227,7 @@ router.get("/logout", function (req, res) {
 // user Registration
 router.post("/User_singUp", async function (req, res) {
   const { username } = req.body;
+  const fullName = req.body.fname;
 
   try {
     // Check if the email already exists
@@ -310,43 +254,63 @@ router.post("/User_singUp", async function (req, res) {
       password: hash,
     });
 
+    // creating a message for USER
+    const message = `Thank you, ${(fullName).toUpperCase()}, for connecting with the PETARI organization.`
+
     await newUser.save().then((user) => {
       let mailOptions = {
         to: user.email,
         subject: "Welcome To Petari",
         template: "Email.template",
-        context: {
-          user: {
-            fname: user.fullName,
-            _id: user._id,
-            username: user.fullName,
-            email: user.email,
-          },
-          year: new Date().getFullYear(),
-        },
+        // context: {
+        //   user: {
+        //     fname: user.fullName,
+        //     _id: user._id,
+        //     username: user.fullName,
+        //     email: user.email,
+        //   },
+        //   year: new Date().getFullYear(),
+        // },
+        text: message,
         attachments: [
           {
             filename: "logo.png",
-            path: path.join(__dirname, "public", "img", "logo.png"),
+            path: path.join(__dirname, "..", "public", "img", "logo.png"),
             cid: "logo",
           },
         ],
       };
+
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+          user: process.env.mail_id,
+          pass: process.env.pass_id,
+        },
+      });
+
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
           console.log(error);
         } else {
-          console.log("Email sent: " + info.response);
+          console.log("Email sent successfully: " + info.response);
         }
       });
     });
 
+    const foundUser = await User.findOne({ email: username });
+
+    const userQuerys = await Query.find({ user_id: foundUser._id });
+
     return res.render("UserDashBoard", {
-      fullName: req.body.fname,
-      email: username,
-      phoneNo: req.body.phn,
-      address: req.body.address,
-      // Do not include 'profile' here unless it's relevant to registration
+      fullName: foundUser.fullName,
+      email: foundUser.email,
+      phoneNo: foundUser.Mobile,
+      address: foundUser.address,
+      complain: userQuerys,
     });
   } catch (error) {
     console.error("Error during user registration:", error);
@@ -354,7 +318,12 @@ router.post("/User_singUp", async function (req, res) {
   }
 });
 
-router.post(async (req, res) => {
+router.route("/forgot-password").get(async (req, res) => {
+  res.render("forget-password");
+});
+
+//send Email for the reset password
+router.route("/forgot-password").post(async (req, res) => {
   const { email } = req.body;
   try {
     const user = await User.findOne({ email });
@@ -370,6 +339,9 @@ router.post(async (req, res) => {
     );
 
     user.resetTokenExpiration = Date.now() + 300000; // 5 minutes
+    user.resetToken = resetToken;
+
+    console.log("use after setting ", user);
     await user.save();
 
     // Send the reset link to the user via email
@@ -393,7 +365,7 @@ router.post(async (req, res) => {
       attachments: [
         {
           filename: "logo.png",
-          path: path.join(__dirname, "public", "img", "logo.png"),
+          path: path.join("public", "img", "logo.png"),
           cid: "logo",
         },
       ],
@@ -407,6 +379,113 @@ router.post(async (req, res) => {
       }
       console.log(`Reset email sent: ${info.response}`);
       res.send("Password reset link sent successfully");
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// verify Email and render reset password page
+router.route("/reset-password").get(async (req, res) => {
+  const { email, token } = req.query;
+  try {
+    const user = await User.findOne({
+      email,
+      resetToken: token,
+      resetTokenExpiration: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.status(400).send("Invalid or expired reset token");
+    }
+
+    // Verify the token
+    try {
+      const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+      // Process the decoded token (e.g., extract information from it)
+      console.log(decodedToken);
+      // Continue with the reset-password logic
+      res.render("set_password", { email, token });
+    } catch (error) {
+      // Handle JWT verification errors
+      console.error("JWT verification error:", error.message);
+      // You might want to send an error response or redirect the user
+      res.status(401).send("Unauthorized");
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+//verify the password
+router.route("/reset-password").post(async (req, res) => {
+  const { email, token } = req.query;
+  const { newPassword } = req.body;
+  // console.log(" User Info",email,token,newPassword);
+
+  try {
+    // Verify the token again
+    const user = await User.findOne({
+      email,
+      resetToken: token,
+      resetTokenExpiration: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.status(400).send("Invalid or expired reset token");
+    }
+
+    try {
+      const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+      // Process the decoded token (e.g., extract information from it)
+      console.log(decodedToken);
+
+      // Update the user's password and reset the resetToken fields
+      const hash = await bcrypt.hash(newPassword, saltRounds);
+      user.password = hash;
+      user.resetToken = null;
+      user.resetTokenExpiration = null;
+      await user.save();
+
+      return res.render("UserDashBoard", {
+        fullName: user.fullName,
+        email: user.email,
+        phoneNo: user.Mobile,
+        address: user.address,
+      });
+
+      // Redirect to login page or any other desired page
+    } catch (error) {
+      // Handle JWT verification errors
+      console.error("JWT verification error:", error.message);
+      // You might want to send an error response or redirect the user
+      res.status(401).send("Unauthorized");
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+//making a POST method for DELETING the COMPLAINt
+router.post("/delete-query/:id/:email", async (req, res) => {
+  const compId = req.params.id;
+  const email = req.params.email;
+  try {
+    const dele = await Query.findByIdAndDelete(compId);
+
+    //rendering USER DASHBOARD
+    const foundUser = await User.findOne({ email });
+    const userQuerys = await Query.find({ user_id: foundUser._id });
+
+    return res.render("UserDashBoard", {
+      fullName: foundUser.fullName,
+      email: foundUser.email,
+      phoneNo: foundUser.Mobile,
+      address: foundUser.address,
+      complain: userQuerys,
     });
   } catch (error) {
     console.error(error);
