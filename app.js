@@ -64,3 +64,7 @@ app.listen( process.env.port|| 3000,function(){
 app.get('/policies', (req, res) => {
   res.render('policies'); // Ensure policies.ejs is in the views directory
 });
+
+app.get("/*",(req,res) =>{
+  res.render("Error");
+});
