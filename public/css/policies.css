@@ -1,0 +1,24 @@
+.container{
+    margin: 40px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+}
+
+.section{
+    padding: 15px;
+}
+
+.heading{
+    font-size: 25px;
+    text-decoration: underline;
+    color: rgb(4, 101, 10);
+    
+}
+
+.content{
+    padding: 15px;
+}
+
+hr#line{
+    border: 1px solid rgb(4, 101, 10);
+}

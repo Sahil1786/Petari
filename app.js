@@ -60,4 +60,7 @@ app.listen( process.env.port|| 3000,function(){
   console.log("server is running on port 3000 ");
 });
 
-               
+// Route for policies.ejs
+app.get('/policies', (req, res) => {
+  res.render('policies'); // Ensure policies.ejs is in the views directory
+});

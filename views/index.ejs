@@ -10,8 +10,7 @@
 
     <link rel="stylesheet" href="/css/style.css">
     <!-- Icon -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- BOOTSTRAP CDN -->
@@ -39,6 +38,7 @@
                         <a href="#" class="nav-link d-block">About</a>
                         <a href="#" class="nav-link d-block">Projects</a>
                         <a href="#" class="nav-link d-block">Contact</a>
+                        <a href="/policies" class="nav-link d-block">Policies</a>
                         <a href="/admin_login" class="btn btn-success">Admin</a>
                         <a href="/Ngo_login" class="btn btn-secondary">NGO</a>
                         <a href="/user_login" class="btn btn-primary">Login</a>
@@ -70,13 +70,13 @@
         </section>
         <section class="about" id="about">
             <div class="max-width">
-                <h2 class="title about-text">About US</h2>
+                <h2 class="title">About US</h2>
                 <div class="about-content">
                     <div class="column left">
                         <img src="img/food.jpg" alt="">
                     </div>
                     <div class="column right">
-                        <p class="about-p" >Petari is an organisation which aims to redistribute excess food from weddings, parties,
+                        <p>Petari is an organisation which aims to redistribute excess food from weddings, parties,
                             events to those who are hungry.We aim to bring benefits across the spectrum of society and
                             help provide access to food to those who don’t have adequate means to access it.
 
@@ -91,8 +91,10 @@
                             2020, India ranked 94th out of 107 countries with a score of 27.2 indicating a “Serious”
                             hunger situation prevailing in the Nation. </p>
                         <br>
-                        <h3 class="about-text"> Our Vision: </h3>
-                        <p class="about-p">
+
+                        <h3> Our Vision : </h3>
+                        <p>
+
                             To bring a social change in every individual in-order to reduce food waste and to make the
                             World Hunger Free.</p>
 
@@ -108,11 +110,11 @@
             <!-- contact section start -->
             <section class="contact" id="contact">
                 <div class="max-width">
-                    <h2 class="title contact-text">Contact me</h2>
+                    <h2 class="title">Contact me</h2>
                     <div class="contact-content">
                         <div class="column left">
-                            <div class="text contact-text">Get in Touch</div>
-                            <p class="contact-p" >Thank you for visiting to petari. Connect with me over socials.
+                            <div class="text">Get in Touch</div>
+                            <p>Thank you for visiting to petari. Connect with me over socials.
                                 <br>
                                 Please wait for a while all major projects will be listed soon. Till then keep visiting.
                                 Connect with me over live chat!
@@ -202,53 +204,6 @@
     </footer>
 
     <script>
-        // Script for index animation-
-        gsap.from('.navbar', {
-          y: -100,
-          opacity: 0,
-          duration: 1.5,
-          stagger: 0.2,
-        })
-        gsap.from('.content h1, .content h2, .content p, .content a', {
-            x: -100,
-            opacity: 0,
-            duration: 1.5,
-            stagger: 0.2,
-          })
-    
-          gsap.from('.hero_img', {
-            y: 50,
-            opacity: 0,
-            duration: 1.2,
-            stagger: 0.2,
-          })
-          gsap.from('.about-text, .about-p', {
-            x: 200,
-            opacity: 0,
-            duration: 1.5,
-            stagger: 0.2,
-            scrollTrigger: {
-                trigger: '.about',
-                start: 'top 90%',
-                end: 'top 20%',
-
-            }
-          })
-          gsap.fromTo('.contact-text, .contact-p', {
-            x: 200,
-            opacity: 0
-        }, {
-            opacity:1,
-            x:0,
-            duration: 1,
-            scrollTrigger: {
-                trigger: '.contact',
-                start: 'top 80%',
-                end: 'top 20%',
-
-            }
-          })
-
         document.addEventListener('DOMContentLoaded', function () {
     const hamburgerMenu = document.querySelector('.hamburger-menu');
     const navLinks = document.querySelector('.nav-links');
