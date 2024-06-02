@@ -21,6 +21,12 @@
 <a name="introduction"></a>
 PETARI, The Food Donate WebApp, is an initiative by an organization aiming to redistribute excess food from various events to those in need. The project aligns with India's Sustainable Development Goals to achieve a hunger-free world and zero food waste. By leveraging technology, PETARI seeks to bridge the gap between surplus food and hunger, thereby benefiting society and the environment.
 
+![GitHub issues](https://img.shields.io/github/issues/Sahil1786/Petari)
+![GitHub forks](https://img.shields.io/github/forks/Sahil1786/Petari)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/Sahil1786/Petari)
+![GitHub Repo stars](https://img.shields.io/github/stars/Sahil1786/Petari?style=social)
+![GitHub contributors](https://img.shields.io/github/contributors/Sahil1786/Petari)
+
 ## Tech Stack
 <a v="tech-stack"></a>
 ### Frontend
@@ -252,3 +258,21 @@ Admins have special privileges and access to manage the platform. The admin logi
 **Please follow me and give a star to my repository 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+
+<div align="center">
+<h2><font size="6"><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Red%20Heart.png" alt="Red Heart" width="40" height="40" /> Contributors </font></h2>
+</div>
+<br>
+
+- This project thanking all the contributors for having your valuable contribution to our project
+- Make sure you show some love by giving ⭐ to our repository
+
+<br>
+
+<center>
+<a href="https://github.com/Sahil1786/Petari/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Sahil1786/Petari" />
+</a>
+</center>
+<br>
+<p align="right"><a href="#top">Back to top</a></p>
