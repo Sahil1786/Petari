@@ -43,12 +43,16 @@
                      <p>We are happy to have you back.</p>
                     
                 </div>
-                <form action="/admin-login" method="POST">
+                <form action="/admin-login" method="POST" novalidate class="needs-validation">
                     <div class="input-group mb-3">
-                        <input type="text"  name="email" class="form-control form-control-lg bg-light fs-6" placeholder="Email address" required>
+                        <input id="email"  type="email"  name="email" class="form-control form-control-lg bg-light fs-6" placeholder="Email address" required>
+                        <div class="valid-feedback">Email field looks good!</div>
+                        <div class="invalid-feedback">Please enter a valid email address (e.g., user@example.com).</div>
                     </div>
                     <div class="input-group mb-1">
                         <input type="password" name="password" class="form-control form-control-lg bg-light fs-6" placeholder="Password" required>
+                        <div class="valid-feedback">Password field looks good!</div>
+                        <div class="invalid-feedback">Password is required</div>
                     </div>
                     <div class="input-group mb-5 d-flex justify-content-between">
                         <div class="form-check">
@@ -102,5 +106,6 @@
     });
 
     </script>
+<script src="js/validation.js"></script>
 </body>
 </html>
