@@ -9,11 +9,10 @@ body{
     padding: 0;
     font-family: 'Poppins', sans-serif;
   }
-  .logo_name{
-    font-family: 'Poppins', sans-serif;
+  .logo_name{    font-family:'Times New Roman', Times, serif ; 
     margin-right: 270px;
     font-weight: 700;
-    color:rgb(0, 255, 64);
+    color:rgb(40, 94, 53);
     font-size: 45px;
     transition: all 0.3s;
     margin-top: 12px !important;
@@ -39,15 +38,16 @@ body{
 }
 .hero_text{
     color: #353535;
-    font-family: 'Poppins', sans-serif;
+    font-family:'Times New Roman', Times, serif ; 
     font-weight: 400;
     font-size: 40px;
     margin-bottom: 5px;
     margin-left: 150px;
+    text-shadow: 0ic;
 }
 .hero_text2{
     color: #353535;
-    font-family: 'Poppins', sans-serif;
+    font-family:'Times New Roman', Times, serif ; 
     font-weight: 900;
     font-size: 70px;
     margin-left: 150px;
@@ -55,7 +55,7 @@ body{
 .hero_text3{
     color: #353535;
     display: flex;
-    font-family: 'Poppins', sans-serif;
+    font-family:'Times New Roman', Times, serif ; 
     font-weight: 400;
     font-size: 20px;
     margin-left: 150px;
@@ -71,8 +71,8 @@ body{
     margin-left: 150px;
     font-size: 20px;
     padding: 9px 25px ;
-    background-color: rgba(0, 136, 169, 1);
-    border-radius: 50px;
+    background-color: rgb(115, 202, 224);
+    border-radius: 70px;
     border: none;
     cursor:pointer ;
     margin-top: 10px;
@@ -149,7 +149,7 @@ section .title{
     font-weight: 500;
     margin-bottom: 60px;
     padding-bottom: 20px;
-    font-family: 'Ubuntu', sans-serif;
+    font-family:'Times New Roman', Times, serif ; 
 }
 /* section .title::before{
     content: "";
@@ -165,11 +165,14 @@ section .title{
     position: absolute;
     bottom: -8px;
     left: 50%;
-    font-size:15px;
-    color: crimson;
+    font-size:20px;
+    color: rgb(123, 20, 41);
     padding: 0 5px;
-    background: #fff;
+    background: #ebbfbf;
     transform: translateX(-50%);
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 200;
+   
 }
  */ 
 
@@ -246,7 +249,7 @@ section .title{
 .contact .contact-content .row i{
     display: flex;
     font-size: 25px;
-    color: crimson;
+    color: rgb(104, 21, 38);
     width: 10px;
 }
 .contact .contact-content .info .head{
@@ -280,7 +283,7 @@ section .title{
     outline: none;
     padding: 0 15px;
     font-size: 17px;
-    font-family: 'Poppins', sans-serif;
+    font-family:'Times New Roman', Times, serif ; 
     transition: all 0.3s ease;
 }
 .contact .right form .field input:focus,
@@ -306,8 +309,8 @@ section .title{
   border-radius: 6px;
   cursor: pointer;
   flex-wrap: nowrap;
-  background: crimson;
-  border: 2px solid crimson;
+  background: rgb(135, 33, 54);
+  border: 2px solid rgb(126, 34, 52);
   transition: all 0.3s ease;
 } */
 
@@ -324,7 +327,7 @@ footer{
    
 }
 footer span a{
-    color: crimson;
+    color: rgb(170, 31, 59);
     text-decoration: none;
 }
 footer span a:hover{
