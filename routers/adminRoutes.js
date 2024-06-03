@@ -15,40 +15,61 @@ const problem = require("../model/query");
 const { transporter } = require("../helpers/emailHelpers");
 const nodemailer = require("nodemailer");
 
-const ad = Admin({
-  username: "sahilkaitha@gmail.com",
-  password: "123",
-  fullName: "Sahil Hossain",
-  Mobile: "9635955320",
+router.post("/register-admin", async (req, res) => {
+  //       Dummy data for admin 
+  // {
+  //     "email": "sahilkaitha@gmail.com",
+  //     "password": "123",
+  //     "fullName": "Sahil Hossain",
+  //     "Mobile": "9635955320"
+  // }
+  try {
+      const admin = await Admin.findOne({ email: req.body.email });
+      if (admin) {
+          res.status(302).send("Already have an account, Please Login ");
+      } else {
+          const { email, password, fullName, Mobile } = req.body;
+          const hashedPassword = await bcrypt.hash(password, saltRounds);
+          const admin = new Admin({ email, password: hashedPassword, fullName, Mobile });
+          await admin.save();
+          res.status(201).send("Admin registered successfully");
+      } 
+  } catch (error) {
+      console.error(error);
+      res.status(500).send(error,"An error occurred while registering the admin");
+  }
 });
-ad.save();
+
 
 router.post("/admin-login", async (req, res) => {
-  const username = req.body.username;
+  const email = req.body.email;
   const password = req.body.password;
 
-  const admin = await Admin.findOne({ username: username, password: password });
-  console.log(admin);
   try {
-    const dooner = await User.find(); // Assuming User is your Mongoose model for users
-    const ngo = await NGO.find();
+      const admin = await Admin.findOne({ email });
 
-    //return UNRESOLVED query
-    const query1 = await problem.find({ answere: { $exists: false } });
-    res.render("Admin_Dashboard", {
-      name: admin.fullName,
-      email: admin.fullName,
-      mobile: admin.Mobile,
-      username: admin.username,
-      id: admin._id,
-      NGOname: ngo,
-      Donername: dooner,
-      UserName: "sahil114",
-      complain: query1,
-    });
+      if (!admin || !(await bcrypt.compare(password, admin.password))) {
+          return res.status(401).send("Invalid username or password");
+      }
+
+      const dooner = await User.find(); // Assuming User is your Mongoose model for users
+      const ngo = await NGO.find();
+      //return UNRESOLVED query
+      const query1 = await problem.find({ answere: { $exists: false } });
+      res.render("Admin_Dashboard", {
+          name: admin.fullName,
+          email: admin.email,
+          mobile: admin.Mobile,
+          username: admin.username,
+          id: admin._id,
+          NGOname: ngo,
+          Donername: dooner,
+          UserName: "sahil114",
+          complain: query1,
+      });
   } catch (err) {
-    console.error(err);
-    res.status(500).send("An internal server error occurred.");
+      console.error(err);
+      res.status(500).send("An internal server error occurred.");
   }
 });
 
