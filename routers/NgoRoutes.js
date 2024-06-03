@@ -104,9 +104,10 @@ router.post("/NGO-Registarion", async (req, res) => {
     });
 
     console.log("NGO registration request sent for approval");
-    res
-      .status(200)
-      .json({ message: "NGO registration request sent for approval" });
+    // res
+    //   .status(200)
+    //   .json({ message: "NGO registration request sent for approval" });
+    res.render("success")
   } catch (err) {
     console.error("Error creating NGO:", err);
     res.status(500).json({ error: "Internal server error" });
