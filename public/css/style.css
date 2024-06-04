@@ -72,12 +72,16 @@ body{
     font-size: 20px;
     padding: 9px 25px ;
     background-color: rgba(0, 136, 169, 1);
+   
     border-radius: 50px;
     border: none;
     cursor:pointer ;
     margin-top: 10px;
     transition: all 0.3s ease 0s;
     margin-bottom: 40px;
+}
+button.hero_btn:hover {
+    background-color: palegreen;
 }
 /* about section */
 .about{
