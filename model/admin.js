@@ -6,6 +6,8 @@ const AdminSchema = new mongoose.Schema({
    password: String,
    fullName: String,
    Mobile: Number,
+   resetTokenExpiration: Date,
+   resetToken:String
 })
 
 const Admin = mongoose.model('Admin', AdminSchema);
