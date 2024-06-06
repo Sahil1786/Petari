@@ -23,10 +23,11 @@
 <body>
     <!-- navgation bar -->
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-secondary fixed-top">
-            <div class="container-fluid">
+        <nav class="top-header py-0 navbar navbar-expand-lg fixed-top mt-0">
+            <div class="container-fluid bg-light">
                 <a class="navbar-brand fs-1 fw-bold text-success ms-5" href="#">
-                    <img src="img/logo.png" alt="Logo" width="60" height="60" class="d-inline-flex align-text-center img-fluid">
+                    <img src="img/logo.png" alt="Logo" width="60" height="60"
+                        class="d-inline-flex align-text-center img-fluid">
                     Petari
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -36,119 +37,192 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
                     <div class="navbar-nav gap-3 text-center">
-                        <a href="#" class="nav-link d-block">About</a>
-                        <a href="#" class="nav-link d-block">Projects</a>
-                        <a href="#" class="nav-link d-block">Contact</a>
-                        <a href="/policies" class="nav-link d-block">Policies</a>
-                        <a href="/admin_login" class="btn btn-success">Admin</a>
-                        <a href="/Ngo_login" class="btn btn-secondary">NGO</a>
-                        <a href="/user_login" class="btn btn-primary">Login</a>
+                        <a href="#about" class="d-block nav-opt">About</a>
+                        <a href="#projects" class=" d-block nav-opt">Projects</a>
+                        <a href="#contact" class=" d-block nav-opt">Contact</a>
+                        <a href="/policies" class=" d-block nav-opt">Policies</a>
+                        <a href="/admin_login" class=" nav-opt">Admin</a>
+                        <a href="/Ngo_login" class=" nav-opt">NGO</a>
+                        <a href="/user_login" class=" nav-opt">Login</a>
                         <button id="darkModeToggle" class="btn btn-dark">
                             <i id="darkModeIcon" class="fas fa-sun"></i>
                         </button>
                     </div>
                 </div>
             </div>
-        </nav>        
+        </nav>
 
     </header>
     <main class="main mt-5">
-        <!-- about section start -->
-        <section class="hero">
-            <div class="content">
-                <h1 class="hero_text">WELCOME</h1>
-                <h2 class="hero_text2">TO PETARI</h2>
-                <p class="hero_text3"> "Hunger is not a problem. It is an obscenity.
-                </p>
-                <p class="hero_text3">How wonderful it is
-                    that nobody need wait a single moment<br>
-                    before starting to improve the world. – Anne Frank "</p>
-                <a href="/user_login" alt="Login" target="_blank"><button class="hero_btn">Donate Food</button></a>
-            </div>
-            <div class="hero_img">
-                <img src="/img/hero.png" alt="hero" class="hero_img">
-            </div>
-        </section>
-        <section class="about" id="about">
-            <div class="max-width">
-                <h2 class="title">About US</h2>
-                <div class="about-content">
-                    <div class="column left">
-                        <img src="img/food.jpg" alt="">
+
+        <!-- HOME PAGE IMAGE SECTION -->
+        <div class="owl-carousel ">
+            <div class="item">
+                <img src="img/slider-7.jpg" alt="">
+                <div class="container-1">
+                    <div class="row">
+                        <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+                            <div
+                                class="animated bounceInDown slider-captions text-body-secondary d-flex justify-content-center flex-column align-items-center">
+                                <h1 class="slider-title"> Feeding hope, not bins.
+                                </h1>
+                                <p class="slider-text hidden-xs text-center">Reducing food waste isn't just about
+                                    feeding the
+                                    hungry; it's about safeguarding our planet. Petari's mission is a step towards a
+                                    more sustainable future</p>
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="column right">
+                </div>
+            </div>
+        </div>
+
+        <!-- ABOUT -->
+        <section class="about-us container-fluid my-5" id="about">
+            <div class="container">
+                <div class="row natur-row no-margin w-100">
+                    <div class="text-part col-md-6">
+                        <h2>About Pitari</h2>
                         <p>Petari is an organisation which aims to redistribute excess food from weddings, parties,
                             events to those who are hungry.We aim to bring benefits across the spectrum of society and
                             help provide access to food to those who don’t have adequate means to access it.
-
-                            Petari is working in alignment with India Sustainable Development Goals for making the World
+                        </p>
+                        <P> Petari is working in alignment with India Sustainable Development Goals for making the World
                             Hunger Free and Zero Food Waste.In addition to its important economic and societal impact,
                             food waste places undue pressure on finite natural resources and the environment. The
                             economic costs of this food wastage are substantial and amount to about $1 trillion each
                             year. Food that is harvested but ultimately lost or wasted consumes about one-quarter of all
-                            water used by agriculture each year and requires a cropland area the size of China. Also,
+                            water used by agriculture each year and requires a cropland area the size of China.
+                        </p>
+                        <p>Also,
                             Food waste generates about 8% of global greenhouse gas emissions annually and it is the
                             third-largest emitter of greenhouse gases in the world.In the Global Hunger Index report
                             2020, India ranked 94th out of 107 countries with a score of 27.2 indicating a “Serious”
-                            hunger situation prevailing in the Nation. </p>
-                        <br>
-                        <h3> Our Vision : </h3>
-                        <p>
-                            To bring a social change in every individual in-order to reduce food waste and to make the
-                            World Hunger Free.</p>
+                            hunger situation prevailing in the Nation.</P>
 
-
-                        
                     </div>
-                </div>
-            </div>
-
-
-
-
-            <!-- contact section start -->
-            <section class="contact" id="contact">
-                <div class="max-width">
-                    <h2 class="title">Contact me</h2>
-                    <div class="contact-content">
-                        <div class="column left">
-                            <div class="text">Get in Touch</div>
-                            <p>Thank you for visiting to petari. Connect with me over socials.
-                                <br>
-                                Please wait for a while all major projects will be listed soon. Till then keep visiting.
-                                Connect with me over live chat!
-                            </p>
-                            <br>
-                            <br>
-                            <div class="icons">
-                                <div class="row">
+                    <div class="image-part col-md-6">
+                        <div class="about-quick-box row">
+                            <div class="col-md-6">
+                                <div class="about-qcard">
                                     <i class="fas fa-user"></i>
-                                    <div class="info">
-                                        <div class="head">Name</div>
-                                        <div class="sub-title">Sahil
-                                            Hossain</div>
-                                    </div>
+                                    <p>Becom a Volunteer</p>
                                 </div>
-                                <div class="row">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <div class="info">
-                                        <div class="head">Address</div>
-                                        <div class="sub-title">Nalhati, West Bengal</div>
-                                    </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="about-qcard ">
+                                    <i class="fas fa-search-dollar red"></i>
+                                    <p>Quick Fundrais</p>
                                 </div>
-                                <div class="row">
-                                    <i class="fas fa-envelope"></i>
-                                    <div class="info">
-                                        <div class="head">Email</div>
-                                        <div class="sub-title">sahilkaitha@gmail.com</div>
-                                    </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="about-qcard ">
+                                    <i class="fas fa-donate yell"></i>
+                                    <p>Giv Donation</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="about-qcard ">
+                                    <i class="fas fa-hands-helping blu"></i>
+                                    <p>Help Someone</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="column right">
-                            <div class="text">Message me</div>
-                            <form action="/" method="POST"">
-                              <div class=" fields">
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- OUT VISION AND MISSION -->
+            <section class="container-fluid mission-vision my-5">
+                <div class="container">
+                    <div class="row mission">
+                        <div class="col-md-6 mv-det">
+                            <h1>Our Mission</h1>
+                            <p>We envision a world where every individual has access to nutritious food, and where
+                                surplus
+                                food from events is utilized to alleviate hunger rather than being wasted. Through our
+                                initiatives, we aim to create a culture of responsible consumption and distribution,
+                                fostering a community that values both social welfare and environmental sustainability.
+                            </p>
+                        </div>
+                        <div class="col-md-6 mv-img our-mission">
+                            <img src="img/mission.jpeg" alt="">
+                        </div>
+                    </div>
+                    <div class="row vision mt-5">
+                        <div class="col-md-6 mv-img our-mission">
+                            <img src="img/vision-2.jpg" alt="">
+                        </div>
+                        <div class="col-md-6 mv-det">
+                            <h1>Our Vision</h1>
+                            <p>Petari is committed to tackling food waste and hunger by redistributing excess food from
+                                various events to those in need. Our mission is to bridge the gap between surplus food
+                                and
+                                hunger, thereby contributing to a more equitable society and a sustainable future. We
+                                strive
+                                to align our efforts with India's Sustainable Development Goals, working towards a world
+                                where hunger is eradicated and food waste is minimized.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- OUR ACHIEVEMTNS SECTION -->
+            <div class="doctor-message my-5" id="projects">
+                <div class="inner-lay">
+                    <div class="container">
+                        <div class="row session-title">
+                            <h2>Our Achievemtns in Numbers</h2>
+                            <p>Reducing food waste isn't just about feeding the hungry; it's about safeguarding our
+                                planet.
+                                Petari's mission is a step towards a more sustainable future.
+                            </p>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 numb">
+                                <h3>12+</h3>
+                                <span>YEARS OF EXPEREANCE</span>
+                            </div>
+                            <div class="col-sm-3 numb">
+                                <h3>1812+</h3>
+                                <span>HAPPY CHILDRENS</span>
+                            </div>
+                            <div class="col-sm-3 numb">
+                                <h3>52+</h3>
+                                <span>EVENTS</span>
+                            </div>
+                            <div class="col-sm-3 numb">
+                                <h3>48+</h3>
+                                <span>FUNT RAISED</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CONTACT-SECTION -->
+            <section class="contact-section " id="contact">
+                <div class="contact-section-header">
+                    <h2 class="">Any Query</h2>
+                    <div class="text">Get in Touch</div>
+                    <p>Thank you for visiting to petari. Connect with me over socials.
+                        <br>
+                        Please wait for a while all major projects will be listed soon. Till then keep visiting.
+                        Connect with me over live chat!
+                    </p>
+                </div>
+                <div class="contact-container row">
+                    <div class="col-6 left ">
+                        <img src="img/food.jpg" alt="">
+                    </div>
+                    <div class="col-6 right">
+                        <form action="/" method="POST">
+                            <div class=" fields">
                                 <div class="field name">
                                     <input type="text" name="Fname" placeholder="Name" required>
                                 </div>
@@ -156,83 +230,104 @@
                                     <input type="email" name="Email" placeholder="Email" required>
                                 </div>
                             </div>
-                        <div class="field">
-                            <input type="text" name="sub" placeholder="Subject" required>
-                        </div>
-                        <div class="field textarea">
-                            <textarea cols="30" rows="10" name="sms" placeholder="Message.." required></textarea>
-                        </div>
-                        <div class="button-area">
-
-                            <button type="submit" id="home">Send </button>
-                        </div>
+                            <div class="field">
+                                <input type="text" name="sub" placeholder="Subject" required>
+                            </div>
+                            <div class="field">
+                                <textarea cols="30" rows="7" name="sms" placeholder="Message.." required></textarea>
+                            </div>
+                            <div class="button-area">
+                                <button type="submit" id="home" class="btn btn-success">Send </button>
+                            </div>
                         </form>
                     </div>
                 </div>
-                </div>
             </section>
-
-
-
-            <!-- footer section start -->
-
-        </section>
-
-
-
     </main>
 
+    <!-- FOOTER SECTION -->
+    <footer class="footer py-5 footer-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h2>About Us</h2>
+                    <p>
+                        In a world where celebrations abound,
+                        Where joyous moments echo all around,
+                        Petari stands as a beacon bright,
+                        Turning excess into a guiding light.
+                    </p>
+                    <p>Join us in this noble cause,
+                        Where love for all is our applause,
+                        Petari's song, a melody sweet,
+                        Where excess meets hunger, hearts complete.
+                    </p>
+                </div>
+                <div class="col-md-6 col-sm-12 map-img">
+                    <h2>Contact Us</h2>
+                    <address class="md-margin-bottom-40 text-align-start">
+                        Sahil Hossain <br>
+                        Nalhati, West Bengal <br>
+                        Phone: +91 ******9599 <br>
+                        Email: <a href="mailto:info@anybiz.com" class="">sahilkaitha@gmail.com</a><br>
+                        Web: <a href="smart-eye.html" class="">www.pitari.com</a>
+                    </address>
 
-
-
-
-
-    <footer>
-        <div class="social-2" id="Social">
-            <a href="https://twitter.com/SAHILHO07860949" target="blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/in/sahil-hossain-b14164188/" target="blank"><i
-                    class="fab fa-linkedin"></i></a>
-            <a href="https://www.facebook.com/captain123sahil/" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://instagram.com/x_captain_sahil" target="blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://github.com/Sahil1786" target="blank"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
         </div>
-        <br>
-        <span>Created By <a href="https://sahil1786.github.io/My-Portfolio/" target="_blank"
-                style="text-decoration: none;">Sahil Hossain</a> | <span class="far fa-copyright"></span> 2023 All
-            rights reserved.</span>
+
+
     </footer>
+    <div class="copy">
+        <div class="container">
+            <a href="https://www.smarteyeapps.com/">2015 &copy; All Rights Reserved | Designed and Developed by
+                Sahil Hossain</a>
+
+            <span>
+                <a href="https://github.com/Sahil1786" target="blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/sahil-hossain-b14164188/" target="blank"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://instagram.com/x_captain_sahil" target="blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/SAHILHO07860949" target="blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.facebook.com/captain123sahil/" target="_blank"><i
+                        class="fab fa-facebook-f"></i></a>
+            </span>
+        </div>
+
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-    const hamburgerMenu = document.querySelector('.hamburger-menu');
-    const navLinks = document.querySelector('.nav-links');
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const navLinks = document.querySelector('.nav-links');
 
-    hamburgerMenu.addEventListener('click', function () {
-        navLinks.classList.toggle('active');
-    });
-});
+            hamburgerMenu.addEventListener('click', function () {
+                navLinks.classList.toggle('active');
+            });
+        });
 
-    document.addEventListener('DOMContentLoaded', function () {
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const darkModeIcon = document.getElementById('darkModeIcon');
-        const body = document.body;
-        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        document.addEventListener('DOMContentLoaded', function () {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const darkModeIcon = document.getElementById('darkModeIcon');
+            const body = document.body;
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
 
-        // Function to toggle dark mode
-        function toggleDarkMode() {
-            const isDark = body.classList.toggle('dark-mode');
-            localStorage.setItem('darkMode', isDark);
-            darkModeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun'; // Change icon based on mode
-        }
+            // Function to toggle dark mode
+            function toggleDarkMode() {
+                const isDark = body.classList.toggle('dark-mode');
+                localStorage.setItem('darkMode', isDark);
+                darkModeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun'; // Change icon based on mode
+            }
 
-        // Set initial mode based on localStorage
-        if (isDarkMode) {
-            toggleDarkMode();
-        }
+            // Set initial mode based on localStorage
+            if (isDarkMode) {
+                toggleDarkMode();
+            }
 
-        // Event listener for dark mode toggle button
-        darkModeToggle.addEventListener('click', toggleDarkMode);
-    });
+            // Event listener for dark mode toggle button
+            darkModeToggle.addEventListener('click', toggleDarkMode);
+        });
 
     </script>
 
