@@ -19,7 +19,36 @@
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         crossorigin="anonymous"></script>
 </head>
+ <style>
+    #scrollToTopBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed position */
+    bottom: 20px; /* Place it at the bottom */
+    right: 30px; /* Place it 30px from the right */
+    z-index: 99; /* Ensure it is in front of other elements */
+    font-size: 18px; /* Increase font size */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #555; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
 
+#scrollToTopBtn:hover {
+    background-color: #333; /* Add a dark-grey background on hover */
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5) , 0 0 25px rgb(255, 255, 255) , 0 0 50px rgb(255, 255, 255) , 0 0 200px rgb(255, 255, 255);
+}
+
+#scrollToTopBtn:active {
+    background-color: #111; /* Darken the button when clicked */
+}
+ </style>
 <body>
     <!-- navgation bar -->
     <header>
@@ -330,6 +359,34 @@
         });
 
     </script>
+
+<button id="scrollToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+  //Get the button
+  var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {
+      scrollFunction();
+  };
+
+  function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          scrollToTopBtn.style.display = "block";
+      } else {
+          scrollToTopBtn.style.display = "none";
+      }
+  }
+
+  // When the user clicks on the button, scroll to the top of the document
+  scrollToTopBtn.addEventListener('click', function(){
+      window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+      });
+  });
+</script>
 
 
     <script src="index.JS"></script>
