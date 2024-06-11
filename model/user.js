@@ -29,10 +29,17 @@ const userSchema = new mongoose.Schema({
     },
   ],
   approved: { type: Boolean, default: false },
+  acceptedBy: { type: String },
+  status: {
+    type: String,
+    enum: ["packed", "accepted", "onRoad", "delivered"],
+    default: "packed",
+  },
+  destinaion: { type: String },
   // googleId: String,
   // profile: String,
   resetTokenExpiration: Date,
-  resetToken:String
+  resetToken: String,
 });
 
 const User = new mongoose.model("User", userSchema);

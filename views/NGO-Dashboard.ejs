@@ -13,6 +13,143 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="/css/ngo_dashboard.css">
 
+    <style>
+        .progress-section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: pop;
+            flex-direction: column;
+            background-color: #fff;
+
+        }
+
+        .progress-section .head {
+            text-align: center;
+        }
+
+        .progress-section .head_1 {
+            font-size: 30px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .progress-section .head_1 span {
+            color: #ff4732;
+        }
+
+        .progress-section .head_2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 3px;
+        }
+
+        .progress-section ul {
+            display: flex;
+        }
+
+        .progress-section ul li {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .progress-section ul li .icon {
+            font-size: 35px;
+            color: #ff4732;
+            margin: 0 60px;
+        }
+
+        .progress-section ul li .text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ff4732;
+        }
+
+        /* Progress Div Css  */
+
+        .progress-section ul li .progress {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(68, 68, 68, 0.781);
+            margin: 14px 0;
+            display: grid;
+            place-items: center;
+            color: #fff;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress-section .progress::after {
+            content: " ";
+            position: absolute;
+            width: 125px;
+            height: 5px;
+            background-color: rgba(68, 68, 68, 0.781);
+            right: 30px;
+        }
+
+        .progress-section .one::after {
+            width: 0;
+            height: 0;
+        }
+
+        .progress-section ul li .progress .uil {
+            display: none;
+        }
+
+        .progress-section ul li .progress p {
+            font-size: 13px;
+        }
+
+        /* Active Css  */
+
+        .progress-section ul li .active {
+            background-color: #ff4732;
+            display: grid;
+            place-items: center;
+        }
+
+        .progress-section li .active::after {
+            background-color: #ff4732;
+        }
+
+        .progress-section ul li .active p {
+            display: none;
+        }
+
+        .progress-section ul li .active .uil {
+            font-size: 20px;
+            display: flex;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 7%;
+        }
+
+        .status-form{
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            align-items: start;
+        }
+    </style>
+
     <title>NGO DashBoard</title>
 </head>
 
@@ -52,7 +189,8 @@
                 <ul class="donor-list">
                     <% Donation.forEach(user=> { %>
                         <% if(!user.approved && user.foodInventory.length !==0 ){%>
-                            <li class="donor-item">
+                            <li class="donor-item" style="display: flex;
+                            flex-direction: column;">
                                 <div class="donor-details">
                                     <p class="donor-name">Name : <%= user.fullName %>
                                     </p>
@@ -94,11 +232,11 @@
 
             <!-- DISPLAYING ACCEPTED USER REQUEST -->
             <h2 style="text-align: center; margin-bottom: 2rem;">Active Donation Pickup : <%= (Donation.filter(user=>
-                    user.approved == true && user.foodInventory.length !== 0)).length %></h2>
+                user.acceptedBy==fullName && user.foodInventory.length !== 0)).length %></h2>
             <div>
                 <ul class="donor-list">
                     <% Donation.forEach(user=> { %>
-                        <% if(user.approved && user.foodInventory.length !==0 ){%>
+                        <% if(user.acceptedBy==fullName && user.foodInventory.length !==0 ){%>
                             <li class="donor-item">
                                 <div class="donor-details">
                                     <p class="donor-name">Name : <%= user.fullName %>
@@ -111,33 +249,77 @@
                                     </p>
                                     <p class="donor-location">City :<%= user.city %>
                                     </p>
-                                    <p class="donor-location"> State <%= user.state %>
+                                    <p class="donor-location"> State : <%= user.state %>
                                     </p>
                                     <p class="donor-location">Pin : <%= user.zip %>
                                     </p>
                                     <p class="donor-location">
                                         <% user.foodInventory.forEach(item=> { %>
-                                            <p> Itmes<%= item.foodItem %>
+                                            <p> Itmes : <%= item.foodItem %>
                                             </p>
-                                            <p>Quintity <%= item.quantity %>
+                                            <p>Quintity : <%= item.quantity %>
                                             </p>
                                             <% }); %>
                                     </p>
 
                                 </div>
                                 <div class="donor-actions">
-                                    <form action="/delete-details/<%= user.email %>/<%= email %>" method="post">
+                                    <form action="/delete-details/<%= user.email %>/<%= user.email %>" method="post">
                                         <button class="btn-decline">Done</button>
                                     </form>
 
                                 </div>
                             </li>
+                            <div class="progress-section">
+                                <ul>
+                                    <li>
+                                        <i class="icon uil  uil-gift"></i>
+                                        <div class="progress one active">
+                                            <p>1</p>
+                                            <i class="uil uil-check"></i>
+                                        </div>
+                                        <p class="text">Packed</p>
+                                    </li>
+                                    <li>
+                                        <i class="icon uil uil-clipboard-notes"></i>
+                                        <div class="progress two <%= user.status === 'packed' ? '' : 'active' %>">
+                                            <p>2</p>
+                                            <i class="uil uil-check"></i>
+                                        </div>
+                                        <p class="text">Accepted</p>
+                                    </li>
+                                    <li>
+                                        <i class="icon uil uil-truck"></i>
+                                        <div class="progress three <%= user.status === 'onRoad' || user.status === 'delivered' ? 'active' : '' %>">
+                                            <p>3</p>
+                                            <i class="uil uil-check"></i>
+                                        </div>
+                                        <p class="text">On Road</p>
+                                    </li>
+                                    <li>
+                                        <i class="icon uil  uil-check-circle"></i>
+                                        <div class="progress four <%= user.status === 'delivered' ? 'active' : '' %>">
+                                            <p>4</p>
+                                            <i class="uil uil-check"></i>
+                                        </div>
+                                        <p class="text">Delivered</p>
+                                    </li>
+                                </ul>
+                            
+                            <form method="POST" action="/donation-status/<%= user.email %>" class="status-form">
+                                <select id="roadType" name="roadType">
+                                    <option value="accepted" selected>Accepted</option>
+                                    <option value="delivered">Delivered</option>
+                                </select>
+                                <button type="submit" class="button">Update</button>
+                            </form>
+                        </div>
                             <%}%>
                                 <% }); %>
                 </ul>
             </div>
         </section>
-        
+
         <section class="donation" style="display: none;">
             <div class="container">
                 <div class="form-container">
@@ -199,7 +381,7 @@
         </section>
     </section>
 
-<!-- Sliding menu -->
+    <!-- Sliding menu -->
 
     <nav class="sliding-menu">
         <div class="logo-name">
@@ -314,6 +496,40 @@
             complain_sec.style.display = "block";
 
         })
+
+        // const one = document.querySelector(".one");
+        // const two = document.querySelector(".two");
+        // const three = document.querySelector(".three");
+        // const four = document.querySelector(".four");
+
+        
+
+        // if (status == "packed") {
+        //     one.classList.add("active");
+        //     two.classList.remove("active");
+        //     three.classList.remove("active");
+        //     four.classList.remove("active");
+        //     console.log("donation info", donationInfo)
+        // }
+        // else if (status == "accepted") {
+        //     one.classList.add("active");
+        //     two.classList.add("active");
+        //     three.classList.remove("active");
+        //     four.classList.remove("active");
+        // }
+        // else if (status == "onRoad") {
+        //     one.classList.add("active");
+        //     two.classList.add("active");
+        //     three.classList.add("active");
+        //     four.classList.remove("active");
+        // }
+        // else {
+        //     one.classList.add("active");
+        //     two.classList.add("active");
+        //     three.classList.add("active");
+        //     four.classList.add("active");
+        // }
+
     </script>
 </body>
 
