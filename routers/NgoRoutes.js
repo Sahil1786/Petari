@@ -96,13 +96,13 @@ router.post("/NGO-Registarion", async (req, res) => {
       html: compiledHtml,
       // Include any necessary information in the email body
     };
-    transporter.transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log("Email sent: " + info.response);
-      }
-    });
+    // transporter.transporter.sendMail(mailOptions, function (error, info) {
+    //   if (error) {
+    //     console.log(error);
+    //   } else {
+    //     console.log("Email sent: " + info.response);
+    //   }
+    // });
 
     console.log("NGO registration request sent for approval");
     // res

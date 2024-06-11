@@ -86,6 +86,16 @@ router.post("/login", async function (req, res) {
     const result = await bcrypt.compare(password, foundUser.password);
 
     const userQuerys = await Query.find({ user_id: foundUser._id });
+
+    const donationInfo = {
+      food: foundUser.foodInventory,
+      city: foundUser.city,
+      flat: foundUser.flatNo,
+      destination: foundUser.destinaion,
+      acceptedBy: foundUser.acceptedBy,
+      status: foundUser.status,
+    };
+
     if (result) {
       return res.render("UserDashBoard", {
         fullName: foundUser.fullName,
@@ -93,6 +103,7 @@ router.post("/login", async function (req, res) {
         phoneNo: foundUser.Mobile,
         address: foundUser.address,
         complain: userQuerys,
+        donationInfo: donationInfo,
       });
     } else {
       return res.render("loginError", { message: "Incorrect password" });
@@ -190,9 +201,13 @@ router.post("/approve-donation/:email/:ngoEmail", async (req, res) => {
     // Find the user by their email
     let user = await User.findOne({ email: req.params.email });
 
+    const ngo1 = await NGO.findOne({ username: ngoEmail });
+
     // If the user exists, approved their donation
-    if (user) {
+    if (user && ngo1) {
       user.approved = true;
+      user.acceptedBy = ngo1.NGOName;
+      user.destinaion = ngo1.NgoLocation;
 
       // Save the updated user document
       await user.save();
@@ -255,7 +270,7 @@ router.post("/User_singUp", async function (req, res) {
     });
 
     // creating a message for USER
-    const message = `Thank you, ${(fullName).toUpperCase()}, for connecting with the PETARI organization.`
+    const message = `Thank you, ${fullName.toUpperCase()}, for connecting with the PETARI organization.`;
 
     await newUser.save().then((user) => {
       let mailOptions = {
@@ -319,7 +334,7 @@ router.post("/User_singUp", async function (req, res) {
 });
 
 router.route("/forgot-password-user").get(async (req, res) => {
-  res.render("forget-password",{role:"user"});
+  res.render("forget-password", { role: "user" });
 });
 
 //send Email for the reset password
@@ -406,7 +421,7 @@ router.route("/reset-password-user").get(async (req, res) => {
       // Process the decoded token (e.g., extract information from it)
       console.log(decodedToken);
       // Continue with the reset-password logic
-      res.render("set_password", { email, token,role:"user" });
+      res.render("set_password", { email, token, role: "user" });
     } catch (error) {
       // Handle JWT verification errors
       console.error("JWT verification error:", error.message);
@@ -454,7 +469,7 @@ router.route("/reset-password-user").post(async (req, res) => {
         email: user.email,
         phoneNo: user.Mobile,
         address: user.address,
-        complain:userQuerys
+        complain: userQuerys,
       });
 
       // Redirect to login page or any other desired page
@@ -491,6 +506,78 @@ router.post("/delete-query/:id/:email", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
+  }
+});
+
+// updating the donation status
+router.post("/donation-status/:email", async (req, res) => {
+  const email = req.params.email;
+
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      const currentIndex = user.status ? user.status : "packed";
+      const statuses = ["packed", "accepted", "onRoad", "delivered"];
+      const currentIndexInArray = statuses.indexOf(currentIndex);
+      const nextIndexInArray = currentIndexInArray + 1;
+
+      // Ensure next index is within the array bounds
+      if (nextIndexInArray < statuses.length) {
+        const nextStatus = statuses[nextIndexInArray];
+        if (req.body.roadType === nextStatus) {
+          user.status = req.body.roadType;
+          await user.save();
+
+          if (
+            req.body.roadType === "packed" ||
+            req.body.roadType === "onRoad"
+          ) {
+            const donationInfo = {
+              food: user.foodInventory,
+              city: user.city,
+              flat: user.flatNo,
+              destination: user.destinaion,
+              acceptedBy: user.acceptedBy,
+              status: user.status,
+            };
+            const userQuerys = await Query.find({ user_id: user._id });
+            return res.render("UserDashBoard", {
+              fullName: user.fullName,
+              email: user.email,
+              phoneNo: user.Mobile,
+              address: user.address,
+              complain: userQuerys,
+              donationInfo: donationInfo,
+            });
+          } else {
+            const dooner = await User.find();
+            const ngo = await NGO.findOne({ NGOName: user.acceptedBy });
+
+            res.render("NGO-Dashboard", {
+              fullName: ngo.NGOName,
+              email: ngo.username,
+              id: ngo.NGOID,
+              phoneNo: ngo.Mobile,
+              address: ngo.NGOLocation,
+              Donation: dooner,
+              Pickup: dooner,
+              complain: "",
+            });
+          }
+        } else {
+          res.status(400).json({ message: "Invalid status update" });
+        }
+      } else {
+        res.status(400).json({
+          message: "Cannot update to next status, already at the final status",
+        });
+      }
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    console.log("donation-status error", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 });
 

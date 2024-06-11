@@ -345,6 +345,27 @@
             color: #FFF;
         }
 
+        .track-sec {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .donor-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .donor-item {
+            background-color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            line-height: 1.8;
+        }
+
         .query-container {
             display: flex;
             flex-direction: column;
@@ -394,29 +415,191 @@
             cursor: pointer;
             margin-right: 5px;
         }
-        .contactUs-container{
+
+        .contactUs-container {
             display: flex;
-           flex-direction: column;
-           align-items: center;
-           margin: 2rem;
-           background-color: #3e8e41;
-           padding: 2rem 0rem;
-           border-radius: 0.5rem;
+            flex-direction: column;
+            align-items: center;
+            margin: 2rem;
+            background-color: #3e8e41;
+            padding: 2rem 0rem;
+            border-radius: 0.5rem;
         }
-        .fields{
+
+        .fields {
             margin: 1rem 0rem;
             width: 50%;
         }
-        .contact-btn{
+
+        .contact-btn {
             width: 100%;
             padding: 0.5rem 0rem;
             border-radius: 10px;
-            background-color:bisque;
+            background-color: bisque;
+        }
+
+        /* progress css */
+
+        .progress-section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: pop;
+            flex-direction: column;
+
+        }
+
+        .progress-section .head {
+            text-align: center;
+        }
+
+        .progress-section .head_1 {
+            font-size: 30px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .progress-section .head_1 span {
+            color: #ff4732;
+        }
+
+        .progress-section .head_2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 3px;
+        }
+
+        .progress-section ul {
+            display: flex;
+        }
+
+        .progress-section ul li {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .progress-section ul li .icon {
+            font-size: 35px;
+            color: #ff4732;
+            margin: 0 60px;
+        }
+
+        .progress-section ul li .text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ff4732;
+        }
+
+        /* Progress Div Css  */
+
+        .progress-section ul li .progress {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(68, 68, 68, 0.781);
+            margin: 14px 0;
+            display: grid;
+            place-items: center;
+            color: #fff;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress-section .progress::after {
+            content: " ";
+            position: absolute;
+            width: 125px;
+            height: 5px;
+            background-color: rgba(68, 68, 68, 0.781);
+            right: 30px;
+        }
+
+        .progress-section .one::after {
+            width: 0;
+            height: 0;
+        }
+
+        .progress-section ul li .progress .uil {
+            display: none;
+        }
+
+        .progress-section ul li .progress p {
+            font-size: 13px;
+        }
+
+        /* Active Css  */
+
+        .progress-section ul li .active {
+            background-color: #ff4732;
+            display: grid;
+            place-items: center;
+        }
+
+        .progress-section li .active::after {
+            background-color: #ff4732;
+        }
+
+        .progress-section ul li .active p {
+            display: none;
+        }
+
+        .progress-section ul li .active .uil {
+            font-size: 20px;
+            display: flex;
+        }
+
+        /* Responsive Css  */
+
+        @media (max-width: 980px) {
+            .progress-section ul {
+                flex-direction: column;
+            }
+
+            .progress-section ul li {
+                flex-direction: row;
+            }
+
+            .progress-section ul li .progress {
+                margin: 0 30px;
+            }
+
+            .progress-section .progress::after {
+                width: 5px;
+                height: 55px;
+                bottom: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: -1;
+            }
+
+            .progress-section .one::after {
+                height: 0;
+            }
+
+            .progress-section ul li .icon {
+                margin: 15px 0;
+            }
+        }
+
+        @media (max-width:600px) {
+            .progress-section .head .head_1 {
+                font-size: 24px;
+            }
+
+            .progress-section .head .head_2 {
+                font-size: 16px;
+            }
         }
     </style>
 
     <!-- //icon -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
     <title>user DashBoard</title>
 </head>
@@ -539,32 +722,113 @@
                         </div>
                     </form>
         </section>
-        
+
+        <!-- TRACK-SECTION -->
+        <section class="track-sec" style="display: none;">
+            <h2 style="text-align: center;">My Donation </h2>
+            <% if(donationInfo.food.length !==0){ %>
+                <ul class="donor-list">
+                    <li class="donor-item">
+                        <p class="donor-name">Name : <%= fullName %>
+                        </p>
+                        <% donationInfo.food.forEach(item=> { %>
+                            <p class="donor-location"> Food : <%= item.foodItem %>
+                            </p>
+                            <p class="donor-location"> Quantity : <%= item.quantity %>
+                            </p>
+                            <% }); %>
+                                <p class="donor-location">Donation Address : <%= donationInfo.flat %> , <%=
+                                            donationInfo.city %>
+                                </p>
+                                <p class="donor-location">acceptedBy : <% if(donationInfo.acceptedBy) %>
+                                        <%= donationInfo.acceptedBy %>
+                                </p>
+                                <p class="donor-location">Destination :
+                                    <% if(donationInfo.acceptedBy) %>
+                                        <%= donationInfo.destination %>
+                                </p>
+                                <div class="progress-section">
+                                    <ul>
+                                        <li>
+                                            <i class="icon uil  uil-gift"></i>
+                                            <div class="progress one">
+                                                <p>1</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">Packed</p>
+                                        </li>
+                                        <li>
+                                            <i class="icon uil uil-clipboard-notes"></i>
+                                            <div class="progress two">
+                                                <p>2</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">Accepted</p>
+                                        </li>
+                                        <li>
+                                            <i class="icon uil uil-truck"></i>
+                                            <div class="progress three">
+                                                <p>3</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">On Road</p>
+                                        </li>
+                                        <li>
+                                            <i class="icon uil  uil-check-circle"></i>
+                                            <div class="progress four">
+                                                <p>4</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">Delivered</p>
+                                        </li>
+                                        <!-- <li>
+                                            <i class="icon uil uil-map-marker"></i>
+                                            <div class="progress five">
+                                                <p>5</p>
+                                                <i class="uil uil-check"></i>
+                                            </div>
+                                            <p class="text">Order Arrived</p>
+                                        </li> -->
+                                    </ul>
+                                </div>
+                                <form method="POST" action="/donation-status/<%= email %>">
+                                    <select id="roadType" name="roadType">
+                                        <option value="onRoad" name="">Picked Up</option>
+                                        <option value="packed" selected>Item Packed</option>
+                                    </select>
+                                    <button type="submit" class="button">Update</button>
+                                </form>
+                    </li>
+                </ul>
+                <% } %>
+        </section>
+
         <!---Contact Us-->
         <section class="contact-sec" style="display: none; margin-top: 2rem;">
             <form action="/" method="POST" class="contactUs-container">
                 <h2>Get in touch with us</h2>
                 <div class="fields">
                     <div class="field name">
-                       <input type="text" name="Fname" placeholder="Name" required>
+                        <input type="text" name="Fname" placeholder="Name" required>
                     </div>
                     <div class="field email">
-                       <input type="email" name="Email" placeholder="Email" required>
+                        <input type="email" name="Email" placeholder="Email" required>
                     </div>
                     <div class="field">
                         <input type="text" name="sub" placeholder="Subject" required>
                     </div>
                     <div class="field textarea">
-                        <textarea cols="57" rows="8" name="sms" placeholder="Message.." required style="width: 100%;"></textarea>
+                        <textarea cols="57" rows="8" name="sms" placeholder="Message.." required
+                            style="width: 100%;"></textarea>
                     </div>
                     <div class="button-area">
-    
+
                         <button type="submit" class="contact-btn" id="send">SEND MESSAGE </button>
                     </div>
                 </div>
-                
-                
-          </form>
+
+
+            </form>
 
         </section>
 
@@ -665,32 +929,45 @@
             let query = document.querySelector("#query");
             let contact_sec = document.querySelector('.contact-sec');
             let contact = document.querySelector("#contact");
+            let track = document.querySelector("#track");
+            let track_sec = document.querySelector('.track-sec');
 
             donate.addEventListener('click', (e) => {
                 Profile_sec.style.display = 'none';
-                donation_sec.style.display ='block';
-                contact_sec.style.display='none';
+                donation_sec.style.display = 'block';
+                contact_sec.style.display = 'none';
                 query_sec.style.display = 'none';
+                track_sec.style.display = 'none';
             })
             profile.addEventListener('click', (e) => {
                 Profile_sec.style.display = 'block';
                 donation_sec.style.display = 'none';
-                contact_sec.style.display='none';
+                contact_sec.style.display = 'none';
                 query_sec.style.display = 'none';
-
+                track_sec.style.display = 'none';
+            })
+            track.addEventListener("click", (e) => {
+                Profile_sec.style.display = 'none';
+                contact_sec.style.display = 'none';
+                donation_sec.style.display = 'none';
+                query_sec.style.display = 'none';
+                track_sec.style.display = 'block';
             })
             query.addEventListener('click', (e) => {
                 Profile_sec.style.display = 'none';
                 query_sec.style.display = 'block';
                 donation_sec.style.display = 'none';
-                contact_sec.style.display='none';
+                contact_sec.style.display = 'none';
+                track_sec.style.display = 'none';
             })
-            contact.addEventListener("click",(e)=>{
-                Profile_sec.style.display='none';
-                contact_sec.style.display='block';
-                donation_sec.style.display='none';
+            contact.addEventListener("click", (e) => {
+                Profile_sec.style.display = 'none';
+                contact_sec.style.display = 'block';
+                donation_sec.style.display = 'none';
                 query_sec.style.display = 'none';
+                track_sec.style.display = 'none';
             })
+
 
             const body = document.querySelector("body");
             const modeToggle = body.querySelector(".mode-toggle");
@@ -782,6 +1059,78 @@
 
                 return isValid;
             }
+
+            const one = document.querySelector(".one");
+            const two = document.querySelector(".two");
+            const three = document.querySelector(".three");
+            const four = document.querySelector(".four");
+            // // const five = document.querySelector(".five");
+
+            var status = "<%= donationInfo.status %>"
+
+            if (status == "packed") {
+                one.classList.add("active");
+                two.classList.remove("active");
+                three.classList.remove("active");
+                four.classList.remove("active");
+                console.log("donation info", donationInfo)
+            }
+            else if (status == "accepted") {
+                one.classList.add("active");
+                two.classList.add("active");
+                three.classList.remove("active");
+                four.classList.remove("active");
+            }
+            else if (status == "onRoad") {
+                one.classList.add("active");
+                two.classList.add("active");
+                three.classList.add("active");
+                four.classList.remove("active");
+            }
+            else {
+                one.classList.add("active");
+                two.classList.add("active");
+                three.classList.add("active");
+                four.classList.add("active");
+            }
+
+            // one.onclick = function () {
+            //     one.classList.add("active");
+            //     two.classList.remove("active");
+            //     three.classList.remove("active");
+            //     four.classList.remove("active");
+            //     // five.classList.remove("active");
+            // }
+
+            // two.onclick = function () {
+            //     one.classList.add("active");
+            //     two.classList.add("active");
+            //     three.classList.remove("active");
+            //     four.classList.remove("active");
+            //     // five.classList.remove("active");
+            // }
+            // three.onclick = function () {
+            //     one.classList.add("active");
+            //     two.classList.add("active");
+            //     three.classList.add("active");
+            //     four.classList.remove("active");
+            //     // five.classList.remove("active");
+            // }
+            // four.onclick = function () {
+            //     one.classList.add("active");
+            //     two.classList.add("active");
+            //     three.classList.add("active");
+            //     four.classList.add("active");
+            //     // five.classList.remove("active");
+            // }
+            // five.onclick = function () {
+            //     one.classList.add("active");
+            //     two.classList.add("active");
+            //     three.classList.add("active");
+            //     four.classList.add("active");
+            //     // five.classList.add("active");
+            // }
+
         </script>
 </body>
 
