@@ -300,3 +300,31 @@ body {
 #myBtn {
     cursor: pointer;
 }
+
+
+@media (max-width: 768px) {
+    .about {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero2_img {
+        width: 300px;
+        height: 300px;
+        margin-left: 0;
+    }
+
+    .about-txt {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .contact-container{
+        flex-direction: column;
+    }
+    .contact-section .contact-container {
+        width: 258%;
+    }
+    
+    
+}
