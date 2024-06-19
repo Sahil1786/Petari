@@ -5,8 +5,10 @@ const bodyParser = require("body-parser");
 const path = require('path');
 const app = express();
 
+
 const moment = require('moment');
 const hbs = require('nodemailer-express-handlebars');
+const methodOverride = require('method-override');
 
 const {transporter}=require("./helpers/emailHelpers")
 
@@ -16,6 +18,7 @@ const Admin=require("./model/admin")
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(methodOverride('_method'));
 
 const NGO=require("./model/ngo")
 const isAdmin=require("./middleware/isAdmin");

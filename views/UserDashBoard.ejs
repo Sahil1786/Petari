@@ -37,29 +37,9 @@
 
         /* aditya start */
 
-        .Donatebox {
-            display: flex;
-            width: 35rem;
-            height: 25rem;
-            background-color: darkseagreen;
-            justify-content: center;
-            align-self: center;
-            border-radius: 12%;
-        }
+         
 
-        .NAME-block {
-            display: flex;
-            gap: 5px;
-            flex-direction: column;
-            align-self: center;
-            justify-content: center;
-            border-radius: 7%;
-            padding-top: 5%;
-            padding-left: 10%;
-            height: 90%;
-            width: 90%;
-            background-color: var(--panel-color);
-        }
+        
 
         .top-border {
 
@@ -81,11 +61,57 @@
             padding: 10px;
         }
 
-        .middle {
+        .Profile-sec{
             display: flex;
-            padding: 9%;
             justify-content: center;
+            align-items: center;
+        }
+        
+        .user_img{
+            background-color: #FFF;
+            color: #000;
+            text-align: center;
+            border-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+        }
+        .user_info{
+            flex-grow: 1;
+            background-color: #FFF;
+            color: #000;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+        .middle {   
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            justify-content: space-between;
             align-content: center;
+            padding: 4rem 2rem 7rem 19rem;
+        }
+        .img_box{
+            height:14rem;
+            width:17rem;
+           
+        }
+        .img_box img{
+            height:14rem;
+            width:13rem;
+            border-radius: 10%;
+        }
+        .btn{
+            padding: 0.5rem;
+            background-color: green;
+            font-size: medium;
+            border-radius: 0.5rem;
+            font-weight: 400;
         }
 
         .dashboard {
@@ -619,18 +645,34 @@
         <hr class="top-border">
         <section class="Profile-sec">
             <div class="middle">
-                <div class="Donatebox">
-                    <div class="NAME-block">
-                        <h4 class="User-Name">Full Name: <%= fullName %>
-                        </h4>
-                        <h4 class="User-Email">Email: <%= email %>
-                        </h4>
-                        <h4 class="User-Phone">Phone No: <%= phoneNo %>
-                        </h4>
-                        <h4 class="User-Adderss">Address: <%= address %>
-                        </h4>
+            
+                <div class="user_img" >
+                    <div class="">
+                    <div class="img_box">
+                        <img src="./img/userProfile.jpg" alt="">
+                    </div>
+                    <h2 style="margin-top: 1rem;"><%= fullName %></h2>
+                    <h3><%= email %></h3>
                     </div>
                 </div>
+                <div class="" style="width: 10px;"></div>
+                <form action="/user?id=<%=userId%>" method="post" class="user_info">
+                    <h3 class="" style="margin-bottom: 1rem;">User Info</h3>
+                    <h4 class="User-Name">Name</h4>
+                    <input type="text" value="<%=fullName%>" name="fullName">
+                   
+                    <h4 class="User-Email">Email</h4>
+                    <input type="email" value="<%=email%>" name="email">
+
+                    <h4 class="User-Phone">Phone No</h4>
+                    <input type="number" value="<%=phoneNo%>" name="phoneNo">
+                    <h4 class="User-Address">Address</h4>
+                    <input type="text" value="<%=address%>" name="address">
+
+                    <button type="submit" class="btn">Edit Profile</button>
+
+                </form>
+               
             </div>
         </section>
         <section class="donation">
