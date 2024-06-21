@@ -3,6 +3,8 @@
 body {
     font-family: 'Poppins', sans-serif;
     background: #ececec;
+    margin: 0;
+    padding: 0;
 }
 
 /* Dark Mode */
@@ -47,6 +49,11 @@ body {
 /*------------ Login container ------------*/
 .box-area {
     width: 930px;
+    margin: 0 auto;
+    background-color: #FFF; /* Light background color */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 /*------------ Right box ------------*/
@@ -62,6 +69,7 @@ body {
 .rounded-4 {
     border-radius: 20px;
 }
+
 .rounded-5 {
     border-radius: 30px;
 }
@@ -69,7 +77,8 @@ body {
 /*------------ Mobile------------*/
 @media only screen and (max-width: 768px) {
     .box-area {
-        margin: 0 10px;
+        width: 100%;
+        padding: 10px;
     }
     .left-box {
         height: 100px;
@@ -82,7 +91,7 @@ body {
 
 /*------------ Contact Section ------------*/
 .contact-section {
-    padding: 20px;
+    padding: 40px 20px;
     background-color: #333; /* Dark background color */
     color: #fff; /* White text color */
 }
@@ -109,7 +118,7 @@ body {
 .contact-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     gap: 20px;
 }
 
@@ -131,15 +140,15 @@ body {
 
 .contact-container .right form {
     width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .contact-container .right .form-control,
 .contact-container .right .btn {
     margin-bottom: 15px;
     border-radius: 5px;
-}
-
-.contact-container .right .form-control {
+    width: calc(100% - 20px); /* Adjusted for padding */
     padding: 10px;
     font-size: 1rem;
     border: 1px solid #ccc;
@@ -155,8 +164,11 @@ body {
     background-color: #28a745;
     color: #fff;
     font-size: 1rem;
-    padding: 10px;
+    padding: 12px 20px; /* Adjusted padding */
     border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
 }
 
 .contact-container .right .btn:hover {
