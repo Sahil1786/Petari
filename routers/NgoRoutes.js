@@ -15,6 +15,27 @@ const Admin = require("../model/admin");
 const NGO = require("../model/ngo");
 const Query = require("../model/query"); // Adjust the path based on your project structure
 
+
+router.post("/ngo",async(req,res)=>{
+  let {email,fullName,phoneNo,address} =req.body;
+  let id=req.query.id;
+  let ngo=await NGO.findByIdAndUpdate(id,{NGOName:fullName,Mobile:phoneNo,NgoLocation:address, username:email},{new:true});
+  
+  const dooner = await User.find(); 
+  console.log(ngo);
+  return res.render("NGO-Dashboard", {
+    userId:ngo._id,
+    fullName: ngo.NGOName,
+    email: ngo.username,
+    id: ngo.NGOID,
+    phoneNo: ngo.Mobile,
+    address: ngo.NgoLocation,
+    Donation: dooner,
+    Pickup: dooner,
+    complain: "",
+  });
+}) 
+
 router.post("/NGO-login", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -30,11 +51,12 @@ router.post("/NGO-login", async (req, res) => {
       const dooner = await User.find(); // Assuming User is your Mongoose model for users
 
       res.render("NGO-Dashboard", {
+        userId:ngo._id,
         fullName: ngo.NGOName,
         email: ngo.username,
         id: ngo.NGOID,
         phoneNo: ngo.Mobile,
-        address: ngo.NGOLocation,
+        address: ngo.NgoLocation,
         Donation: dooner,
         Pickup: dooner,
         complain: "",
@@ -326,11 +348,12 @@ router.route("/reset-password-ngo").post(async (req, res) => {
       const dooner = await User.find(); 
       
       return res.render("NGO-DashBoard", {
+        userId:ngo._id,
         fullName: ngo.NGOName,
         email: ngo.username,
         id: ngo.NGOID,
         phoneNo: ngo.Mobile,
-        address: ngo.NGOLocation,
+        address: ngo.NgoLocation,
         Donation: dooner,
         Pickup: dooner,
         complain: "",

@@ -72,6 +72,33 @@ router.post("/", async function (req, res) {
   }
 });
 
+router.post("/user",async(req,res)=>{
+    let {email,fullName,phoneNo,address} =req.body;
+    let id=req.query.id;
+    let foundUser=await User.findByIdAndUpdate(id,{fullName:fullName,phoneNo:phoneNo,address:address, email:email},{new:true});
+    // res.redirect("/login");
+    const userQuerys = await Query.find({ user_id: foundUser._id });
+
+    const donationInfo = {
+      food: foundUser.foodInventory,
+      city: foundUser.city,
+      flat: foundUser.flatNo,
+      destination: foundUser.destinaion,
+      acceptedBy: foundUser.acceptedBy,
+      status: foundUser.status,
+    };
+
+    return res.render("UserDashBoard", {
+        userId:foundUser._id,
+        fullName: foundUser.fullName,
+        email: foundUser.email,
+        phoneNo: foundUser.Mobile,
+        address: foundUser.address,
+        complain: userQuerys,
+        donationInfo: donationInfo,
+    });
+}) 
+
 // user login (seems to be something wrong here - user cant login even if he gives correct credentials)
 router.post("/login", async function (req, res) {
   const { username, password } = req.body;
@@ -98,6 +125,7 @@ router.post("/login", async function (req, res) {
 
     if (result) {
       return res.render("UserDashBoard", {
+        userId:foundUser._id,
         fullName: foundUser.fullName,
         email: foundUser.email,
         phoneNo: foundUser.Mobile,
@@ -217,6 +245,7 @@ router.post("/approve-donation/:email/:ngoEmail", async (req, res) => {
       const dooner = await User.find(); // Assuming User is your Mongoose model for users
 
       res.render("NGO-Dashboard", {
+        userId:ngo._id,
         fullName: ngo.NGOName,
         email: ngo.username,
         id: ngo.NGOID,
@@ -321,6 +350,7 @@ router.post("/User_singUp", async function (req, res) {
     const userQuerys = await Query.find({ user_id: foundUser._id });
 
     return res.render("UserDashBoard", {
+      userId:foundUser._id,
       fullName: foundUser.fullName,
       email: foundUser.email,
       phoneNo: foundUser.Mobile,
@@ -465,6 +495,7 @@ router.route("/reset-password-user").post(async (req, res) => {
       await user.save();
       const userQuerys = await Query.find({ user_id: user._id });
       return res.render("UserDashBoard", {
+        userId:user._id,
         fullName: user.fullName,
         email: user.email,
         phoneNo: user.Mobile,
@@ -497,6 +528,7 @@ router.post("/delete-query/:id/:email", async (req, res) => {
     const userQuerys = await Query.find({ user_id: foundUser._id });
 
     return res.render("UserDashBoard", {
+      userId:foundUser._id,
       fullName: foundUser.fullName,
       email: foundUser.email,
       phoneNo: foundUser.Mobile,
@@ -542,6 +574,7 @@ router.post("/donation-status/:email", async (req, res) => {
             };
             const userQuerys = await Query.find({ user_id: user._id });
             return res.render("UserDashBoard", {
+              userId:user._id,
               fullName: user.fullName,
               email: user.email,
               phoneNo: user.Mobile,
@@ -554,6 +587,7 @@ router.post("/donation-status/:email", async (req, res) => {
             const ngo = await NGO.findOne({ NGOName: user.acceptedBy });
 
             res.render("NGO-Dashboard", {
+              userId:user._id,
               fullName: ngo.NGOName,
               email: ngo.username,
               id: ngo.NGOID,

@@ -70,12 +70,6 @@ body.dark {
   padding: 10px;
 }
 
-.Profile-sec {
-  display: flex;
-  padding: 9%;
-  justify-content: center;
-  align-content: center;
-}
 
 .dashboard {
   display: inline-block;
