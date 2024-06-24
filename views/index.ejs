@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="/css/style.css">
     <!-- Icon -->
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- BOOTSTRAP CDN -->
@@ -101,7 +106,7 @@
     <main class="main mt-5">
 
         <!-- HOME PAGE IMAGE SECTION -->
-        <div class="owl-carousel ">
+        <!-- <div class="owl-carousel ">
             <div class="item">
                 <img src="img/slider-7.jpg" alt="">
                 <div class="container-1">
@@ -121,7 +126,30 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+        <script>
+            $(document).ready(function(){
+              $(".owl-carousel").owlCarousel({
+                items: 1,
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 3000,
+                animateOut: 'fadeOut'
+              });
+            });
+            </script>
+        <div class="owl-carousel">
+            <div class="item">
+                <img src="img/1.png" alt="Image 1">
+            </div>
+            <div class="item">
+                <img src="img/2.png" alt="Image 2">
+            </div>
+            <div class="item">
+                <img src="img/3.png" alt="Image 3">
+            </div>
         </div>
+        
 
         <!-- ABOUT -->
         <section class="about-us container-fluid my-5" id="about">

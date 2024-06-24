@@ -72,21 +72,8 @@ body {
 
 .owl-carousel .item img {
     width: 100%;
-    filter: blur(2px);
-    -webkit-filter: blur(2px);
-}
-
-.owl-carousel .item .container-1 {
-    position: absolute;
-    top: 40%;
-    width: 100%;
-}
-
-.owl-carousel .item .container-1 .row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+    height: 100%;
+    object-fit: cover;
 }
 
 @media (max-width: 1200px) {
