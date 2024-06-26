@@ -44,12 +44,17 @@ body {
 .navbar-nav .nav-opt {
     color: black;
     border: 1px solid gray;
-    border-radius: 15px;
+    border-radius: 30px;
     padding: 8px 18px;
     font-size: 14px;
     text-decoration: none;
 }
 
+.navbar-nav .nav-opt:hover{
+    background-color: #198754; /* Change background color on hover */
+    color: white; /* Change text color on hover */
+    border-color: #198754; /* Change border color on hover */
+}
 
 .owl-carousel {
     overflow: hidden;

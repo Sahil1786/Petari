@@ -159,8 +159,13 @@
 
     <section class="dashboard">
         <div class="top">
-            <div class="menu-icon" onclick="toggleMenu()">
-                <i class="uil uil-bars"></i>
+            <div class="menu-icon">
+                <input id="checkbox" type="checkbox"  onclick="toggleMenu()">
+                <label class="bars-toggle" for="checkbox">
+                    <div id="bar1" class="bars"></div>
+                    <div id="bar2" class="bars"></div>
+                    <div id="bar3" class="bars"></div>
+                </label>
             </div>
             <div class="dash">DashBoard</div>
             <div class="Left-name">Welcome, <%= fullName %>!</div>
