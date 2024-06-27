@@ -27,7 +27,7 @@
     "mailgen": "^2.0.28",
     "method-override": "^3.0.0",
     "moment": "^2.29.4",
-    "mongoose": "^7.0.3",
+    "mongoose": "^7.7.0",
     "mongoose-findorcreate": "^4.0.0",
     "netlify-lambda": "^2.0.16",
     "nodemailer": "^6.9.7",
