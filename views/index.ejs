@@ -20,6 +20,9 @@
         crossorigin="anonymous"></script>
 </head>
  <style>
+    .slider-title{
+        margin-top:20px;
+    }
     #scrollToTopBtn {
     display: none; /* Hidden by default */
     position: fixed; /* Fixed position */
@@ -48,36 +51,142 @@
 #scrollToTopBtn:active {
     background-color: #111; /* Darken the button when clicked */
 }
+/* FAB Navbar Styles */
+.navbar {
+  height:100px;
+}
+
+.fab {
+    width: 60px;
+    height: 60px;
+    background-color: #e74c3c;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.fab:hover {
+    background-color: #c0392b;
+}
+
+.fab:active {
+    transform: scale(0.95);
+}
+
+.nav-items {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 0;
+    overflow: hidden;
+    transition: width 0.5s ease;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 60px;
+    background-color: #34495e;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s ease, opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: scale(0);
+}
+
+.nav-item i {
+    font-size: 24px;
+    margin-right: 8px;
+}
+
+.nav-item span {
+    display: none;
+    font-size: 14px;
+}
+
+.nav-item:hover {
+    background-color: #2c3e50;
+}
+
+.nav-item.active {
+    background-color: #1abc9c;
+}
+
+.nav-items.open {
+    width: 100%;
+}
+
+.nav-items.open .nav-item {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.nav-items.open .nav-item span {
+    display: inline;
+}
+
  </style>
 <body>
     <!-- navgation bar -->
     <header>
         <nav class="top-header py-0 navbar navbar-expand-lg fixed-top mt-0">
-            <div class="container-fluid bg-light">
-                <a class="navbar-brand fs-1 fw-bold text-success ms-5" href="#">
-                    <img src="img/logo.png" alt="Logo" width="60" height="60"
-                        class="d-inline-flex align-text-center img-fluid">
-                    Petari
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-                    <div class="navbar-nav gap-3 text-center">
-                        <a href="#about" class="d-block nav-opt">About</a>
-                        <a href="#projects" class=" d-block nav-opt">Projects</a>
-                        <a href="#contact" class=" d-block nav-opt">Contact</a>
-                        <a href="/policies" class=" d-block nav-opt">Policies</a>
-                        <a href="/admin_login" class=" nav-opt">Admin</a>
-                        <a href="/Ngo_login" class=" nav-opt">NGO</a>
-                        <a href="/user_login" class=" nav-opt">Login</a>
+                    <div class="container-fluid bg-light">
+                        <a class="navbar-brand fs-1 fw-bold text-success ms-5" href="#">
+                            <img src="img/logo.png" alt="Logo" width="60" height="60"
+                                class="d-inline-flex align-text-center img-fluid">
+                            Petari
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    <div class="fab" id="fab" onclick="toggleFabMenu()">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="nav-items" id="nav-items">
+                        <div class="nav-item" onclick="navigateTo('About', this)">
+                            <i class="fas fa-info-circle"></i>
+                            <span>About</span>
+                        </div>
+                        <div class="nav-item" onclick="navigateTo('Projects', this)">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>Projects</span>
+                        </div>
+                        <div class="nav-item" onclick="navigateTo('Contact', this)">
+                            <i class="fas fa-envelope"></i>
+                            <span>Contact</span>
+                        </div>
+                        <div class="nav-item" onclick="navigateTo('Policies', this)">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Policies</span>
+                        </div>
+                        <div class="nav-item" onclick="navigateTo('Admin', this)">
+                            <i class="fas fa-user-lock"></i>
+                            <span>Admin</span>
+                        </div>
+                        <div class="nav-item" onclick="navigateTo('NGO', this)">
+                            <i class="fas fa-hands-helping"></i>
+                            <span>NGO</span>
+                        </div>
+                        <div class="nav-item" onclick="navigateTo('Login', this)">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Login</span>
+                        </div>
                         <button id="darkModeToggle" class="btn btn-dark">
                             <i id="darkModeIcon" class="fas fa-sun"></i>
                         </button>
                     </div>
-                </div>
             </div>
         </nav>
 
@@ -386,6 +495,34 @@
           behavior: 'smooth'
       });
   });
+  document.addEventListener('click', function(event) {
+    const fabMenu = document.getElementById('nav-items');
+    const fab = document.getElementById('fab');
+    const isClickInside = fab.contains(event.target) || fabMenu.contains(event.target);
+
+    if (!isClickInside) {
+        fabMenu.classList.remove('open');
+    }
+});
+
+function toggleFabMenu() {
+    const fabMenu = document.getElementById('nav-items');
+    fabMenu.classList.toggle('open');
+}
+
+function navigateTo(section, element) {
+    // Implement your navigation logic here
+    console.log(`Navigating to ${section}`);
+    highlightActiveItem(element); // Call to highlight the active item if needed
+}
+
+function highlightActiveItem(element) {
+    const menuItems = document.querySelectorAll('.nav-item');
+    menuItems.forEach(item => {
+        item.classList.remove('active');
+    });
+    element.classList.add('active');
+}
 </script>
 
 
