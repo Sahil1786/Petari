@@ -14,38 +14,30 @@
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 70px;
+    background-color: #ECECEC;
+    font-family: 'Poppins', sans-serif;
 }
 
 .container {
-    max-width: 600px;
-    margin: auto;
+    max-width: 980px; /* Reduced width for a more compact look */
     text-align: center;
-    padding: 20px;
+    background: #fff; /* White background for the form */
+    padding: 18px 30px;
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .header {
-    font-size: 24px;
+    text-align: left;
+    font-size: 30px;
     font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.form {
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Reduced margin */
+    margin-top: -15px; /* Reduced margin */
 }
 
 .input-box {
-    margin-bottom: 20px;
-}
-
-.input-box label {
-    display: block;
-    text-align: left;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 20px; /* Reduced margin */
 }
 
 .input-box input {
@@ -55,37 +47,62 @@ body {
     border-radius: 5px;
 }
 
-.column {
-    display: flex;
-    justify-content: space-between;
-}
-
 .gender-box {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Reduced margin */
 }
 
 .gender-option {
     display: flex;
     justify-content: space-around;
-    margin-top: 10px;
+    margin-top: 10px; /* Reduced margin */
 }
 
 .gender label {
-    margin-right: 5px;
+    margin-right: 40px;
 }
 
 #signup-btn {
-    background-color: #103cbe;
+    background-color: #0D6EFD;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
+    margin-top: 10px; /* Reduced margin */
+    width: 100%;
 }
 
 #signup-btn:hover {
-    background-color: #0d308f;
+    background-color: #103cbe;
+}
+
+.left-box {
+    background: #103cbe;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bday{
+    margin-top: -15px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.small_line{
+    font-size: 2.6vh;
+    margin-top: -15px;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.left-box img {
+    background: #fff; /* White background for the image */
+    padding: 10px;
+    border-radius: 10px;
 }
 </style>
 </head>
@@ -95,100 +112,98 @@ body {
     <i id="darkModeIcon" class="fas fa-sun"></i>
 </button>
 <section class="container">
-    <header class="header">User Signup Form</header>
-    <br>
-    <hr>
-    <form action="/User_singUp" class="form custom-box needs-validation" method="POST" novalidate >
-        <div class="input-box">
-            <label class="form-label">Full Name</label>
-            <input id="name" class="form-control" type="text" name="fname" placeholder="Enter full name" required />
-            <div class="valid-feedback">
-                Name field looks good!
+    <div class="row">
+        <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
+            <div class="featured-image mb-3">
+                <img src="img/food.jpg" class="img-fluid" style="width: 250px;">
             </div>
-            <div id="nameFeedback" class="invalid-feedback">
-                Name should be at least 4 characters long!
-            </div>
+            <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;">Be Verified</p>
+            <small class="text-white text-wrap text-center" style="width: 17rem; font-family: 'Courier New', Courier, monospace;">Let's donate some food.</small>
         </div>
-
-        <div class="input-box">
-            <label class="form-label">Email Address</label>
-            <input id="email" class="form-control" type="email" name="username" placeholder="Enter email address" required />
-            <div class="valid-feedback">Email field looks good!</div>
-            <div id="emailFeedback" class="invalid-feedback">Please enter a valid email address (e.g., user@example.com).</div>
-        </div>
-        <div class="input-box">
-            <label class="form-label">Password</label>
-            <input id="password" class="form-control" type="password" name="password" placeholder="Enter password" required />
-            <div class="valid-feedback">Password field looks good!</div>
-            <div class="invalid-feedback" id="passwordFeedback">Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a digit, and a special symbol.</div>
-        </div>
-        <div class="input-box">
-            <div>
-                <label class="form-label">Phone Number</label>
-                <input id="mobn" class="form-control" type="number" name="phn" placeholder="Enter phone number" required />
-                <div class="valid-feedback">Mobile number looks good!</div>
-                <div id="mobnFeedback" class="invalid-feedback">Mobile number should be exactly 10 digits long.</div>
-            </div>
-            <div>
-                <label class="form-label">Address</label>
-                <input class="form-control" type="text" name="address" placeholder="Enter address" required />
-                <div class="valid-feedback">NGO location looks good!</div>
-                <div id="ngolocFeedback" class="invalid-feedback">Please enter a valid location (e.g., New York, NY).</div>
-            </div>
-        </div>
-        <div class="column">
-            <div class="input-box">
-                <label >Birth Date</label>
-                <input type="date" name="dob" placeholder="Enter birth date" required />
-            </div>
-        </div>
-
-        <div class="gender-box">
-            <h3>Gender</h3>
-            <div class="gender-option">
-                <div class="gender">
-                    <input type="radio" id="check-male" name="gender" value="male" checked required />
-                    <label for="check-male">Male</label>
+        <div class="col-md-6 right-box">
+            <header class="header">Sign Up</header>
+            <div class="small_line">Let's Connect With Us! </div>
+            <form action="/User_singUp" class="form custom-box needs-validation" method="POST" novalidate>
+                <div class="input-box">
+                    <!-- <label class="form-label">Full Name</label> -->
+                    <input id="name" class="form-control" type="text" name="fname" placeholder="Full name" required />
+                    <div class="valid-feedback">
+                        Name field looks good!
+                    </div>
+                    <div id="nameFeedback" class="invalid-feedback">
+                        Name should be at least 4 characters long!
+                    </div>
                 </div>
-                <div class="gender">
-                    <input type="radio" id="check-female" name="gender" value="female" required />
-                    <label for="check-female">Female</label>
+                <div class="input-box">
+                    <!-- <label class="form-label">Email Address</label> -->
+                    <input id="email" class="form-control" type="email" name="username" placeholder="Email address" required />
+                    <div class="valid-feedback">Email field looks good!</div>
+                    <div id="emailFeedback" class="invalid-feedback">Please enter a valid email address (e.g., user@example.com).</div>
                 </div>
-                <div class="gender">
-                    <input type="radio" id="check-other" name="gender" value="other" required />
-                    <label for="check-other">Prefer not to say</label>
+                <div class="input-box">
+                    <!-- <label class="form-label">Password</label> -->
+                    <input id="password" class="form-control" type="password" name="password" placeholder="Password" required />
+                    <div class="valid-feedback">Password field looks good!</div>
+                    <div class="invalid-feedback" id="passwordFeedback">Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a digit, and a special symbol.</div>
                 </div>
-            </div>
+                <div class="input-box">
+                    <!-- <label class="form-label">Phone Number</label> -->
+                    <input id="mobn" class="form-control" type="number" name="phn" placeholder="Phone number" required />
+                    <div class="valid-feedback">Mobile number looks good!</div>
+                    <div id="mobnFeedback" class="invalid-feedback">Mobile number should be exactly 10 digits long.</div>
+                </div>
+                <div class="input-box">
+                    <!-- <label class="form-label">Address</label> -->
+                    <input class="form-control" type="text" name="address" placeholder="Address" required />
+                    <div class="valid-feedback">NGO location looks good!</div>
+                    <div id="ngolocFeedback" class="invalid-feedback">Please enter a valid location (e.g., New York, NY).</div>
+                </div>
+                <div class="input-box">
+                    <!-- <label class="form-label">Birth Date</label> -->
+                    <input class="form-control" type="date" name="dob" data-placeholder="Birth Date (DD-MM-YYYY)" placeholder="Birth Date (DD-MM-YYYY)" required />
+                </div>
+                <div class="bday">&nbsp; * select birthday from calender </div>
+                <div class="gender-box">
+                    <!-- <label class="gender-label">Gender</label> -->
+                    <div class="gender-option">
+                        <div class="gender">
+                            <input type="radio" id="check-male" name="gender" value="male" checked required />
+                            <label for="check-male">Male</label>
+                        </div>
+                        <div class="gender">
+                            <input type="radio" id="check-female" name="gender" value="female" required />
+                            <label for="check-female">Female</label>
+                        </div>
+                        <div class="gender">
+                            <input type="radio" id="check-other" name="gender" value="other" required />
+                            <label for="check-other">Prefer not to say</label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" id="signup-btn" class="btn btn-primary">Submit</button>
+            </form>
         </div>
-        
-
-        <button type="submit" id="signup-btn">Submit</button>
-        <br>
-    </form>
+    </div>
 </section>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const darkModeIcon = document.getElementById('darkModeIcon');
-    const body = document.body;
-    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const darkModeIcon = document.getElementById('darkModeIcon');
+        const body = document.body;
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
 
-    // Function to toggle dark mode
-    function toggleDarkMode() {
-        const isDark = body.classList.toggle('dark-mode');
-        localStorage.setItem('darkMode', isDark);
-        darkModeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun'; // Change icon based on mode
-    }
+        function toggleDarkMode() {
+            const isDark = body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            darkModeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+        }
 
-    // Set initial mode based on localStorage
-    if (isDarkMode) {
-        toggleDarkMode();
-    }
+        if (isDarkMode) {
+            toggleDarkMode();
+        }
 
-    // Event listener for dark mode toggle button
-    darkModeToggle.addEventListener('click', toggleDarkMode);
-});
-
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+    });
 </script>
 <script src="js/index.js"></script>
 <script src="js/validation.js"></script>
