@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="/css/style.css">
     <!-- Icon -->
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- BOOTSTRAP CDN -->
@@ -137,6 +142,52 @@
 }
 
  </style>
+=======
+<style>
+    #scrollToTopBtn {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Fixed position */
+        bottom: 20px;
+        /* Place it at the bottom */
+        right: 30px;
+        /* Place it 30px from the right */
+        z-index: 99;
+        /* Ensure it is in front of other elements */
+        font-size: 18px;
+        /* Increase font size */
+        border: none;
+        /* Remove borders */
+        outline: none;
+        /* Remove outline */
+        background-color: #555;
+        /* Set a background color */
+        color: white;
+        /* Text color */
+        cursor: pointer;
+        /* Add a mouse pointer on hover */
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 10px;
+        /* Rounded corners */
+        transition: background-color 0.3s ease;
+        /* Smooth transition for background color */
+    }
+
+    #scrollToTopBtn:hover {
+        background-color: #333;
+        /* Add a dark-grey background on hover */
+        box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5), 0 0 25px rgb(255, 255, 255), 0 0 50px rgb(255, 255, 255), 0 0 200px rgb(255, 255, 255);
+    }
+
+    #scrollToTopBtn:active {
+        background-color: #111;
+        /* Darken the button when clicked */
+    }
+</style>
 <body>
     <!-- navgation bar -->
     <header>
@@ -194,7 +245,7 @@
     <main class="main mt-5">
 
         <!-- HOME PAGE IMAGE SECTION -->
-        <div class="owl-carousel ">
+        <!-- <div class="owl-carousel ">
             <div class="item">
                 <img src="img/slider-7.jpg" alt="">
                 <div class="container-1">
@@ -214,7 +265,30 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+        <script>
+            $(document).ready(function(){
+              $(".owl-carousel").owlCarousel({
+                items: 1,
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 3000,
+                animateOut: 'fadeOut'
+              });
+            });
+            </script>
+        <div class="owl-carousel">
+            <div class="item">
+                <img src="img/1.png" alt="Image 1">
+            </div>
+            <div class="item">
+                <img src="img/2.png" alt="Image 2">
+            </div>
+            <div class="item">
+                <img src="img/3.png" alt="Image 3">
+            </div>
         </div>
+        
 
         <!-- ABOUT -->
         <section class="about-us container-fluid my-5" id="about">
@@ -344,43 +418,44 @@
             </div>
 
             <!-- CONTACT-SECTION -->
-            <section class="contact-section " id="contact">
-                <div class="contact-section-header">
-                    <h2 class="">Any Query</h2>
-                    <div class="text">Get in Touch</div>
-                    <p>Thank you for visiting to petari. Connect with me over socials.
+            <section>
+                <div class="contact-header">
+                    <h2>Any Query</h2><br>
+                    <p>Thank you for visiting Petari. 
                         <br>
-                        Please wait for a while all major projects will be listed soon. Till then keep visiting.
-                        Connect with me over live chat!
+                        Stay tuned for more information about all major projects. Until then, connect with me over live chat!
                     </p>
                 </div>
-                <div class="contact-container row">
-                    <div class="col-6 left ">
-                        <img src="img/food.jpg" alt="">
+
+                <div class="contact-body">
+                    <div class="left">
+                        <img src="img/food.jpg" alt="Contact Image">
                     </div>
-                    <div class="col-6 right">
+                    <div class="right">
                         <form action="/" method="POST">
-                            <div class=" fields">
+                            <div class="text">Get in Touch</div>
+                            <div class="fields">
                                 <div class="field name">
                                     <input type="text" name="Fname" placeholder="Name" required>
                                 </div>
                                 <div class="field email">
                                     <input type="email" name="Email" placeholder="Email" required>
                                 </div>
-                            </div>
-                            <div class="field">
-                                <input type="text" name="sub" placeholder="Subject" required>
-                            </div>
-                            <div class="field">
-                                <textarea cols="30" rows="7" name="sms" placeholder="Message.." required></textarea>
-                            </div>
-                            <div class="button-area">
-                                <button type="submit" id="home" class="btn btn-success">Send </button>
+                                <div class="field">
+                                    <input type="text" name="sub" placeholder="Subject" required>
+                                </div>
+                                <div class="field" id="textarea">
+                                    <textarea cols="30" rows="5" name="sms" placeholder="Message.." required></textarea>
+                                </div>
+                                <div class="button-area">
+                                    <button type="submit" id="home" class="btn btn-success">Send</button>
+                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </section>
+
     </main>
 
     <!-- FOOTER SECTION -->
@@ -468,7 +543,6 @@
         });
 
     </script>
-
 <button id="scrollToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
 
 <script>
@@ -492,7 +566,7 @@
   scrollToTopBtn.addEventListener('click', function(){
       window.scrollTo({
           top: 0,
-          behavior: 'smooth'
+          behavior: 'smo<<<<<<< Navbar_Enhanceoth'
       });
   });
   document.addEventListener('click', function(event) {
@@ -523,8 +597,6 @@ function highlightActiveItem(element) {
     });
     element.classList.add('active');
 }
-</script>
-
 
     <script src="index.JS"></script>
 </body>
