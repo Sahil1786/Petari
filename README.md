@@ -79,7 +79,7 @@ PETARI, The Food Donate WebApp, is an initiative by an organization aiming to re
 
 # Contribution Guidelines
 <a g="contribution-guidelines"></a>
-Thank you for considering contributing to PETARI! We appreciate your efforts to make a positive impact on society through food redistribution and combating hunger. By contributing to PETARI, you are helping us move closer to our goal of creating a hunger-free world and reducing food waste.
+Thank you for considering contributing to PETARI! We appreciate your efforts to make a positive impact on society through food redistribution and combating hunger. By contributing to PETARI, you are helping us move closer to our goal of creating a hunger-free world and reducing food waste. Please go through [Contributing Guidelines](CONTRIBUTING.md).
 
 ## How Can You Contribute?
 <a h="how-can-you-contribute"></a>
