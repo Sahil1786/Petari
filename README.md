@@ -24,6 +24,7 @@
 - [Features](#features)
 - [Contribution Guidelines](#contribution-guidelines)
   - [How Can You Contribute?](#how-can-you-contribute)
+- [Code of Conduct](#code-of-conduct)
 - [Getting Started](#getting-started)
 - [Code Style Guidelines](#code-style-guidelines)
 - [Code Review Process](#code-review-process)
@@ -94,6 +95,10 @@ There are several ways you can contribute to PETARI:
 4. **Design**: If you have design skills, you can contribute by creating or improving the user interface and experience of PETARI.
 
 5. **Feedback**: Provide feedback on the existing features, suggest new ideas, or share your thoughts on how PETARI can be further improved.
+
+## Code of Conduct 
+
+Please note that this project is released with a Contributor [Code of Conduct](Code_of_conduct.md). By participating in this project you agree to abide by its terms.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
