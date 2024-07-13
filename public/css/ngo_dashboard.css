@@ -1,9 +1,52 @@
 body {
   min-height: 100vh;
-  background-color: var(--primary-color);
   transition: background-color var(--tran-03);
   margin: 0;
   font-family: "Poppins", sans-serif;
+  background-color: #e7e5e586;
+}
+.uil{
+  font-size: 1.5rem;
+}
+.nav-links {
+  padding: 0rem 1rem;
+}
+
+.logout-mode{
+  padding-left: 1.2rem;
+}
+
+/* Edit Form */
+.Edit_profile{
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.edit_header{
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.Edit_profile h4{
+  margin-bottom: 7px;
+}
+.Edit_profile button{
+  padding: 0.6rem 2rem;
+  border-radius: 10px;
+  margin: 1rem 0rem;
+  cursor: pointer;
+  font-size: medium;
+  border: 0;
+}
+.update-btn{
+  background-color: orange;
+      
+}
+.cancle-btn{
+  background-color: #3e8e41;
+}
+.edit-btns{
+  display: flex;
+  justify-content: space-between;
 }
 
 body.dark {
@@ -37,6 +80,7 @@ body.dark {
   border-radius: 12%;
 }
 
+
 .NAME-block {
   display: flex;
   gap: 5px;
@@ -54,20 +98,23 @@ body.dark {
 .top-border {
   border-style: double;
   border-color: #f07070;
+
 }
 
 .Left-name {
+  font-weight: 500;
+  font-size: 20px;
   display: inline-block;
   position: absolute;
   right: 3%;
-  padding-top: 3px;
+  
 }
 
 .top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 1.2rem 1rem;
 }
 
 
@@ -98,7 +145,7 @@ body.dark {
 
 .dash {
   position: fixed;
-  left: 35px;
+  left: 80px;
 }
 
 /* aditya End */
@@ -120,8 +167,10 @@ body.dark {
 }
 
 nav .logo-name {
+  text-decoration: none;
   display: flex;
   align-items: center;
+  padding: 1rem 0rem 1rem 0rem;
 }
 
 nav .logo-img {
@@ -144,7 +193,7 @@ nav .logo-name .logo_name {
 }
 
 nav .menu-items {
-  margin-top: 40px;
+  margin-top: 10px;
   height: calc(100% - 90px);
   display: flex;
   flex-direction: column;
@@ -156,11 +205,16 @@ nav .menu-items {
 }
 
 .menu-items li a {
+  color :#242526;
   display: flex;
   align-items: center;
   height: 50px;
   text-decoration: none;
   position: relative;
+}
+.manu-items li a:hover{
+  background-color: #d8d6d6;
+  border-radius: 10px;
 }
 
 .nav-links li a:hover:before {
@@ -169,11 +223,12 @@ nav .menu-items {
   height: 5px;
   width: 5px;
   border-radius: 50%;
-  background-color: var(--primary-color);
+  /* background-color: var(--primary-color); */
   left: -7px;
 }
 
 .menu-items li {
+  margin-bottom: 1rem;
   list-style: none;
 }
 
@@ -189,8 +244,8 @@ nav .menu-items {
 
 .menu-items li a .link-name {
   font-size: 18px;
-  font-weight: 400;
-  color: green;
+  font-weight: 600;
+  
 }
 
 .nav-links li a:hover i,
@@ -241,6 +296,10 @@ body.dark .switch::before {
 }
 
 body.dark .Profile-sec {
+  background-color: #5b5a5a;
+  color: #fff;
+}
+body.dark .Profile-sec .card {
   background-color: #333;
   color: #fff;
 }

@@ -36,6 +36,12 @@ router.post("/ngo",async(req,res)=>{
   });
 }) 
 
+router.post("/ngo/:id",async(req,res)=>{
+  let deletedngo=await NGO.findByIdAndDelete(req.params.id);
+  console.log(deletedngo);
+  res.redirect("/")
+})
+
 router.post("/NGO-login", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;

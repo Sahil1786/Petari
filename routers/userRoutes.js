@@ -72,10 +72,12 @@ router.post("/", async function (req, res) {
   }
 });
 
+
 router.post("/user",async(req,res)=>{
     let {email,fullName,phoneNo,address} =req.body;
+    console.log(req.body);
     let id=req.query.id;
-    let foundUser=await User.findByIdAndUpdate(id,{fullName:fullName,phoneNo:phoneNo,address:address, email:email},{new:true});
+    let foundUser=await User.findByIdAndUpdate(id,{fullName:fullName,Mobile:phoneNo,address:address, email:email},{new:true});
     // res.redirect("/login");
     const userQuerys = await Query.find({ user_id: foundUser._id });
 
@@ -97,8 +99,14 @@ router.post("/user",async(req,res)=>{
         complain: userQuerys,
         donationInfo: donationInfo,
     });
-}) 
+})
 
+router.post("/user/:id",async (req,res)=>{
+  // console.log(req.params.id);
+  await User.findByIdAndDelete(req.params.id);
+  return res.redirect("/");
+})
+ 
 // user login (seems to be something wrong here - user cant login even if he gives correct credentials)
 router.post("/login", async function (req, res) {
   const { username, password } = req.body;

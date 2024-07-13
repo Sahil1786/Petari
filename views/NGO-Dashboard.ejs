@@ -14,59 +14,77 @@
     <link rel="stylesheet" href="/css/ngo_dashboard.css">
 
     <style>
-        /* Profile Section */
         .Profile-sec{
             display: flex;
             justify-content: center;
             align-items: center;
+            box-sizing: content-box;
+        }
+
+        .card{
+            width: 500px;
+            background-color: #FFF;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 10px 10px 10px #0004;
+            margin-top: 1.5rem;
+        }
+        .card-body{
+            margin-top: 2rem;
+        }
+        .imag-box{
+            display: flex;
+            align-items: center;
+            padding: 1rem 1rem 1rem 2rem;
         }
         
-        .user_img{
-            background-color: #FFF;
-            color: #000;
-            text-align: center;
-            border-radius: 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-grow: 1;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-        }
-        .user_info{
-            flex-grow: 1;
-            background-color: #FFF;
-            color: #000;
-            padding: 1rem;
-            border-radius: 1rem;
-            margin-bottom: 1rem;
-            width: 100%;
-        }
-        .middle {   
-            display: flex;
-            flex-wrap: wrap;
-            width: 100%;
-            justify-content: space-between;
-            align-content: center;
-            padding: 4rem 2rem 7rem 19rem;
-        }
-        .img_box{
-            height:15rem;
-            width:17rem;
-           
-        }
-        .img_box img{
-            height:14rem;
-            width:13rem;
-            border-radius: 10%;
-        }
-        .btn{
+        .imag-box img{
+            height: 5rem;
+            width: 5rem;
             padding: 0.5rem;
-            background-color: green;
+            border: 4px solid #F07070;
+            border-radius: 50%;
+            margin-right: 1.5rem;   
+        }
+        .text-secondary{
+            opacity: 0.7;
+        }
+
+        .user-detail{
+            display: flex;
+            align-items: baseline;
+            padding: 1rem 3rem 1rem 2rem;
+            justify-content: space-between;
+        }
+
+        .delete-btn{
+            padding: 0.3rem 0.5rem;
             font-size: medium;
             border-radius: 0.5rem;
-            font-weight: 400;
+            background-color: #F07070;
+            color: #fff;
+            border: none;
+            cursor: pointer;
         }
+        .edit-btn{
+            padding:0.3rem 0.5rem;
+            font-size: medium;
+            border-radius:  0.5rem;
+            background-color: #fff;
+            color: #000;
+            border-width: 1px;
+            margin-right: 1rem;
+            cursor: pointer;
+        
+        }
+        .buttons{
+            display: flex;
+            justify-content: end;
+            padding: 1.5rem 0rem;
+        }
+
+        /* Profile Section */
+        
         input[type="text"],
         input[type="number"],
         input[type="email"],
@@ -234,37 +252,65 @@
         </div>
         <hr class="top-border">
         <section class="Profile-sec">
-                <div class="middle">
-            
-                    <div class="user_img" >
-                        <div class="">
-                        <div class="img_box">
-                            <img src="./img/userProfile.jpg" alt="">
+            <div class="card">
+                <div class="card-header">
+                    <h2 style="padding-left: 2rem;">User Information</h2>
+                </div>
+                <div class="card-body">
+                    <div class="imag-box">
+                        <img src="../img/user.ico" alt="" srcset="">
+                        <div class="info">
+                            <h3><%= fullName %></h3>
+                            <p class="text-secondary"><%=email%></p>
                         </div>
-                        <h2 style="margin-top: 1rem;"><%= fullName %></h2>
-                        <h3><%= email %></h3>
+                        
+                    </div>
+                    <div class="user-detail">
+                        <div class="" style="margin-right: 2rem;">
+                            <p class="text-secondary">Phone No.</p>
+                            <p ><%= phoneNo %></p>
+                        </div>
+                        <div class="">
+                            <p class="text-secondary">Address</p>
+                            <p ><%= address%></p>
                         </div>
                     </div>
-                    <div class="" style="width: 10px;"></div>
-                    <form action="/ngo?id=<%=userId%>" method="post" class="user_info">
-                        <h3 class="" style="margin-bottom: 1rem;">User Info</h3>
-                        <h4 class="User-Name">Name</h4>
-                        <input type="text" value="<%=fullName%>" name="fullName">
-                       
-                        <h4 class="User-Email">Email</h4>
-                        <input type="email" value="<%=email%>" name="email">
-    
-                        <h4 class="User-Phone">Phone No</h4>
-                        <input type="number" value="<%=phoneNo%>" name="phoneNo">
-                        <h4 class="User-Address">Address</h4>
-                        <input type="text" value="<%=address%>" name="address">
-                        <br><br>
-                        <button type="submit" class="btn">Edit Profile</button>
-    
-                    </form>
-                   
+                    <div class="buttons">
+                        <button type="button" class=" edit-btn">Edit</button>
+                        <form action="/ngo/<%=userId%>" method="post">
+                            <button type="submit " class="delete-btn">Delete</button>
+                        </form>
+                    </div>
                 </div>
-        
+            </div>
+        </section>
+        <!-- Profile Edit Section -->
+        <section class="Edit_profile">
+            <div class="card">
+                <h2  class="edit_header">Update  Information</h2>
+                <form action="/ngo?id=<%=userId%>" method="post">
+                    <div  class="">
+                        <h4>Name</h4>
+                        <input type="text" name="fullName" value="<%=fullName%>" >
+                    </div>
+                    <div class="">
+                        <h4>Email</h4>
+                        <input type="email" name="email" value="<%=email%>" >
+                    </div>
+                    <div class="">
+                        <h4>Phone No</h4>
+                        <input type="number" name="phoneNo" value="<%=phoneNo%>" >
+                    </div>
+                    <div class="">
+                        <h4>Address</h4>
+                        <input type="text" name="address" value="<%=address%>" >
+                    </div>
+                    <div class="edit-btns">
+                        <button type="submit" class=" update-btn"> Update Me</button>
+                        <button type="button " class="cancle-btn"> Cancle </button>
+                    </div>
+                </form>
+            </div>
         </section>
         <section class="NGO-sec" style="display: none;">
             <h2 style="text-align: center; margin-bottom: 2rem;">Pending Donation Pickup : <%= (Donation.filter(user=>
@@ -468,12 +514,12 @@
     <!-- Sliding menu -->
 
     <nav class="sliding-menu">
-        <div class="logo-name">
+        <a href="/" class="logo-name">
             <div class="logo-img">
                 <img src="img/logo.png" alt="logo">
             </div>
             <span class="logo_name">Petari</span>
-        </div>
+        </a>
         <div class="menu-items">
             <ul class="nav-links">
                 <li><a href="#">
@@ -521,6 +567,33 @@
 
     <!-- Adityas end -->
     <script>
+
+        // Edit functionality
+
+        let editbtn = document.querySelector(".edit-btn");
+        let Profile_box = document.querySelector(".Profile-sec");
+        let Edit_box = document.querySelector(".Edit_profile");
+        let cancle_btn = document.querySelector(".cancle-btn");
+
+
+        if(editbtn){
+            editbtn.addEventListener('click',(e)=>{
+                e.preventDefault();            
+                Profile_box.style.display="none";
+                Edit_box.style.display="flex";
+
+            });
+        }
+        if(cancle_btn){
+            cancle_btn.addEventListener('click',(e)=>{
+                e.preventDefault();
+                // console.log("done");
+                Profile_box.style.display="flex";
+                Edit_box.style.display="none";
+                    
+            })
+        }
+
         function toggleMenu() {
             var menu = document.querySelector('.sliding-menu');
             menu.style.width = menu.style.width === '25%' ? '0' : '25%';

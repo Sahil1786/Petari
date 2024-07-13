@@ -10,10 +10,12 @@
 
         body {
             min-height: 100vh;
-            background-color: var(--primary-color);
+            /* background-color: var(--primary-color); */
             transition: background-color var(--tran-03);
             margin: 0;
             font-family: 'Poppins', sans-serif;
+            background-color: #e7e5e586;
+            background-blend-mode: color-burn;
         }
 
         body.dark {
@@ -36,13 +38,10 @@
         }
 
         /* aditya start */
-
-         
-
-        
-
+        .logout-mode{
+            padding-left: 1.2rem;
+        }
         .top-border {
-
             border-style: double;
             border-color: #F07070;
         }
@@ -53,66 +52,92 @@
             right: 3%;
             padding-top: 3px;
         }
+        .uil{
+            font-size: 1.5rem;
+        }
 
         .top {
+            padding: 2rem 1rem;
+            background-color: #FFF;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
         }
+
+
+        /* Profile Section */
 
         .Profile-sec{
             display: flex;
             justify-content: center;
             align-items: center;
+            box-sizing: content-box;
+        }
+
+        .card{
+            width: 500px;
+            background-color: #FFF;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 10px 10px 10px #0004;
+            margin-top: 1.5rem;
+        }
+        .card-body{
+            margin-top: 2rem;
+        }
+        .imag-box{
+            display: flex;
+            align-items: center;
+            padding: 1rem 1rem 1rem 2rem;
         }
         
-        .user_img{
-            background-color: #FFF;
-            color: #000;
-            text-align: center;
-            border-radius: 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-grow: 1;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-        }
-        .user_info{
-            flex-grow: 1;
-            background-color: #FFF;
-            color: #000;
-            padding: 1rem 2rem;
-            border-radius: 1rem;
-            margin-bottom: 1rem;
-            width: 100%;
-        }
-        .middle {   
-            display: flex;
-            flex-wrap: wrap;
-            width: 100%;
-            justify-content: space-between;
-            align-content: center;
-            padding: 4rem 2rem 7rem 19rem;
-        }
-        .img_box{
-            height:14rem;
-            width:17rem;
-           
-        }
-        .img_box img{
-            height:14rem;
-            width:13rem;
-            border-radius: 10%;
-        }
-        .btn{
+        .imag-box img{
+            height: 5rem;
+            width: 5rem;
             padding: 0.5rem;
-            background-color: green;
+            border: 4px solid #F07070;
+            border-radius: 50%;
+            margin-right: 1.5rem;   
+        }
+        .text-secondary{
+            opacity: 0.7;
+        }
+
+        .user-detail{
+            display: flex;
+            align-items: baseline;
+            padding: 1rem 3rem 1rem 2rem;
+            justify-content: space-between;
+        }
+
+        .delete-btn{
+            padding: 0.3rem 0.5rem;
             font-size: medium;
             border-radius: 0.5rem;
-            font-weight: 400;
+            background-color: #F07070;
+            color: #fff;
+            border: none;
+            cursor: pointer;
         }
+        .edit-btn{
+            padding:0.3rem 0.5rem;
+            font-size: medium;
+            border-radius:  0.5rem;
+            background-color: #fff;
+            color: #000;
+            border-width: 1px;
+            margin-right: 1rem;
+            cursor: pointer;
+        
+        }
+        .buttons{
+            display: flex;
+            justify-content: end;
+            padding: 1.5rem 0rem;
+        }
+
+        /* Profile Section */
+        
 
         .dashboard {
             display: inline-block;
@@ -141,7 +166,10 @@
 
         .dash {
             position: absolute;
-            left: 35px;
+            left: 80px;
+        }
+        .nav-links{
+            padding: 0rem 1rem;
         }
 
         body.dark .top {
@@ -149,9 +177,47 @@
             color: #FFF;
         }
 
+        /* Edit Form */
+        .Edit_profile{
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .edit_header{
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .Edit_profile h4{
+            margin-bottom: 7px;
+        }
+        .Edit_profile button{
+            padding: 0.6rem 2rem;
+            border-radius: 10px;
+            margin: 1rem 0rem;
+            cursor: pointer;
+            font-size: medium;
+            border: 0;
+        }
+        .update-btn{
+            background-color: orange;
+                
+        }
+        .cancle-btn{
+            background-color: #3e8e41;
+        }
+        .edit-btns{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* .Edit_profile input{
+            margin-bottom: 10px;
+        } */
+
         .donation {
             display: none;
         }
+
 
         .container {
             display: flex;
@@ -248,6 +314,9 @@
         nav .logo-name {
             display: flex;
             align-items: center;
+            padding-left: 1rem;
+            text-decoration: none;
+            padding-top: 1rem;
         }
 
         nav .logo-img {
@@ -270,7 +339,7 @@
         }
 
         nav .manu-items {
-            margin-top: 40px;
+            margin-top: 10px;
             height: calc(100% - 90px);
             display: flex;
             flex-direction: column;
@@ -300,7 +369,12 @@
         }
 
         .manu-items li {
+            margin-bottom: 0.87rem;
             list-style: none;
+        }
+        .manu-items li:hover{
+            background-color: #d8d6d6;
+            border-radius: 10px;
         }
 
         .manu-items li a i {
@@ -315,8 +389,7 @@
 
         .manu-items li a .link-name {
             font-size: 18px;
-            font-weight: 400;
-            color: green;
+            font-weight: 600;
         }
 
         .nav-links li a:hover i,
@@ -643,36 +716,66 @@
 
         </div>
         <hr class="top-border">
+        <!-- Profile section -->
         <section class="Profile-sec">
-            <div class="middle">
-            
-                <div class="user_img" >
-                    <div class="">
-                    <div class="img_box">
-                        <img src="./img/userProfile.jpg" alt="">
+            <div class="card">
+                <div class="card-header">
+                    <h2 style="padding-left: 2rem;" >User Information</h2>
+                </div>
+                <div class="card-body">
+                    <div class="imag-box">
+                        <img src="../img/user.ico" alt="" srcset="">
+                        <div class="info">
+                            <h3><%= fullName %></h3>
+                            <p class="text-secondary"><%=email%></p>
+                        </div>
+                        
                     </div>
-                    <h2 style="margin-top: 1rem;"><%= fullName %></h2>
-                    <h3><%= email %></h3>
+                    <div class="user-detail">
+                        <div class="" style="margin-right: 2rem;">
+                            <p class="text-secondary">Phone No.</p>
+                            <p ><%= phoneNo %></p>
+                        </div>
+                        <div class="">
+                            <p class="text-secondary">Address</p>
+                            <p ><%= address%></p>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button type="button" class=" edit-btn">Edit</button>
+                        <form action="/user/<%=userId%>" method="post">
+                            <button type="submit " class="delete-btn">Delete</button>
+                        </form>
                     </div>
                 </div>
-                <div class="" style="width: 10px;"></div>
-                <form action="/user?id=<%=userId%>" method="post" class="user_info">
-                    <h3 class="" style="margin-bottom: 1rem;">User Info</h3>
-                    <h4 class="User-Name">Name</h4>
-                    <input type="text" value="<%=fullName%>" name="fullName">
-                   
-                    <h4 class="User-Email">Email</h4>
-                    <input type="email" value="<%=email%>" name="email">
-
-                    <h4 class="User-Phone">Phone No</h4>
-                    <input type="number" value="<%=phoneNo%>" name="phoneNo">
-                    <h4 class="User-Address">Address</h4>
-                    <input type="text" value="<%=address%>" name="address">
-
-                    <button type="submit" class="btn">Edit Profile</button>
-
+            </div>
+        </section>
+        <!-- Profile Edit Section -->
+        <section class="Edit_profile">
+            <div class="card">
+                <h2  class="edit_header">Update  Information</h2>
+                <form action="/user?id=<%=userId%>" method="post">
+                    <div  class="">
+                        <h4>Name</h4>
+                        <input type="text" name="fullName" value="<%=fullName%>" >
+                    </div>
+                    <div class="">
+                        <h4>Email</h4>
+                        <input type="email" name="email" value="<%=email%>" >
+                    </div>
+                    <div class="">
+                        <h4>Phone No</h4>
+                        <input type="number" name="phoneNo" value="<%=phoneNo%>" >
+                    </div>
+                    <div class="">
+                        <h4>Address</h4>
+                        <input type="text" name="address" value="<%=address%>" >
+                    </div>
+                    <div class="edit-btns">
+                        <button type="submit" class=" update-btn"> Update Me</button>
+                        <button type="button " class="cancle-btn"> Cancle </button>
+                    </div>
                 </form>
-               
             </div>
         </section>
         <section class="donation">
@@ -768,7 +871,7 @@
         <!-- TRACK-SECTION -->
         <section class="track-sec" style="display: none;">
             <h2 style="text-align: center;">My Donation </h2>
-            <% if(donationInfo.food.length !==0){ %>
+            <% if(typeof donationInfo !==undefined && donationInfo.food.length !==0){ %>
                 <ul class="donor-list">
                     <li class="donor-item">
                         <p class="donor-name">Name : <%= fullName %>
@@ -907,12 +1010,13 @@
 
         <!-- Adityas end -->
         <nav class="sliding-menu">
-            <div class="logo-name">
+            <a href="/" class="logo-name">
                 <div class="logo-img">
                     <img src="img/logo.png" alt="logo">
                 </div>
                 <span class="logo_name">Petari</span>
-            </div>
+            </a>
+            
             <div class="manu-items">
                 <ul class="nav-links">
                     <li><a href="#">
@@ -958,6 +1062,36 @@
         </nav>
 
         <script>
+
+             // Edit functionality
+
+            let editbtn = document.querySelector(".edit-btn");
+            let Profile_box = document.querySelector(".Profile-sec");
+            let Edit_box = document.querySelector(".Edit_profile");
+            let cancle_btn = document.querySelector(".cancle-btn");
+
+
+            if(editbtn){
+                editbtn.addEventListener('click',(e)=>{
+                    e.preventDefault();            
+                    Profile_box.style.display="none";
+                    Edit_box.style.display="flex";
+
+               });
+            }
+            if(cancle_btn){
+                cancle_btn.addEventListener('click',(e)=>{
+                    e.preventDefault();
+                    // console.log("done");
+                    Profile_box.style.display="flex";
+                    Edit_box.style.display="none";
+                    
+                })
+            }
+            
+            
+
+
             function toggleMenu() {
                 var menu = document.querySelector('.sliding-menu');
                 menu.style.width = menu.style.width === '25%' ? '0' : '25%';
@@ -1172,6 +1306,9 @@
             //     four.classList.add("active");
             //     // five.classList.add("active");
             // }
+
+
+            
 
         </script>
 </body>
