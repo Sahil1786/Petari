@@ -1,5 +1,19 @@
 # <p align="center"> Petari - The Food Donation Management System</p>
 <div id="top"></div>
+
+## 🏆 Featured in:
+
+<table>
+    <tr>
+      <th>Event Name</th>
+      <th>Event Description</th>
+    </tr>
+    <tr>
+        <td>GirlScript Summer of Code 2024</td>
+        <td>GirlScript Summer of Code is a three-month-long Open Source Program conducted every summer by GirlScript Foundation. It is an initiative to bring more beginners to Open-Source Software Development. 
+    </tr>
+</table>
+
 <h2>Table of Contents</h2>
 
 - [Introduction](#introduction)
@@ -10,11 +24,13 @@
 - [Features](#features)
 - [Contribution Guidelines](#contribution-guidelines)
   - [How Can You Contribute?](#how-can-you-contribute)
+- [Code of Conduct](#code-of-conduct)
 - [Getting Started](#getting-started)
 - [Code Style Guidelines](#code-style-guidelines)
 - [Code Review Process](#code-review-process)
 - [Community Guidelines](#community-guidelines)
 - [Output Screenshot](#output-screenshot)
+- [License](#license)
 <br>
 
 ## Introduction
@@ -65,7 +81,7 @@ PETARI, The Food Donate WebApp, is an initiative by an organization aiming to re
 
 # Contribution Guidelines
 <a g="contribution-guidelines"></a>
-Thank you for considering contributing to PETARI! We appreciate your efforts to make a positive impact on society through food redistribution and combating hunger. By contributing to PETARI, you are helping us move closer to our goal of creating a hunger-free world and reducing food waste.
+Thank you for considering contributing to PETARI! We appreciate your efforts to make a positive impact on society through food redistribution and combating hunger. By contributing to PETARI, you are helping us move closer to our goal of creating a hunger-free world and reducing food waste. Please go through [Contributing Guidelines](CONTRIBUTING.md).
 
 ## How Can You Contribute?
 <a h="how-can-you-contribute"></a>
@@ -80,6 +96,10 @@ There are several ways you can contribute to PETARI:
 4. **Design**: If you have design skills, you can contribute by creating or improving the user interface and experience of PETARI.
 
 5. **Feedback**: Provide feedback on the existing features, suggest new ideas, or share your thoughts on how PETARI can be further improved.
+
+## Code of Conduct 
+
+Please note that this project is released with a Contributor [Code of Conduct](Code_of_conduct.md). By participating in this project you agree to abide by its terms.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -254,6 +274,10 @@ Users can log in to their accounts on PETARI's platform. This feature enables us
 Admins have special privileges and access to manage the platform. The admin login page provides authentication for authorized personnel to perform administrative tasks, such as managing user accounts, overseeing donations, and maintaining the system.
 
 ![Admin Login Page](https://github.com/Sahil1786/Petari/assets/111786720/fb1cc46a-e3ad-40fd-93c6-268849e05e91)
+
+## License
+
+This project is under [LICENSE](LICENSE)
 
 **Please follow me and give a star to my repository 
 <p align="right">(<a href="#top">back to top</a>)</p>
