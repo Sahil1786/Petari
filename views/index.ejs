@@ -124,7 +124,7 @@
 }
 
 .nav-items.open {
-    width: 100%;
+    width: 80%;
 }
 
 .nav-items.open .nav-item {
@@ -495,34 +495,38 @@
           behavior: 'smooth'
       });
   });
-  document.addEventListener('click', function(event) {
+  document.addEventListener('DOMContentLoaded', function() {
     const fabMenu = document.getElementById('nav-items');
     const fab = document.getElementById('fab');
-    const isClickInside = fab.contains(event.target) || fabMenu.contains(event.target);
 
-    if (!isClickInside) {
-        fabMenu.classList.remove('open');
-    }
-});
-
-function toggleFabMenu() {
-    const fabMenu = document.getElementById('nav-items');
-    fabMenu.classList.toggle('open');
-}
-
-function navigateTo(section, element) {
-    // Implement your navigation logic here
-    console.log(`Navigating to ${section}`);
-    highlightActiveItem(element); // Call to highlight the active item if needed
-}
-
-function highlightActiveItem(element) {
-    const menuItems = document.querySelectorAll('.nav-item');
-    menuItems.forEach(item => {
-        item.classList.remove('active');
+    // Toggle menu when FAB is clicked
+    fab.addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevents the menu from immediately closing due to document click
+        fabMenu.classList.toggle('open');
     });
-    element.classList.add('active');
-}
+
+    // Close menu when clicking outside FAB and menu
+    document.addEventListener('click', function(event) {
+        const isClickInside = fab.contains(event.target) || fabMenu.contains(event.target);
+        if (!isClickInside) {
+            fabMenu.classList.remove('open');
+        }
+    });
+
+    // Navigation function
+    function navigateTo(section, element) {
+        console.log(`Navigating to ${section}`);
+        highlightActiveItem(element); // You can implement your navigation logic here
+    }
+
+    // Highlight active menu item
+    function highlightActiveItem(element) {
+        const menuItems = document.querySelectorAll('.nav-item');
+        menuItems.forEach(item => {
+            item.classList.remove('active');
+        });
+        element.classList.add('active');
+    }});
 </script>
 
 
