@@ -48,6 +48,16 @@
 #scrollToTopBtn:active {
     background-color: #111; /* Darken the button when clicked */
 }
+/* Added CSS to style the success message */
+.success-message {
+    margin-top: 20px;
+    padding: 10px;
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+}
+
  </style>
 <body>
     <!-- navgation bar -->
@@ -250,7 +260,8 @@
                         <img src="img/food.jpg" alt="">
                     </div>
                     <div class="col-6 right">
-                        <form action="/" method="POST">
+                        <form id="contactForm" action="/" method="POST">
+
                             <div class=" fields">
                                 <div class="field name">
                                     <input type="text" name="Fname" placeholder="Name" required>
@@ -269,6 +280,9 @@
                                 <button type="submit" id="home" class="btn btn-success">Send </button>
                             </div>
                         </form>
+                          <div id="successMessage" class="success-message" style="display: none;">
+                    Your message has been successfully sent!
+                </div>
                     </div>
                 </div>
             </section>
@@ -357,6 +371,30 @@
             // Event listener for dark mode toggle button
             darkModeToggle.addEventListener('click', toggleDarkMode);
         });
+        document.addEventListener('DOMContentLoaded', () => {
+    // Select the form and the success message container
+    const form = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+
+    // Add event listener for form submission
+    form.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Optionally, you can add an AJAX request here to send form data to the server
+
+        // Clear the form fields
+        form.reset();
+
+        // Display the success message
+        successMessage.style.display = 'block';
+
+        // Hide the success message after a few seconds
+        setTimeout(() => {
+            successMessage.style.display = 'none';
+        }, 5000); // Adjust the duration as needed
+    });
+});
+
 
     </script>
 
