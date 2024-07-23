@@ -1,0 +1,138 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hello",
+        "Hey",
+        "How are you",
+        "Is anyone there?"
+      ],
+      "responses": [
+        "Hello! Welcome to PETARI, The Food Donate WebApp. How can I assist you today?",
+        "Hi there! How can I help you with PETARI today?",
+        "Hello! How can we make your experience better with PETARI?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "Goodbye", "See you later"],
+      "responses": [
+        "Goodbye! Thank you for visiting PETARI.",
+        "See you later! Have a great day!",
+        "Bye! Come back again soon to PETARI."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["Thanks", "Thank you", "That's helpful", "Thank you so much"],
+      "responses": [
+        "You're welcome! Happy to help.",
+        "Anytime! We're here to assist you.",
+        "My pleasure! If you have more questions, feel free to ask."
+      ]
+    },
+    {
+      "tag": "mission",
+      "patterns": [
+        "What is PETARI?",
+        "Tell me about PETARI",
+        "What does PETARI do?",
+        "What is the mission of PETARI?"
+      ],
+      "responses": [
+        "PETARI, The Food Donate WebApp, is an initiative aiming to redistribute excess food from various events to those in need. Our mission is to achieve a hunger-free world and zero food waste.",
+        "PETARI focuses on collecting excess food from weddings, parties, and events to redistribute it to individuals who are hungry, thereby reducing food waste and ensuring that surplus food benefits those in need."
+      ]
+    },
+    {
+      "tag": "features",
+      "patterns": [
+        "What features does PETARI offer?",
+        "Tell me about the features of PETARI",
+        "What can PETARI do?"
+      ],
+      "responses": [
+        "PETARI offers several features, including redistribution of excess food from events, alignment with India's Sustainable Development Goals, environmental consciousness by reducing food waste, and societal impact by addressing food insecurity and hunger issues."
+      ]
+    },
+    {
+      "tag": "sustainable goals",
+      "patterns": [
+        "How does PETARI align with sustainable goals?",
+        "What sustainable goals does PETARI support?",
+        "Tell me about PETARI's sustainable goals"
+      ],
+      "responses": [
+        "PETARI's mission aligns with India's Sustainable Development Goals, particularly focusing on making the world hunger-free and reducing food waste to contribute to a sustainable and equitable society."
+      ]
+    },
+    {
+      "tag": "environmental impact",
+      "patterns": [
+        "What is PETARI's environmental impact?",
+        "How does PETARI help the environment?",
+        "Tell me about PETARI's environmental efforts"
+      ],
+      "responses": [
+        "By redistributing excess food and reducing food waste, PETARI helps alleviate the pressure on finite natural resources and minimizes the environmental impact associated with food wastage."
+      ]
+    },
+    {
+      "tag": "societal impact",
+      "patterns": [
+        "How does PETARI benefit society?",
+        "What is PETARI's societal impact?",
+        "Tell me about PETARI's societal contributions"
+      ],
+      "responses": [
+        "PETARI aims to bring benefits across society by providing access to food for individuals who may not have adequate means to access it, addressing food insecurity and hunger issues."
+      ]
+    },
+    {
+      "tag": "economic impact",
+      "patterns": [
+        "What is PETARI's economic impact?",
+        "How does PETARI contribute to economic sustainability?",
+        "Tell me about PETARI's economic contributions"
+      ],
+      "responses": [
+        "Through its activities, PETARI not only addresses social issues related to hunger but also contributes to economic sustainability by efficiently utilizing excess resources and reducing wastage."
+      ]
+    },
+    {
+      "tag": "collaboration",
+      "patterns": [
+        "Does PETARI collaborate with events?",
+        "How does PETARI collect food?",
+        "Tell me about PETARI's collaborations"
+      ],
+      "responses": [
+        "PETARI collaborates with various events, such as weddings and parties, to collect surplus food. We emphasize the importance of partnerships and community involvement in achieving our goals."
+      ]
+    },
+    {
+      "tag": "volunteer",
+      "patterns": [
+        "How can I volunteer for PETARI?",
+        "Can I volunteer?",
+        "Tell me about volunteering opportunities"
+      ],
+      "responses": [
+        "Thank you for your interest in volunteering! Please visit our website and fill out the volunteer form to get started. We appreciate your support in making a difference."
+      ]
+    },
+    {
+      "tag": "donate",
+      "patterns": [
+        "How can I donate to PETARI?",
+        "Can I donate?",
+        "Tell me about donation options"
+      ],
+      "responses": [
+        "Thank you for considering a donation! You can donate through our website by clicking on the 'Donate' button. Your contributions help us continue our mission to reduce hunger and food waste."
+      ]
+    }
+  ]
+}
