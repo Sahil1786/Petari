@@ -59,7 +59,7 @@ PETARI, The Food Donate WebApp, is an initiative by an organization aiming to re
 - <h4>Environmental Consciousness: </h4> By redistributing excess food and reducing food waste, Petari helps alleviate the pressure on finite natural resources and minimizes the environmental impact associated with food wastage.
 - <h4>Economic Impact:</h4> Through its activities, Petari not only addresses social issues related to hunger but also contributes to economic sustainability by efficiently utilizing excess resources and reducing wastage.
 - <h4>Collaboration with Events:</h4> Petari likely collaborates with various events, such as weddings and parties, to collect surplus food, emphasizing the importance of partnerships and community involvement in achieving its goals.
-
+- <h4>Rewards for Donation:</h4> Donors  get personalised certificates of donation they make, acknowledging their effort for making a donation.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
