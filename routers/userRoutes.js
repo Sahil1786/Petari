@@ -326,6 +326,7 @@ router.post("/User_singUp", async function (req, res) {
       phoneNo: foundUser.Mobile,
       address: foundUser.address,
       complain: userQuerys,
+      donationInfo: donationInfo
     });
   } catch (error) {
     console.error("Error during user registration:", error);
@@ -470,6 +471,7 @@ router.route("/reset-password-user").post(async (req, res) => {
         phoneNo: user.Mobile,
         address: user.address,
         complain: userQuerys,
+        donationInfo: donationInfo
       });
 
       // Redirect to login page or any other desired page
@@ -502,6 +504,7 @@ router.post("/delete-query/:id/:email", async (req, res) => {
       phoneNo: foundUser.Mobile,
       address: foundUser.address,
       complain: userQuerys,
+      donationInfo: donationInfo
     });
   } catch (error) {
     console.error(error);

@@ -595,7 +595,28 @@
             font-size: 20px;
             display: flex;
         }
+        .certificate {
+            font-family: Arial, sans-serif;
+            border: 2px solid #000;
+            padding: 20px;
+            width: 600px;
+            margin: 50px auto;
+            text-align: center;
+        }
 
+        .certificate h1 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
+
+        .certificate h2 {
+            font-size: 1.5em;
+            margin: 0.5em 0;
+        }
+
+        .certificate p {
+            margin: 0.5em 0;
+        }
         /* Responsive Css  */
 
         @media (max-width: 980px) {
@@ -687,7 +708,7 @@
                 <div class="form-container">
                     <h2>Donation Form</h2>
                     <br>
-                    <form id="donationForm" action="/add-details" method="post">
+                    <form id="donationForm" method="post" onsubmit="generateCertificate(event)">
                         <label for="userId">Email Id:</label>
                         <input type="email" id="userId" name="email" required>
                         <span id="emailError" class="error"></span>
@@ -767,7 +788,7 @@
                             <button type="button" class="button" onclick="deleteRow()">Delete Row</button>
                         </div>
                         <div style="display: flex; justify-content: center;">
-                            <button class="button" type="submit">Donate</button>
+                            <button class="button" type="submit" >Donate</button>
                         </div>
                     </form>
         </section>
@@ -1042,7 +1063,33 @@
                     alert("Cannot delete the only row");
                 }
             }
+            
+            //event hadler to get customised certificate
+            function generateCertificate(event) {
+                event.preventDefault();
 
+                const form = document.getElementById('donationForm');
+                const formData = new FormData(form);
+                const fullname='<%= fullName %>'
+                const foodItem = formData.get('foodItem');
+                const quantity = formData.get('quantity');
+
+                const certificateContent = `
+                    <div class="certificate">
+                        <h1>Certificate of Donation</h1>
+                        <p>This certificate is proudly presented to</p>
+                        <h2>${fullname}</h2>
+                        <p>for their generous donation.</p>
+                        <p>Food Item: ${foodItem} Food Quantity:${quantity}</p>
+                        <p>Thank you for your support!</p>
+                    </div>
+                `;
+
+                const certificateWindow = window.open('', '_blank');
+                certificateWindow.document.write(certificateContent);
+                //certificateWindow.document.close();
+            }
+    
             function validateForm() {
                 var isValid = true;
 
@@ -1179,8 +1226,11 @@
             //     four.classList.add("active");
             //     // five.classList.add("active");
             // }
-
+        
         </script>
+
+    
+    
 </body>
 
 </html>
