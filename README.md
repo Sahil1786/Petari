@@ -1,4 +1,6 @@
 # <p align="center"> Petari - The Food Donation Management System</p>
+
+        **Please follow me and give a star to my repository 
 <div id="top"></div>
 
 ## 🏆 Featured in:
@@ -279,7 +281,7 @@ Admins have special privileges and access to manage the platform. The admin logi
 
 This project is under [LICENSE](LICENSE)
 
-**Please follow me and give a star to my repository 
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
